@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kudoz AI Enterprise | demoTenant</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --bg: #0b0f19;
+  --surface: #111827;
+  --surface-card: #1f2937;
+  --border: #374151;
+  --text: #f9fafb;
+  --muted: #9ca3af;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1020px;
+}
+
+.portal-header {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.brand-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+
+.brand-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.auth-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2.25rem;
+  text-align: center;
+  max-width: 420px;
+  margin: 3rem auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0b0f19;
+  color: #fff;
+  font-size: 0.95rem;
+  margin: 1.2rem 0;
+  outline: none;
+}
+
+.auth-box input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.btn-auth {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.btn-auth:hover {
+  background: var(--primary-hover);
+}
+
+.portal-content {
+  display: none;
+}
+
+.role-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.role-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  background: #1e3a8a;
+  color: #bfdbfe;
+}
+
+.btn-lock {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.btn-lock:hover {
+  background: var(--surface-card);
+  color: #fff;
+}
+
+.metrics-banner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.metric-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.metric-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.metric-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.tabs-nav {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  font-size: 0.88rem;
+}
+
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.chart-card h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.reports-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.report-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.2s;
+}
+
+.report-card:hover {
+  border-color: var(--primary);
+}
+
+.report-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.report-icon {
+  font-size: 1.4rem;
+}
+
+.report-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.report-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.btn-decrypt {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+.btn-decrypt:hover {
+  background: var(--primary-hover);
+}
+
+.admin-matrix {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-matrix h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.compliance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.compliance-table th,
+.compliance-table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.compliance-table th {
+  color: var(--muted);
+  font-weight: 700;
+  background: var(--surface-card);
+}
+
+.badge-check {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.badge-ok {
+  background: #064e3b;
+  color: #6ee7b7;
+}
+
+.badge-no {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
+
+.form-embed-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+/* --- Kudoz Deliverables Filter Bar --- */
+.kudoz-filter-bar {
+  display: flex;
+  gap: 8px;
+  margin: 14px 0 16px 0;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-pill {
+  background: #f8fafc;
+  color: #475569;
+  border: 1.5px solid #cbd5e1;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.filter-pill:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #1e293b;
+}
+
+.filter-pill.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+/* --- In-Portal PDF Viewer Modal --- */
+.kudoz-pdf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(3px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.kudoz-pdf-modal-dialog {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 1120px;
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  border: 1px solid #334155;
+}
+
+.kudoz-pdf-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  background: #0f172a;
+  color: #ffffff;
+  border-bottom: 1px solid #1e293b;
+}
+
+.modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-header-left .modal-icon {
+  font-size: 16px;
+}
+
+.modal-header-left h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.modal-header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-modal-action {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.btn-modal-action:hover {
+  opacity: 0.9;
+}
+
+.btn-download {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.btn-close {
+  background: #334155;
+  color: #ffffff;
+}
+
+.kudoz-pdf-modal-body {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: #525659;
+}
+
+.kudoz-pdf-modal-body iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  <header class="portal-header">
+    <div class="brand-group">
+      <div class="brand-icon">🛡️</div>
+      <div>
+        <div class="brand-title">Kudoz AI Enterprise</div>
+        <div class="brand-sub">Tenant ID: <code>tenant_demo</code> | Account: <strong>demoTenant</strong></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login Form -->
+  <div id="authSection" class="auth-box">
+    <h3 style="margin-bottom: 0.4rem; color: #fff;">Workspace Sign-In</h3>
+    <p style="color: var(--muted); font-size: 0.84rem;">Enter your student, parent, or admin passkey</p>
+    <input type="password" id="passkeyInput" placeholder="Passkey..." onkeydown="if(event.key==='Enter') unlockPortal();" />
+    <button class="btn-auth" onclick="unlockPortal()">Unlock Portal</button>
+  </div>
+
+  <!-- Authenticated Portal View -->
+  <div id="portalContent" class="portal-content">
+    <div class="role-bar">
+      <span id="roleLabel" class="role-badge">Authenticated</span>
+      <button class="btn-lock" onclick="lockPortal()">🔒 Lock Session</button>
+    </div>
+
+    <!-- Analytics & Productivity Metrics Bar -->
+    <div class="metrics-banner">
+      <div class="metric-card">
+        <div class="metric-title">Screen Time (Past 7 Days)</div>
+        <div class="metric-val" id="metricTotalHours">0.0 hrs</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">ActivityWatch State</div>
+        <div class="metric-val" id="metricAwStatus" style="font-size: 0.95rem;">Checking...</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">Encrypted Deliverables</div>
+        <div class="metric-val" id="metricDeliverables">0 Ready</div>
+      </div>
+    </div>
+
+    <!-- Admin Diagnostics Overview (Admin Only) -->
+    <div id="adminOverviewSection" style="display:none;" class="admin-matrix">
+      <h3>🔍 Administrator 7-Day Ingestion & Compliance Matrix</h3>
+      <table class="compliance-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Daily Screen Time</th>
+            <th>Daily Tracker</th>
+            <th>Academic Tests</th>
+            <th>Parent Audit</th>
+          </tr>
+        </thead>
+        <tbody id="adminComplianceBody"></tbody>
+      </table>
+    </div>
+
+    <nav class="tabs-nav">
+      <button id="tabBtnReports" class="tab-btn active" onclick="switchTab('reports')">📊 Analytics Deliverables</button>
+      <button id="tabBtnForms" class="tab-btn" onclick="switchTab('forms')">✍️ Daily Quest & Feedback</button>
+    </nav>
+
+    <!-- Tab 1: Charts & Reports -->
+    <div id="paneReports" class="tab-pane active">
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h4>ActivityWatch Logged Hours (Trailing 7 Days)</h4>
+          <canvas id="hoursChart" height="120"></canvas>
+        </div>
+        <div class="chart-card">
+          <h4>Top Applications (Past 7 Days)</h4>
+          <canvas id="appsChart" height="120"></canvas>
+        </div>
+      </div>
+
+      <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: #fff;">Available Encrypted Deliverables</h3>
+      
+      <!-- Report Deliverables Category Filter Bar -->
+     
+      <div class="kudoz-filter-bar" style="margin-bottom: 1.5rem; display: flex; gap: 0.5rem;">
+  <button class="filter-pill active" data-target="executive" onclick="filterKudozReports('executive', this)"> 📊 Executive Reports</button>
+  <button class="filter-pill" data-target="student" onclick="filterKudozReports('student', this)"> 🚀 Student Summaries</button>
+  <button class="filter-pill" data-target="weekly" onclick="filterKudozReports('weekly', this)">🏆 Weekly Rewards</button>
+</div>
+
+      <div id="reportsList" class="reports-list"></div>
+    </div>
+
+    <!-- Tab 2: Feedback & Input Forms -->
+    <div id="paneForms" class="tab-pane">
+      <div id="studentFormWrapper" style="display:none;" class="form-embed-card">
+        <!-- Kudoz AI v3.1 Modular Daily Tracker Component (Guided 2-Step Workflow) -->
+<style>
+  .kudoz-tracker-container {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    color: #0f172a;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  .step-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    background: #f1f5f9;
+    border-left: 4px solid #2563eb;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+  .step-num {
+    background: #2563eb;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.8rem;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-text {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .sync-card {
+    background: #f8fafc;
+    border: 1.5px dashed #cbd5e1;
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .sync-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .sync-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .sync-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    background: #e2e8f0;
+    color: #475569;
+  }
+  .sync-badge.outdated {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #f87171;
+    animation: flashAlert 1.5s infinite alternate ease-in-out;
+  }
+  .sync-badge.synced {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+  }
+  @keyframes flashAlert {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    100% { transform: scale(1.02); box-shadow: 0 0 8px 2px rgba(239, 68, 68, 0.3); }
+  }
+
+  .action-callout {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 0.85rem;
+    font-size: 0.82rem;
+    color: #1e40af;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .btn-open-aw {
+    background: #2563eb;
+    color: #ffffff;
+    padding: 0.45rem 0.85rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .btn-open-aw:hover { background: #1d4ed8; }
+
+  .dropzone-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #94a3b8;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 1.25rem 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .dropzone-box:hover, .dropzone-box.dragover {
+    border-color: #2563eb;
+    background: #eff6ff;
+  }
+  .dropzone-icon { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  .dropzone-text { font-size: 0.85rem; font-weight: 700; color: #1e293b; }
+  .dropzone-sub { font-size: 0.75rem; color: #64748b; margin-top: 0.2rem; }
+  .file-selected-indicator {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #15803d;
+    display: none;
+  }
+  .btn-push-aw-only {
+    margin-top: 0.85rem;
+    background: #0f172a;
+    color: #ffffff;
+    border: none;
+    padding: 0.6rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .btn-push-aw-only:hover { background: #334155; }
+
+  .meta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.2rem;
+  }
+  .field-group { display: flex; flex-direction: column; gap: 0.3rem; }
+  .field-group label { font-size: 0.78rem; font-weight: 700; color: #475569; text-transform: uppercase; }
+  .input-box {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    background: #f8fafc;
+    color: #0f172a;
+    box-sizing: border-box;
+    outline: none;
+  }
+  .input-box:focus {
+    border-color: #2563eb;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  }
+  .questions-list { display: flex; flex-direction: column; gap: 1rem; }
+  .q-card {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .q-card label { font-size: 0.85rem; font-weight: 700; color: #1e293b; }
+  .pill-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+  .pill-selector input[type="radio"] { display: none; }
+  .pill-selector label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.45rem 0.2rem;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  .pill-selector input[type="radio"]:checked + label {
+    background: #eff6ff;
+    border-color: #2563eb;
+    color: #2563eb;
+    font-weight: 700;
+  }
+
+  /* Sub-grid for real-world offline inputs */
+  .sub-grid-3 {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .sub-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  @media (max-width: 600px) {
+    .sub-grid-3, .sub-grid-2 { grid-template-columns: 1fr; }
+  }
+
+  .btn-submit-action {
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 0.85rem;
+    background: #2563eb;
+    color: #ffffff;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-submit-action:hover { background: #1d4ed8; }
+  .draft-indicator {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-align: right;
+    margin-top: 0.4rem;
+  }
+</style>
+
+<div class="kudoz-tracker-container">
+  <!-- Step 1: ActivityWatch Screen Time Synchronization -->
+  <div class="step-banner">
+    <div class="step-num">1</div>
+    <div class="step-text">Sync ActivityWatch Screen Time Logs</div>
+  </div>
+
+  <div class="sync-card">
+    <div class="sync-header">
+      <div class="sync-title">💻 Local ActivityWatch Stream Status</div>
+      <span id="trackerAwStatusBadge" class="sync-badge">Checking sync state...</span>
+    </div>
+
+    <div class="action-callout">
+      <span>1. Open your local ActivityWatch buckets page and click <strong>"Export all buckets as JSON"</strong> (bottom right):</span>
+      <a href="http://127.0.0.1:5600/#/buckets" target="_blank" class="btn-open-aw">
+        🔗 Open ActivityWatch Export
+      </a>
+    </div>
+
+    <div class="dropzone-box" id="awDropZone" onclick="document.getElementById('awFileInput').click()">
+      <div class="dropzone-icon">📥</div>
+      <div class="dropzone-text">Click or Drop the downloaded <code>aw-export.json</code> here</div>
+      <div class="dropzone-sub">Loaded screen-time data uploads automatically with your tracker</div>
+      <input type="file" id="awFileInput" accept=".json" style="display:none;" onchange="handleAWFileSelect(this.files)" />
+      <div id="fileSelectedIndicator" class="file-selected-indicator"></div>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end;">
+      <button type="button" id="btnAwSyncOnly" class="btn-push-aw-only" onclick="syncUploadedAWOnly()">
+        ⚡ Push Screen Time File Only
+      </button>
+    </div>
+  </div>
+
+  <!-- Step 2: Daily Feedback & Progress Sync -->
+  <div class="step-banner">
+    <div class="step-num">2</div>
+    <div class="step-text">Daily Progress & Habit Questionnaire</div>
+  </div>
+
+  <form id="trackerForm" onsubmit="event.preventDefault(); submitTrackerAndAW();">
+    <div class="meta-row">
+      <div class="field-group">
+        <label for="trackerStudentName">Student Name</label>
+        <input type="text" id="trackerStudentName" class="input-box" placeholder="Your name..." required />
+      </div>
+      <div class="field-group">
+        <label for="trackerDate">Date</label>
+        <input type="date" id="trackerDate" class="input-box" required />
+      </div>
+    </div>
+
+    <div class="questions-list">
+      <div class="q-card">
+        <label for="trackerQ1">1. Is there any plan configured today?</label>
+        <input type="text" id="trackerQ1" class="input-box" placeholder="Core target / tasks scheduled..." required />
+      </div>
+
+      <div class="q-card">
+        <label for="trackerQ2">2. Is there any plan finalized for tomorrow?</label>
+        <input type="text" id="trackerQ2" class="input-box" placeholder="Next priorities ready for tomorrow..." required />
+      </div>
+
+      <div class="q-card">
+        <label>3. Have you completed all the work as per today's plan?</label>
+        <div class="pill-selector">
+          <input type="radio" name="tracker_q3_status" id="t_q3_yes" value="Yes (100% Completed)" checked />
+          <label for="t_q3_yes">🟢 100% Done</label>
+
+          <input type="radio" name="tracker_q3_status" id="t_q3_partial" value="Partially Completed" />
+          <label for="t_q3_partial">🟡 In Progress</label>
+
+          <input type="radio" name="tracker_q3_status" id="t_q3_no" value="No (Rescheduled)" />
+          <label for="t_q3_no">🔴 Rescheduled</label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <label>4. Have you completed / will you complete overall deadlines?</label>
+        <div class="pill-selector">
+          <input type="radio" name="tracker_q4_deadlines" id="t_q4_ontime" value="On Track (Within Deadlines)" checked />
+          <label for="t_q4_ontime">🚀 On Track</label>
+
+          <input type="radio" name="tracker_q4_deadlines" id="t_q4_risk" value="At Risk of Delay" />
+          <label for="t_q4_risk">⚠️ At Risk</label>
+
+          <input type="radio" name="tracker_q4_deadlines" id="t_q4_delayed" value="Delayed (Needs Extension)" />
+          <label for="t_q4_delayed">🚨 Delayed</label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <label for="trackerQ5">5. Have you learnt new thing that outclass, elaborate:</label>
+        <input type="text" id="trackerQ5" class="input-box" placeholder="One new tool, skill, concept learned today..." required />
+      </div>
+
+      <!-- Real-World Offline & 3-Bucket Balance -->
+      <div class="q-card">
+        <label>6. Offline Hands-On Hobbies & Maker Crafts (Bucket A):</label>
+        <div class="sub-grid-3">
+          <input type="text" id="trackerHobbyDesc" class="input-box" placeholder="e.g. Arduino circuit prototyping, paper sketch, reading..." />
+          <select id="trackerHobbyCategory" class="input-box">
+            <option value="Hardware / Robotics">Hardware / Robotics</option>
+            <option value="Reading / Book">Reading / Paper Book</option>
+            <option value="Science / Experiment">Science / Experiment</option>
+            <option value="Art / Music / Craft">Art / Music / Craft</option>
+            <option value="None" selected>None Today</option>
+          </select>
+          <input type="number" id="trackerHobbyHours" class="input-box" step="0.5" min="0" max="12" placeholder="Hours (e.g. 1.5)" />
+        </div>
+      </div>
+
+      <div class="q-card">
+        <label>7. Healthy Leisure & Off-Screen Gaming (Buckets B & C):</label>
+        <div class="sub-grid-2">
+          <input type="text" id="trackerLeisureDesc" class="input-box" placeholder="Bucket B: Sports, cycling, family walking..." />
+          <select id="trackerOfflineGaming" class="input-box">
+            <option value="0.0">Bucket C Gaming: Zero / Screen-Free</option>
+            <option value="0.5">Bucket C Gaming: 0.5 hr (30 mins)</option>
+            <option value="1.0">Bucket C Gaming: 1.0 hr</option>
+            <option value="2.0">Bucket C Gaming: 2.0 hrs (Heavy)</option>
+            <option value="3.0">Bucket C Gaming: 3.0+ hrs (Intense)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="trackerDraftStatus" class="draft-indicator">Draft auto-saves locally</div>
+    <button type="submit" id="btnTrackerSubmit" class="btn-submit-action">
+      🚀 Submit Daily Progress Questionnaire
+    </button>
+  </form>
+</div>
+
+<script>
+  let loadedAWJson = null;
+  const TRACKER_DRAFT_KEY = "kudoz_v31_tracker_draft";
+
+  (function() {
+    const dInput = document.getElementById('trackerDate');
+    if (dInput) dInput.valueAsDate = new Date();
+    setupDropZone();
+    updateAWStatusBadge();
+    restoreTrackerDraft();
+    bindTrackerAutoSave();
+  })();
+
+  function bindTrackerAutoSave() {
+    const fields = [
+      'trackerStudentName', 'trackerQ1', 'trackerQ2', 'trackerQ5',
+      'trackerHobbyDesc', 'trackerHobbyCategory', 'trackerHobbyHours',
+      'trackerLeisureDesc', 'trackerOfflineGaming'
+    ];
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', saveTrackerDraft);
+        el.addEventListener('change', saveTrackerDraft);
+      }
+    });
+    document.querySelectorAll('input[name="tracker_q3_status"], input[name="tracker_q4_deadlines"]').forEach(r => {
+      r.addEventListener('change', saveTrackerDraft);
+    });
+  }
+
+  function saveTrackerDraft() {
+    const q3 = document.querySelector('input[name="tracker_q3_status"]:checked');
+    const q4 = document.querySelector('input[name="tracker_q4_deadlines"]:checked');
+    const draft = {
+      name: document.getElementById('trackerStudentName').value,
+      q1: document.getElementById('trackerQ1').value,
+      q2: document.getElementById('trackerQ2').value,
+      q3: q3 ? q3.value : null,
+      q4: q4 ? q4.value : null,
+      q5: document.getElementById('trackerQ5').value,
+      hobbyDesc: document.getElementById('trackerHobbyDesc').value,
+      hobbyCat: document.getElementById('trackerHobbyCategory').value,
+      hobbyHours: document.getElementById('trackerHobbyHours').value,
+      leisureDesc: document.getElementById('trackerLeisureDesc').value,
+      offlineGaming: document.getElementById('trackerOfflineGaming').value
+    };
+    localStorage.setItem(TRACKER_DRAFT_KEY, JSON.stringify(draft));
+    const st = document.getElementById('trackerDraftStatus');
+    if (st) st.textContent = "Draft auto-saved locally";
+  }
+
+  function restoreTrackerDraft() {
+    const raw = localStorage.getItem(TRACKER_DRAFT_KEY);
+    if (!raw) return;
+    try {
+      const d = JSON.parse(raw);
+      if (d.name) document.getElementById('trackerStudentName').value = d.name;
+      if (d.q1) document.getElementById('trackerQ1').value = d.q1;
+      if (d.q2) document.getElementById('trackerQ2').value = d.q2;
+      if (d.q5) document.getElementById('trackerQ5').value = d.q5;
+      if (d.hobbyDesc) document.getElementById('trackerHobbyDesc').value = d.hobbyDesc;
+      if (d.hobbyCat) document.getElementById('trackerHobbyCategory').value = d.hobbyCat;
+      if (d.hobbyHours) document.getElementById('trackerHobbyHours').value = d.hobbyHours;
+      if (d.leisureDesc) document.getElementById('trackerLeisureDesc').value = d.leisureDesc;
+      if (d.offlineGaming) document.getElementById('trackerOfflineGaming').value = d.offlineGaming;
+      if (d.q3) {
+        const r = document.querySelector(`input[name="tracker_q3_status"][value="${d.q3}"]`);
+        if (r) r.checked = true;
+      }
+      if (d.q4) {
+        const r = document.querySelector(`input[name="tracker_q4_deadlines"][value="${d.q4}"]`);
+        if (r) r.checked = true;
+      }
+      const st = document.getElementById('trackerDraftStatus');
+      if (st) st.textContent = "Restored draft from browser storage";
+    } catch (e) {}
+  }
+
+  function formatToClientTime(isoUtcString) {
+    if (!isoUtcString) return null;
+    const safeUtc = (isoUtcString.endsWith("Z") || isoUtcString.includes("+")) 
+      ? isoUtcString 
+      : isoUtcString.replace(" ", "T") + "Z";
+    const dateObj = new Date(safeUtc);
+    if (isNaN(dateObj.getTime())) return isoUtcString;
+
+    return dateObj.toLocaleString(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+  }
+
+  function updateAWStatusBadge() {
+    const badge = document.getElementById('trackerAwStatusBadge');
+    if (!badge) return;
+
+    const lastSyncStr = window.MANIFEST && window.MANIFEST.aw_last_synced;
+    if (!lastSyncStr) {
+      badge.className = "sync-badge outdated";
+      badge.innerHTML = "⚠️ No Screen Time Synced Yet";
+      return;
+    }
+
+    const safeUtc = (lastSyncStr.endsWith("Z") || lastSyncStr.includes("+")) 
+      ? lastSyncStr 
+      : lastSyncStr.replace(" ", "T") + "Z";
+    const syncDate = new Date(safeUtc);
+    const now = new Date();
+
+    const isToday = 
+      syncDate.getFullYear() === now.getFullYear() &&
+      syncDate.getMonth() === now.getMonth() &&
+      syncDate.getDate() === now.getDate();
+
+    const formattedTime = formatToClientTime(lastSyncStr);
+
+    if (!isToday) {
+      badge.className = "sync-badge outdated";
+      badge.innerHTML = `⚠️ Last Synced: ${formattedTime} (Outdated)`;
+    } else {
+      badge.className = "sync-badge synced";
+      badge.innerHTML = `✅ Synced Today: ${formattedTime}`;
+    }
+  }
+
+  function setupDropZone() {
+    const dropZone = document.getElementById('awDropZone');
+    if (!dropZone) return;
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZone.classList.add('dragover');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropZone.classList.remove('dragover');
+      }, false);
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      const files = e.dataTransfer.files;
+      handleAWFileSelect(files);
+    }, false);
+  }
+
+  function handleAWFileSelect(files) {
+    if (!files || files.length === 0) return;
+    const file = files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      try {
+        loadedAWJson = JSON.parse(e.target.result);
+        const indicator = document.getElementById('fileSelectedIndicator');
+        indicator.style.display = "block";
+        indicator.innerHTML = `✅ Screen Time Ready: <strong>${file.name}</strong> (${(file.size / 1024).toFixed(1)} KB)`;
+      } catch (err) {
+        alert("Invalid ActivityWatch JSON export file.");
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  async function syncUploadedAWOnly() {
+    if (!loadedAWJson) {
+      alert("Please export and select your ActivityWatch JSON file first (Step 1).");
+      return;
+    }
+
+    const btn = document.getElementById('btnAwSyncOnly');
+    btn.innerText = "⏳ Uploading Screen Time...";
+    btn.disabled = true;
+
+    if (window.pushActivityWatchOnly) {
+      const ok = await window.pushActivityWatchOnly(loadedAWJson);
+      if (ok) {
+        const nowIso = new Date().toISOString();
+        if (window.MANIFEST) window.MANIFEST.aw_last_synced = nowIso;
+        alert("🎉 Successfully uploaded ActivityWatch screen time to KudozAI Server!");
+        updateAWStatusBadge();
+      } else {
+        alert("❌ Failed to push ActivityWatch data to server.");
+      }
+    }
+
+    btn.innerText = "⚡ Push Screen Time File Only";
+    btn.disabled = false;
+  }
+
+  async function submitTrackerAndAW() {
+    const btn = document.getElementById('btnTrackerSubmit');
+    const confirmed = confirm("Submit daily progress to KudozAI Server?");
+    if (!confirmed) return;
+
+    btn.disabled = true;
+    btn.innerText = "⏳ Submitting questionnaire...";
+
+    const name = document.getElementById('trackerStudentName').value.trim() || 'Student';
+    const date = document.getElementById('trackerDate').value;
+    const q1 = document.getElementById('trackerQ1').value.trim() || 'None configured';
+    const q2 = document.getElementById('trackerQ2').value.trim() || 'None finalized';
+    const q3 = document.querySelector('input[name="tracker_q3_status"]:checked').value;
+    const q4 = document.querySelector('input[name="tracker_q4_deadlines"]:checked').value;
+    const q5 = document.getElementById('trackerQ5').value.trim() || 'Standard work completed';
+
+    const hobbyDesc = document.getElementById('trackerHobbyDesc').value.trim() || "None";
+    const hobbyCat = document.getElementById('trackerHobbyCategory').value;
+    const hobbyHours = parseFloat(document.getElementById('trackerHobbyHours').value) || 0.0;
+    const leisureDesc = document.getElementById('trackerLeisureDesc').value.trim() || "None";
+    const offlineGaming = parseFloat(document.getElementById('trackerOfflineGaming').value) || 0.0;
+
+    const trackerPayload = {
+      meta: { student_name: name, submission_date: date, created_at: new Date().toISOString() },
+      responses: {
+        plan_configured_today: q1,
+        plan_finalized_for_tomorrow: q2,
+        work_completed_as_per_today_plan: q3,
+        overall_deadlines_status: q4,
+        outclass_learning_elaborated: q5,
+        offline_activities: {
+          hands_on_hobbies: hobbyDesc,
+          hobby_category: hobbyCat,
+          hobby_hours: hobbyHours,
+          healthy_leisure: leisureDesc,
+          offscreen_gaming_hours: offlineGaming
+        }
+      }
+    };
+
+    if (window.submitTenantBundle) {
+      const success = await window.submitTenantBundle(trackerPayload, loadedAWJson, name);
+      if (success) {
+        const nowIso = new Date().toISOString();
+        if (loadedAWJson && window.MANIFEST) window.MANIFEST.aw_last_synced = nowIso;
+        localStorage.removeItem(TRACKER_DRAFT_KEY);
+        alert("🎉 Successfully submitted Daily Tracker" + (loadedAWJson ? " & Screen Time" : "") + " to KudozAI Server!");
+        updateAWStatusBadge();
+      } else {
+        alert("⚠️ Upload failed. Please check network connection.");
+      }
+    }
+
+    btn.disabled = false;
+    btn.innerText = "🚀 Submit Daily Progress Questionnaire";
+  }
+</script>
+
+      </div>
+      <div id="parentFormWrapper" style="display:none;">
+        <div class="form-embed-card" style="margin-bottom: 1.5rem;">
+          <!-- Kudoz AI v3.1 Modular Academic Progress Component -->
+<style>
+  .kudoz-academic-container {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-sizing: border-box;
+    color: #1e293b;
+  }
+  .kudoz-academic-container h2 {
+    margin-top: 0;
+    color: #1d4ed8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+  .kudoz-academic-container .header-bar {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .kudoz-academic-container .header-bar label {
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .kudoz-academic-container .header-bar input {
+    padding: 6px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .kudoz-academic-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+  }
+  .kudoz-academic-container th, 
+  .kudoz-academic-container td {
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .kudoz-academic-container th {
+    background: #f8fafc;
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+  }
+  .kudoz-academic-container input, 
+  .kudoz-academic-container select {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 13px;
+  }
+  .kudoz-academic-container .pct-text {
+    font-weight: 700;
+    font-size: 12.5px;
+    color: #2563eb;
+    text-align: center;
+    display: block;
+  }
+  .kudoz-academic-container .btn-add {
+    background: #10b981;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 12px;
+  }
+  .kudoz-academic-container .btn-add:hover { background: #059669; }
+  .kudoz-academic-container .btn-delete {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+  }
+  .kudoz-academic-container .btn-delete:hover { background: #dc2626; }
+  .kudoz-academic-container .btn-submit-action {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .kudoz-academic-container .btn-submit-action:hover { background: #1d4ed8; }
+  .kudoz-academic-container .counter {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: normal;
+  }
+  .academic-footer-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #64748b;
+  }
+</style>
+
+<div class="kudoz-academic-container">
+  <h2>
+    <span>📝 Academic & Practice Test Entries</span>
+    <span class="counter" id="recordCounter">1 / 50 Records</span>
+  </h2>
+
+  <div class="header-bar">
+    <label for="academicSubmissionDate">Entry Date:</label>
+    <input type="date" id="academicSubmissionDate" required>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 24%;">Category / Institution</th>
+        <th style="width: 28%;">Subject</th>
+        <th style="width: 16%;">Obtained Marks</th>
+        <th style="width: 16%;">Total Marks</th>
+        <th style="width: 10%; text-align: center;">Score %</th>
+        <th style="width: 6%; text-align: center;">Action</th>
+      </tr>
+    </thead>
+    <tbody id="testTableBody">
+      <!-- Injected via script -->
+    </tbody>
+  </table>
+
+  <button type="button" class="btn-add" onclick="addAcademicRow()">+ Add Subject Record</button>
+  
+  <button type="button" class="btn-submit-action" onclick="submitAcademicProgress()">
+    🚀 Push Academic Tests to KudozAI Server
+  </button>
+  
+  <div class="academic-footer-bar">
+    <span id="academicDraftStatus">Auto-saves draft locally</span>
+    <span id="academicCumulativeStatus">Cumulative Score: 0.0%</span>
+  </div>
+</div>
+
+<script>
+  const ACADEMIC_DRAFT_KEY = "kudoz_v31_academic_draft";
+  const MAX_RECORDS = 50;
+
+  (function() {
+    const dateInput = document.getElementById('academicSubmissionDate');
+    if (dateInput) dateInput.valueAsDate = new Date();
+    restoreAcademicDraft();
+  })();
+
+  function updateCounterAndAverages() {
+    const tableBody = document.getElementById('testTableBody');
+    const recordCounter = document.getElementById('recordCounter');
+    if (tableBody && recordCounter) {
+      recordCounter.textContent = `${tableBody.rows.length} / ${MAX_RECORDS} Records`;
+    }
+
+    let grandObt = 0;
+    let grandTot = 0;
+    const rows = tableBody.rows;
+    for (let i = 0; i < rows.length; i++) {
+      const obt = parseFloat(rows[i].querySelector('.obtained-input').value) || 0;
+      const tot = parseFloat(rows[i].querySelector('.total-input').value) || 0;
+      const pctLabel = rows[i].querySelector('.pct-text');
+      
+      const pct = tot > 0 ? ((obt / tot) * 100).toFixed(1) : "0.0";
+      if (pctLabel) pctLabel.textContent = `${pct}%`;
+
+      grandObt += obt;
+      grandTot += tot;
+    }
+
+    const cumPct = grandTot > 0 ? ((grandObt / grandTot) * 100).toFixed(1) : "0.0";
+    const cumLabel = document.getElementById('academicCumulativeStatus');
+    if (cumLabel) cumLabel.textContent = `Cumulative Score: ${cumPct}%`;
+
+    saveAcademicDraft();
+  }
+
+  function addAcademicRow(initialData = {}) {
+    const tableBody = document.getElementById('testTableBody');
+    if (tableBody.rows.length >= MAX_RECORDS) {
+      alert("Maximum limit of 50 test records reached.");
+      return;
+    }
+
+    const row = tableBody.insertRow();
+    const cat = initialData.category || "School";
+    const subj = initialData.subject || "";
+    const obt = initialData.obtained !== undefined ? initialData.obtained : "";
+    const tot = initialData.total !== undefined ? initialData.total : 50;
+    const pct = (obt && tot) ? ((obt / tot) * 100).toFixed(1) : "0.0";
+
+    row.innerHTML = `
+      <td>
+        <select class="category-input" onchange="updateCounterAndAverages()">
+          <option value="School" ${cat === "School" ? "selected" : ""}>School Exam / Quiz</option>
+          <option value="Academy" ${cat === "Academy" ? "selected" : ""}>Academy / Coaching Test</option>
+          <option value="Home" ${cat === "Home" ? "selected" : ""}>Home Practice Test</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" class="subject-input" value="${subj}" placeholder="e.g. Mathematics" required oninput="updateCounterAndAverages()">
+      </td>
+      <td>
+        <input type="number" class="obtained-input" step="0.5" min="0" value="${obt}" placeholder="45" required oninput="updateCounterAndAverages()">
+      </td>
+      <td>
+        <input type="number" class="total-input" step="0.5" min="0.5" value="${tot}" placeholder="50" required oninput="updateCounterAndAverages()">
+      </td>
+      <td style="text-align: center;">
+        <span class="pct-text">${pct}%</span>
+      </td>
+      <td style="text-align: center;">
+        <button type="button" class="btn-delete" onclick="removeAcademicRow(this)">✕</button>
+      </td>
+    `;
+    updateCounterAndAverages();
+  }
+
+  function removeAcademicRow(btn) {
+    const tableBody = document.getElementById('testTableBody');
+    if (tableBody.rows.length <= 1) {
+      alert("At least one test entry is required.");
+      return;
+    }
+    btn.closest('tr').remove();
+    updateCounterAndAverages();
+  }
+
+  function saveAcademicDraft() {
+    const tableBody = document.getElementById('testTableBody');
+    const rows = tableBody.rows;
+    const dataList = [];
+    for (let i = 0; i < rows.length; i++) {
+      dataList.push({
+        category: rows[i].querySelector('.category-input').value,
+        subject: rows[i].querySelector('.subject-input').value,
+        obtained: rows[i].querySelector('.obtained-input').value,
+        total: rows[i].querySelector('.total-input').value
+      });
+    }
+    localStorage.setItem(ACADEMIC_DRAFT_KEY, JSON.stringify(dataList));
+    const st = document.getElementById('academicDraftStatus');
+    if (st) st.textContent = "Draft auto-saved locally";
+  }
+
+  function restoreAcademicDraft() {
+    const tableBody = document.getElementById('testTableBody');
+    tableBody.innerHTML = "";
+    const raw = localStorage.getItem(ACADEMIC_DRAFT_KEY);
+    if (raw) {
+      try {
+        const list = JSON.parse(raw);
+        if (Array.isArray(list) && list.length > 0) {
+          list.forEach(item => addAcademicRow(item));
+          return;
+        }
+      } catch (e) {}
+    }
+    addAcademicRow();
+  }
+
+  async function submitAcademicProgress() {
+    const confirmed = confirm("Do you want to push your academic records to KudozAI Server?");
+    if (!confirmed) return;
+
+    const tableBody = document.getElementById('testTableBody');
+    const rows = tableBody.rows;
+    const entryDate = document.getElementById('academicSubmissionDate').value;
+
+    if (!entryDate) {
+      alert("Please select a valid date.");
+      return;
+    }
+
+    const testsList = [];
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      const category = row.querySelector('.category-input').value;
+      const subject = row.querySelector('.subject-input').value.trim();
+      const obtained = parseFloat(row.querySelector('.obtained-input').value);
+      const total = parseFloat(row.querySelector('.total-input').value);
+
+      if (!subject) {
+        alert(`Row ${i + 1}: Subject cannot be empty.`);
+        return;
+      }
+      if (isNaN(obtained) || isNaN(total) || total <= 0 || obtained > total) {
+        alert(`Row ${i + 1}: Please enter valid marks (Obtained <= Total).`);
+        return;
+      }
+
+      testsList.push({
+        category: category,
+        subject: subject,
+        obtained_marks: obtained,
+        total_marks: total,
+        percentage: parseFloat(((obtained / total) * 100).toFixed(1))
+      });
+    }
+
+    const payload = {
+      type: "academic_tests_batch",
+      date: entryDate,
+      total_tests_logged: testsList.length,
+      tests: testsList
+    };
+
+    if (window.submitTenantFeedback) {
+      const ok = await window.submitTenantFeedback("academic_tests", payload, "parent");
+      if (ok) {
+        localStorage.removeItem(ACADEMIC_DRAFT_KEY);
+        alert("🎉 Successfully pushed Academic Tests to KudozAI Server!");
+      }
+    } else {
+      alert("Portal core handler window.submitTenantFeedback not found.");
+    }
+  }
+</script>
+
+        </div>
+        <div class="form-embed-card">
+          <!-- Kudoz AI v3.1 Modular Weekly Parent Feedback Component -->
+<style>
+  .kudoz-parent-feedback-container {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-sizing: border-box;
+    color: #1e293b;
+  }
+  .kudoz-parent-feedback-container h2 {
+    margin-top: 0;
+    color: #be185d;
+    font-size: 1.2rem;
+  }
+  .kudoz-parent-feedback-container label {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 12px;
+    margin-bottom: 4px;
+  }
+  .kudoz-parent-feedback-container input,
+  .kudoz-parent-feedback-container select,
+  .kudoz-parent-feedback-container textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 13px;
+  }
+  .kudoz-parent-feedback-container textarea {
+    resize: vertical;
+    height: 64px;
+  }
+  .kudoz-parent-feedback-container .btn-submit-action {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px;
+    background: #db2777;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .kudoz-parent-feedback-container .btn-submit-action:hover {
+    background: #be185d;
+  }
+  .parent-draft-indicator {
+    font-size: 12px;
+    color: #64748b;
+    text-align: right;
+    margin-top: 6px;
+  }
+</style>
+
+<div class="kudoz-parent-feedback-container">
+  <h2>👨‍👩‍👦 Weekly Parental Feedback</h2>
+  <form id="parentFeedbackForm" onsubmit="event.preventDefault(); submitParentFeedback();">
+    <label>Review Date (Saturday):</label>
+    <input type="date" id="parentReviewDate" required>
+
+    <label>Agreed Weekly Reward / Milestone Incentive (Optional):</label>
+    <input type="text" id="agreedReward" placeholder="e.g. Weekend camping trip, Arduino sensor kit, 2h gaming">
+
+    <label>Mother's Discipline & Attitude Rating (1-10):</label>
+    <input type="number" id="motherScore" min="1" max="10" step="0.5" placeholder="Score / 10" required>
+    <label>Mother's Observations & Notes:</label>
+    <textarea id="motherNotes" placeholder="e.g. Completed daily studies on time, respectful attitude."></textarea>
+
+    <label>Father's Focus & Routine Rating (1-10):</label>
+    <input type="number" id="fatherScore" min="1" max="10" step="0.5" placeholder="Score / 10" required>
+    <label>Father's Observations & Notes:</label>
+    <textarea id="fatherNotes" placeholder="e.g. Practiced problem sets without reminders. Great routine."></textarea>
+
+    <label>Screen-Free Balance & Offline Conduct Rating (1-10):</label>
+    <input type="number" id="balanceScore" min="1" max="10" step="0.5" placeholder="Score / 10 (Offline sports, crafts & routine)">
+    <label>Observations on Real-World Balance & Hobbies:</label>
+    <textarea id="balanceNotes" placeholder="Did the student balance screens with physical hobbies, crafts, or reading?"></textarea>
+
+    <div id="parentDraftStatus" class="parent-draft-indicator">Draft auto-saves locally</div>
+    <button type="submit" class="btn-submit-action">
+      🚀 Push Parent Feedback to KudozAI Server
+    </button>
+  </form>
+</div>
+
+<script>
+  const PARENT_DRAFT_KEY = "kudoz_v31_parent_draft";
+
+  (function() {
+    const dInput = document.getElementById('parentReviewDate');
+    if (dInput) dInput.valueAsDate = new Date();
+    restoreParentDraft();
+    bindParentAutoSave();
+  })();
+
+  function bindParentAutoSave() {
+    ['agreedReward', 'motherScore', 'motherNotes', 'fatherScore', 'fatherNotes', 'balanceScore', 'balanceNotes'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', saveParentDraft);
+        el.addEventListener('change', saveParentDraft);
+      }
+    });
+  }
+
+  function saveParentDraft() {
+    const draft = {
+      agreedReward: document.getElementById('agreedReward').value,
+      motherScore: document.getElementById('motherScore').value,
+      motherNotes: document.getElementById('motherNotes').value,
+      fatherScore: document.getElementById('fatherScore').value,
+      fatherNotes: document.getElementById('fatherNotes').value,
+      balanceScore: document.getElementById('balanceScore').value,
+      balanceNotes: document.getElementById('balanceNotes').value
+    };
+    localStorage.setItem(PARENT_DRAFT_KEY, JSON.stringify(draft));
+    const st = document.getElementById('parentDraftStatus');
+    if (st) st.textContent = "Draft auto-saved locally";
+  }
+
+  function restoreParentDraft() {
+    const raw = localStorage.getItem(PARENT_DRAFT_KEY);
+    if (!raw) return;
+    try {
+      const d = JSON.parse(raw);
+      for (const k in d) {
+        const el = document.getElementById(k);
+        if (el && d[k]) el.value = d[k];
+      }
+      const st = document.getElementById('parentDraftStatus');
+      if (st) st.textContent = "Restored draft from browser storage";
+    } catch(e) {}
+  }
+
+  async function submitParentFeedback() {
+    const confirmed = confirm("Do you want to push your weekly feedback to KudozAI Server?");
+    if (!confirmed) return;
+
+    const dateVal = document.getElementById('parentReviewDate').value;
+    const mScore = parseFloat(document.getElementById('motherScore').value);
+    const fScore = parseFloat(document.getElementById('fatherScore').value);
+    const bScore = parseFloat(document.getElementById('balanceScore').value) || 8.0;
+
+    if (isNaN(mScore) || isNaN(fScore)) {
+      alert("Please provide both Mother and Father ratings out of 10.");
+      return;
+    }
+
+    const payload = {
+      type: "weekly_parent_feedback",
+      date: dateVal,
+      contract: {
+        agreed_weekly_reward: document.getElementById('agreedReward').value.trim() || "Standard Weekly Honors"
+      },
+      mother_evaluation: {
+        score_out_of_10: mScore,
+        notes: document.getElementById('motherNotes').value.trim()
+      },
+      father_evaluation: {
+        score_out_of_10: fScore,
+        notes: document.getElementById('fatherNotes').value.trim()
+      },
+      offline_conduct_verification: {
+        screen_free_balance_score: bScore,
+        notes: document.getElementById('balanceNotes').value.trim() || "Balanced routine observed."
+      },
+      real_world_balance_notes: document.getElementById('balanceNotes').value.trim()
+    };
+
+    if (window.submitTenantFeedback) {
+      const ok = await window.submitTenantFeedback("parent_feedback", payload, "parent");
+      if (ok) {
+        localStorage.removeItem(PARENT_DRAFT_KEY);
+        alert("🎉 Successfully pushed Parent Feedback to KudozAI Server!");
+      }
+    } else {
+      alert("Portal core handler window.submitTenantFeedback not found.");
+    }
+  }
+</script>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- In-Portal PDF Viewer Modal -->
+  <div id="kudozPdfModal" class="kudoz-pdf-modal-overlay" style="display: none;" onclick="handlePdfModalBackdropClick(event)">
+    <div class="kudoz-pdf-modal-dialog">
+      <div class="kudoz-pdf-modal-header">
+        <div class="modal-header-left">
+          <span class="modal-icon">📄</span>
+          <h3 id="kudozPdfModalTitle">Document Viewer</h3>
+        </div>
+        <div class="modal-header-actions">
+          <a id="kudozPdfDownloadBtn" href="#" download class="btn-modal-action btn-download">📥 Download PDF</a>
+          <button type="button" class="btn-modal-action btn-close" onclick="closeKudozPdfViewer()">✕ Close</button>
+        </div>
+      </div>
+      <div class="kudoz-pdf-modal-body">
+        <iframe id="kudozPdfFrame" src="" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": null, "chart_days": [], "chart_hours": [], "top_apps_labels": [], "top_apps_values": [], "compliance_grid": {"2026-08-31": {"tracker": false, "academic": false, "parent": false}, "2026-09-01": {"tracker": false, "academic": false, "parent": false}, "2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}]};
+  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "zKvbKFmoDZLJz2Shjmhhs/BKJ+CDPLYochVyMShQcI+Pf7GkDiT0rB/7zWxNFP/gm9T9fRv7CioZQdljOJJnPNSlywGDm+oliPmx73NasHAvKqZ+XDhiY/DiyzKpAbvK3fq4c1kPWJGDxrfOXYuUbg==", "token_parent": "VY/jPkEQhV+IfDBDXjw7fLLdofuAzDCGamFQ/YTSqkX/a8JeZ0J/EhpVroWHQ7PA3SVAv1iu8bhkB+hVEuLyEhm6os8csXt1GYgRRnzZSIqWFsPrfUqRZ5/Qj+AwIU0OVRiAZ+B57uvAzEvp0rjOEg==", "token_admin": "7Zrfy9dv6F0+9BvcBiu0J+5hUVmXPDvqTbup/AbFfBiToHtbUdIYCUMk7gWAfPYeateIgHdLWPU70yMEJ41FPEPAHxIIYoPRazm/QUMD0byuB9qj+N6yGdUizTZTWhQerMo3TDnkHJQob9IL0L/NqQ=="};
+</script>
+<script>
+  let currentRole = null;
+let activeKeyBytes = null;
+let rawStudentKey = null;
+let rawParentKey = null;
+let chartInstances = [];
+
+function formatToClientTime(isoUtcString) {
+  if (!isoUtcString) return null;
+  const safeUtc = (isoUtcString.endsWith("Z") || isoUtcString.includes("+"))
+    ? isoUtcString
+    : isoUtcString.replace(" ", "T") + "Z";
+  const dateObj = new Date(safeUtc);
+  if (isNaN(dateObj.getTime())) return isoUtcString;
+
+  return dateObj.toLocaleString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  });
+}
+
+async function sha256Hex(str) {
+  const buf = new TextEncoder().encode(str.trim());
+  const hash = await crypto.subtle.digest("SHA-256", buf);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function deriveKeyFromHash(tenantId, passHash) {
+  const seed = new TextEncoder().encode(tenantId + ":" + passHash);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", seed);
+  return await crypto.subtle.importKey("raw", hashBuffer, { name: "AES-CBC" }, false, ["decrypt", "encrypt"]);
+}
+
+async function deriveKeyFromPlain(passphrase) {
+  const rawKey = new TextEncoder().encode(passphrase.trim());
+  const hash = await crypto.subtle.digest("SHA-256", rawKey);
+  return await crypto.subtle.importKey("raw", hash, { name: "AES-CBC" }, false, ["decrypt", "encrypt"]);
+}
+
+async function unlockPortal() {
+  const inputVal = document.getElementById("passkeyInput").value.trim();
+  if (!inputVal) return;
+
+  const inputHash = await sha256Hex(inputVal);
+
+  if (inputVal === ENV_CONFIG.admin_pass) {
+    currentRole = "admin";
+    activeKeyBytes = await deriveKeyFromPlain(inputVal);
+    rawStudentKey = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.student_hash);
+    rawParentKey = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.parent_hash);
+  } else if (inputHash === ENV_CONFIG.student_hash) {
+    currentRole = "student";
+    activeKeyBytes = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.student_hash);
+  } else if (inputHash === ENV_CONFIG.parent_hash) {
+    currentRole = "parent";
+    activeKeyBytes = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.parent_hash);
+  } else {
+    alert("Invalid passkey. Access denied.");
+    return;
+  }
+
+  renderPortalView();
+}
+
+function renderPortalView() {
+  document.getElementById("authSection").style.display = "none";
+  document.getElementById("portalContent").style.display = "block";
+
+  const roleEl = document.getElementById("roleLabel");
+  const adminSec = document.getElementById("adminOverviewSection");
+
+  if (currentRole === "admin") {
+    roleEl.innerText = "⚙️ Admin Console";
+    roleEl.style.background = "#78350f";
+    roleEl.style.color = "#fef3c7";
+    adminSec.style.display = "block";
+    document.getElementById("studentFormWrapper").style.display = "block";
+    document.getElementById("parentFormWrapper").style.display = "block";
+    renderAdminMatrix();
+  } else if (currentRole === "student") {
+    roleEl.innerText = "🎮 Student Workspace";
+    roleEl.style.background = "#1e3a8a";
+    roleEl.style.color = "#bfdbfe";
+    adminSec.style.display = "none";
+    document.getElementById("studentFormWrapper").style.display = "block";
+    document.getElementById("parentFormWrapper").style.display = "none";
+  } else {
+    roleEl.innerText = "👨‍👩‍👦 Parent Workspace";
+    roleEl.style.background = "#831843";
+    roleEl.style.color = "#fbcfe8";
+    adminSec.style.display = "none";
+    document.getElementById("studentFormWrapper").style.display = "none";
+    document.getElementById("parentFormWrapper").style.display = "block";
+  }
+
+  const totalH = window.MANIFEST.chart_hours.reduce((a, b) => a + b, 0);
+  document.getElementById("metricTotalHours").innerText = totalH.toFixed(1) + " hrs";
+
+  const lastSync = window.MANIFEST.aw_last_synced;
+  const awEl = document.getElementById("metricAwStatus");
+  if (!lastSync) {
+    awEl.innerHTML = "<span style='color:var(--danger);'>⚠️ No Data Logged</span>";
+  } else {
+    const safeUtc = (lastSync.endsWith("Z") || lastSync.includes("+")) ? lastSync : lastSync.replace(" ", "T") + "Z";
+    const syncDate = new Date(safeUtc);
+    const now = new Date();
+    const isToday =
+      syncDate.getFullYear() === now.getFullYear() &&
+      syncDate.getMonth() === now.getMonth() &&
+      syncDate.getDate() === now.getDate();
+
+    const formatted = formatToClientTime(lastSync);
+    awEl.innerHTML = isToday
+      ? "<span style='color:var(--success);'>✅ " + formatted + "</span>"
+      : "<span style='color:var(--warning);'>⚠️ Outdated (" + formatted + ")</span>";
+  }
+
+  renderReportsList();
+  initCharts();
+  if (typeof updateAWStatusBadge === "function") updateAWStatusBadge();
+}
+
+function renderAdminMatrix() {
+  const tbody = document.getElementById("adminComplianceBody");
+  tbody.innerHTML = "";
+  const grid = window.MANIFEST.compliance_grid;
+  const days = window.MANIFEST.chart_days;
+  const hours = window.MANIFEST.chart_hours;
+
+  days.slice().reverse().forEach((d) => {
+    const origIdx = days.indexOf(d);
+    const h = hours[origIdx];
+    const comp = grid[d] || { tracker: false, academic: false, parent: false };
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td><strong>${d}</strong></td>
+      <td>${h > 0 ? `<span class="badge-check badge-ok">${h}h Logged</span>` : `<span class="badge-check badge-no">0h</span>`}</td>
+      <td>${comp.tracker ? `<span class="badge-check badge-ok">✅ Submitted</span>` : `<span class="badge-check badge-no">❌ Missing</span>`}</td>
+      <td>${comp.academic ? `<span class="badge-check badge-ok">✅ Submitted</span>` : `<span class="badge-check badge-no">❌ None</span>`}</td>
+      <td>${comp.parent ? `<span class="badge-check badge-ok">✅ Submitted</span>` : `<span class="badge-check badge-no">❌ Missing</span>`}</td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+
+function renderReportsList() {
+  const list = document.getElementById("reportsList");
+  list.innerHTML = "";
+  let accessible = [];
+  if (currentRole === "admin") {
+    accessible = [...window.MANIFEST.student_reports, ...window.MANIFEST.parent_reports];
+  } else if (currentRole === "student") {
+    accessible = window.MANIFEST.student_reports;
+  } else {
+    accessible = window.MANIFEST.parent_reports;
+  }
+
+  // Deduplicate files for admin view
+  const seen = new Set();
+  accessible = accessible.filter(item => {
+    const key = item.file || item.name;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  document.getElementById("metricDeliverables").innerText = accessible.length + " Reports";
+
+  if (accessible.length === 0) {
+    list.innerHTML = "<p style='color: var(--muted); text-align:center; padding: 2rem;'>No deliverables generated yet.</p>";
+    return;
+  }
+
+  // Segregate deliverables into categories (case-insensitive check)
+  const categories = {
+    weekly: [],
+    student: [],
+    executive: []
+  };
+
+  accessible.forEach(item => {
+    const checkTarget = ((item.file || "") + " " + (item.name || "")).toLowerCase();
+    if (checkTarget.includes("weekly_reward") || checkTarget.includes("reward")) {
+      categories.weekly.push(item);
+    } else if (checkTarget.includes("summary_for_kids") || checkTarget.includes("kid")) {
+      categories.student.push(item);
+    } else {
+      categories.executive.push(item);
+    }
+  });
+
+  // Limit each category to the 7 latest records
+  const limitedDeliverables = [
+    ...categories.executive.slice(0, 7).map(i => ({ ...i, category: "executive" })),
+    ...categories.student.slice(0, 7).map(i => ({ ...i, category: "student" })),
+    ...categories.weekly.slice(0, 7).map(i => ({ ...i, category: "weekly" }))
+  ];
+
+  limitedDeliverables.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "report-card";
+    card.setAttribute("data-category", item.category);
+    card.setAttribute("data-report-type", item.file || item.name);
+
+    const icon = item.name.includes("Kid") ? "🎮" : (item.name.includes("Reward") ? "🏆" : "📈");
+    card.innerHTML = `
+      <div class="report-meta">
+        <span class="report-icon">${icon}</span>
+        <div>
+          <div class="report-name">${item.name}</div>
+          <div class="report-sub">Encrypted AES-256 Deliverable</div>
+        </div>
+      </div>
+      <button class="btn-decrypt" onclick="decryptAndOpen('${item.file}', '${item.name}', '${item.role}')">Decrypt & View</button>
+    `;
+    list.appendChild(card);
+  });
+
+  // Determine appropriate initial category based on logged-in role
+  let initialCat = "executive";
+  if (currentRole === "student") {
+    initialCat = categories.student.length > 0 ? "student" : "weekly";
+  } else if (categories.executive.length === 0) {
+    initialCat = categories.weekly.length > 0 ? "weekly" : "student";
+  }
+
+  // Activate the matching tab pill
+  const targetPill = document.querySelector(`.kudoz-filter-bar .filter-pill[data-target="${initialCat}"]`) ||
+                     document.querySelector(".kudoz-filter-bar .filter-pill");
+
+  filterKudozReports(initialCat, targetPill);
+}
+
+function initCharts() {
+  chartInstances.forEach(c => c.destroy());
+  chartInstances = [];
+
+  const ctxHours = document.getElementById("hoursChart").getContext("2d");
+  const chart1 = new Chart(ctxHours, {
+    type: "line",
+    data: {
+      labels: window.MANIFEST.chart_days.map(d => d.slice(5)),
+      datasets: [{
+        label: "Active Screen Hours",
+        data: window.MANIFEST.chart_hours,
+        borderColor: "#3b82f6",
+        backgroundColor: "rgba(59, 130, 246, 0.15)",
+        tension: 0.3,
+        fill: true,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { grid: { color: "#1f2937" }, ticks: { color: "#9ca3af" } },
+        x: { grid: { color: "#1f2937" }, ticks: { color: "#9ca3af" } }
+      }
+    }
+  });
+  chartInstances.push(chart1);
+
+  const ctxApps = document.getElementById("appsChart").getContext("2d");
+  const chart2 = new Chart(ctxApps, {
+    type: "doughnut",
+    data: {
+      labels: window.MANIFEST.top_apps_labels,
+      datasets: [{
+        data: window.MANIFEST.top_apps_values,
+        backgroundColor: ["#3b82f6", "#10b981", "#f59e0b", "#ec4899", "#8b5cf6"]
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: "bottom", labels: { color: "#9ca3af", font: { size: 10 } } } }
+    }
+  });
+  chartInstances.push(chart2);
+}
+
+async function decryptAndOpen(filePath, docName, itemRole) {
+  try {
+    const res = await fetch(filePath);
+    if (!res.ok) throw new Error("File not found");
+    const encBytes = new Uint8Array(await res.arrayBuffer());
+    const iv = encBytes.slice(0, 16);
+    const ciphertext = encBytes.slice(16);
+
+    let keyToUse = activeKeyBytes;
+    if (currentRole === "admin") {
+      keyToUse = (itemRole === "student") ? rawStudentKey : rawParentKey;
+    }
+
+    const decrypted = await crypto.subtle.decrypt({ name: "AES-CBC", iv: iv }, keyToUse, ciphertext);
+    const blob = new Blob([decrypted], { type: "application/pdf" });
+    const blobUrl = URL.createObjectURL(blob);
+
+    if (typeof window.openKudozPdfViewer === "function") {
+      window.openKudozPdfViewer(blobUrl, docName);
+    } else {
+      window.open(blobUrl, "_blank");
+    }
+  } catch (e) {
+    alert("Decryption failed. Ensure the passkey matches this report's encryption key.");
+  }
+}
+
+function switchTab(tab) {
+  document.getElementById("tabBtnReports").classList.toggle("active", tab === "reports");
+  document.getElementById("tabBtnForms").classList.toggle("active", tab === "forms");
+  document.getElementById("paneReports").classList.toggle("active", tab === "reports");
+  document.getElementById("paneForms").classList.toggle("active", tab === "forms");
+}
+
+function lockPortal() {
+  currentRole = null;
+  activeKeyBytes = null;
+  rawStudentKey = null;
+  rawParentKey = null;
+  document.getElementById("passkeyInput").value = "";
+  document.getElementById("authSection").style.display = "block";
+  document.getElementById("portalContent").style.display = "none";
+}
+
+async function getCoreToken() {
+  let cipherB64 = ENV_CONFIG.token_student;
+  if (currentRole === "parent") cipherB64 = ENV_CONFIG.token_parent;
+  if (currentRole === "admin") cipherB64 = ENV_CONFIG.token_admin;
+  if (!cipherB64 || !activeKeyBytes) return null;
+
+  try {
+    const raw = Uint8Array.from(atob(cipherB64), c => c.charCodeAt(0));
+    const dec = await crypto.subtle.decrypt({ name: "AES-CBC", iv: raw.slice(0, 16) }, activeKeyBytes, raw.slice(16));
+    return new TextDecoder().decode(dec);
+  } catch (e) {
+    return null;
+  }
+}
+
+function utf8ToBase64(str) {
+  return window.btoa(unescape(encodeURIComponent(str)));
+}
+
+async function pushFileToCore(filePath, contentString, commitMessage) {
+  const token = await getCoreToken();
+  if (!token) {
+    alert("Error: Write token not available. Please re-login.");
+    return false;
+  }
+
+  const apiUrl = `https://api.github.com/repos/${ENV_CONFIG.core_repo}/contents/${filePath}`;
+  let sha = null;
+  try {
+    const checkRes = await fetch(apiUrl, { headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" } });
+    if (checkRes.ok) sha = (await checkRes.json()).sha;
+  } catch (err) {}
+
+  const res = await fetch(apiUrl, {
+    method: "PUT",
+    headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json", "Accept": "application/vnd.github+json" },
+    body: JSON.stringify({ message: commitMessage, content: utf8ToBase64(contentString), branch: "main", ...(sha ? { sha } : {}) })
+  });
+  return res.ok;
+}
+
+window.pushActivityWatchOnly = async function(awExportJson) {
+  const awPath = `data/${ENV_CONFIG.tenant_id}/raw_aw/aw-export-latest.json`;
+  return await pushFileToCore(awPath, JSON.stringify(awExportJson), `chore(${ENV_CONFIG.tenant_id}): quick-sync activitywatch dump [skip ci]`);
+};
+
+window.submitTenantBundle = async function(trackerJson, awExportJson, studentName) {
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const cleanName = studentName ? "_" + studentName.trim().replace(/[^a-zA-Z0-9]/g, '_') : "";
+
+  const trackerPath = `data/${ENV_CONFIG.tenant_id}/feedbacks/Tracker${cleanName}_${yyyy}_${mm}_${dd}.json`;
+  const okTracker = await pushFileToCore(trackerPath, JSON.stringify(trackerJson, null, 2), `chore(${ENV_CONFIG.tenant_id}): update daily tracker [skip ci]`);
+
+  let okAW = true;
+  if (awExportJson) {
+    const awPath = `data/${ENV_CONFIG.tenant_id}/raw_aw/aw-export-latest.json`;
+    okAW = await pushFileToCore(awPath, JSON.stringify(awExportJson), `chore(${ENV_CONFIG.tenant_id}): sync activitywatch logs [skip ci]`);
+  }
+  return okTracker && okAW;
+};
+
+window.submitTenantFeedback = async function(prefix, payloadJson, role) {
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const feedbackPath = `data/${ENV_CONFIG.tenant_id}/feedbacks/${prefix}_${yyyy}_${mm}_${dd}.json`;
+  return await pushFileToCore(feedbackPath, JSON.stringify(payloadJson, null, 2), `chore(${ENV_CONFIG.tenant_id}): submit ${prefix} [skip ci]`);
+};
+
+// --- In-Portal PDF Viewer Modal Controller ---
+// --- In-Portal PDF Viewer Modal Controller ---
+window.openKudozPdfViewer = function(pdfUrl, displayTitle) {
+  const modal = document.getElementById("kudozPdfModal");
+  const iframe = document.getElementById("kudozPdfFrame");
+  const titleEl = document.getElementById("kudozPdfModalTitle");
+  const downloadBtn = document.getElementById("kudozPdfDownloadBtn");
+
+  if (!modal || !iframe) {
+    window.open(pdfUrl, "_blank");
+    return;
+  }
+
+  const cleanName = displayTitle || "Kudoz AI Deliverable";
+  if (titleEl) titleEl.textContent = cleanName;
+  if (downloadBtn) {
+    downloadBtn.href = pdfUrl;
+    downloadBtn.setAttribute("download", cleanName.endsWith(".pdf") ? cleanName : `${cleanName}.pdf`);
+  }
+
+  iframe.src = pdfUrl;
+  modal.style.display = "flex";
+  document.body.style.overflow = "hidden";
+};
+
+window.closeKudozPdfViewer = function() {
+  const modal = document.getElementById("kudozPdfModal");
+  const iframe = document.getElementById("kudozPdfFrame");
+  if (iframe) iframe.src = "";
+  if (modal) modal.style.display = "none";
+  document.body.style.overflow = "";
+};
+
+window.handlePdfModalBackdropClick = function(event) {
+  if (event.target.id === "kudozPdfModal") {
+    closeKudozPdfViewer();
+  }
+};
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    const modal = document.getElementById("kudozPdfModal");
+    if (modal && modal.style.display === "flex") {
+      closeKudozPdfViewer();
+    }
+  }
+});
+
+// --- Deliverables Filter Controller ---
+window.filterKudozReports = function(categoryKey, clickedBtn) {
+  document.querySelectorAll(".kudoz-filter-bar .filter-pill").forEach(p => p.classList.remove("active"));
+  if (clickedBtn) clickedBtn.classList.add("active");
+
+  const reportCards = document.querySelectorAll(".report-card");
+  let visibleCount = 0;
+
+  reportCards.forEach(card => {
+    const cardCat = card.getAttribute("data-category") || "";
+    if (cardCat === categoryKey.toLowerCase()) {
+      card.style.display = "";
+      visibleCount++;
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  // If no reports exist for this specific tab, show empty feedback
+  const emptyNotice = document.getElementById("categoryEmptyNotice");
+  if (visibleCount === 0) {
+    if (!emptyNotice) {
+      const notice = document.createElement("p");
+      notice.id = "categoryEmptyNotice";
+      notice.style.cssText = "color: var(--muted); text-align:center; padding: 2rem;";
+      notice.innerText = "No reports found in this category.";
+      document.getElementById("reportsList").appendChild(notice);
+    } else {
+      emptyNotice.style.display = "block";
+    }
+  } else if (emptyNotice) {
+    emptyNotice.style.display = "none";
+  }
+};
+
+</script>
+
+</body>
+</html>
