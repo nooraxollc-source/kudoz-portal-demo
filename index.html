@@ -232,12 +232,6 @@ body {
   margin-bottom: 1.5rem;
 }
 
-@media (max-width: 768px) {
-  .charts-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .chart-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -251,6 +245,12 @@ body {
   color: var(--muted);
   margin-bottom: 1rem;
   text-transform: uppercase;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
 }
 
 .reports-list {
@@ -363,6 +363,12 @@ body {
   color: #fca5a5;
 }
 
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .form-embed-card {
   background: #ffffff;
   border-radius: 12px;
@@ -390,6 +396,9 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .filter-pill:hover {
@@ -403,6 +412,29 @@ body {
   color: #ffffff;
   border-color: #2563eb;
   box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+
+.filter-pill.empty {
+  opacity: 0.55;
+}
+
+.filter-pill.empty:hover {
+  opacity: 0.8;
+}
+
+.filter-pill.empty.active {
+  opacity: 1;
+}
+
+.filter-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  margin-left: 2px;
+  opacity: 0.9;
+  letter-spacing: normal;
 }
 
 /* --- In-Portal PDF Viewer Modal --- */
@@ -735,6 +767,134 @@ body {
   transform: translateY(-1px);
 }
 
+/* --- Responsive Viewport Optimizations (Mobile & Tablet) --- */
+@media (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .chart-container {
+    height: 200px;
+  }
+  .kudoz-pdf-modal-overlay {
+    padding: 10px;
+  }
+  .kudoz-pdf-modal-dialog {
+    height: 95vh;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 0.75rem 0.5rem;
+  }
+  .portal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+  .brand-title {
+    font-size: 1.1rem;
+  }
+  .metrics-banner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+  }
+  .metric-card {
+    padding: 0.75rem 0.85rem;
+  }
+  .metric-title {
+    font-size: 0.68rem;
+  }
+  .metric-val {
+    font-size: 1rem;
+  }
+  .role-bar {
+    padding: 0.6rem 0.85rem;
+  }
+  .tabs-nav {
+    gap: 0.25rem;
+  }
+  .tab-btn {
+    padding: 0.6rem 0.85rem;
+    font-size: 0.82rem;
+  }
+  .kudoz-filter-bar {
+    gap: 6px;
+    margin: 10px 0 14px 0;
+  }
+  .filter-pill {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  /* Full-bleed Edge-to-Edge Mobile PDF Modal */
+  .kudoz-pdf-modal-overlay {
+    padding: 0;
+    backdrop-filter: none;
+  }
+  .kudoz-pdf-modal-dialog {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+  .kudoz-pdf-modal-header {
+    padding: 8px 12px;
+  }
+  .modal-header-left h3 {
+    font-size: 12px;
+    max-width: 135px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .btn-modal-action {
+    padding: 5px 8px;
+    font-size: 11px;
+    gap: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-card {
+    padding: 0.85rem;
+  }
+  .chart-card h4 {
+    font-size: 0.78rem;
+    margin-bottom: 0.75rem;
+  }
+  .chart-container {
+    height: 180px;
+  }
+  .report-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+  }
+  .btn-decrypt {
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem;
+  }
+  .kudoz-status-modal-overlay {
+    padding: 12px;
+  }
+  .kudoz-status-modal-dialog {
+    padding: 1.5rem 1.15rem;
+    border-radius: 14px;
+  }
+  .status-modal-title {
+    font-size: 1.1rem;
+  }
+  .status-modal-message {
+    font-size: 0.85rem;
+  }
+}
+
 
 
   </style>
@@ -786,18 +946,20 @@ body {
     <!-- Admin Diagnostics Overview (Admin Only) -->
     <div id="adminOverviewSection" style="display:none;" class="admin-matrix">
       <h3>🔍 Administrator 7-Day Ingestion & Compliance Matrix</h3>
-      <table class="compliance-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Daily Screen Time</th>
-            <th>Daily Tracker</th>
-            <th>Academic Tests</th>
-            <th>Parent Audit</th>
-          </tr>
-        </thead>
-        <tbody id="adminComplianceBody"></tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="compliance-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Daily Screen Time</th>
+              <th>Daily Tracker</th>
+              <th>Academic Tests</th>
+              <th>Parent Audit</th>
+            </tr>
+          </thead>
+          <tbody id="adminComplianceBody"></tbody>
+        </table>
+      </div>
     </div>
 
     <nav class="tabs-nav">
@@ -810,23 +972,26 @@ body {
       <div class="charts-grid">
         <div class="chart-card">
           <h4>ActivityWatch Logged Hours (Trailing 7 Days)</h4>
-          <canvas id="hoursChart" height="120"></canvas>
+          <div class="chart-container">
+            <canvas id="hoursChart"></canvas>
+          </div>
         </div>
         <div class="chart-card">
           <h4>Top Applications (Past 7 Days)</h4>
-          <canvas id="appsChart" height="120"></canvas>
+          <div class="chart-container">
+            <canvas id="appsChart"></canvas>
+          </div>
         </div>
       </div>
 
       <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: #fff;">Available Encrypted Deliverables</h3>
       
       <!-- Report Deliverables Category Filter Bar -->
-     
-      <div class="kudoz-filter-bar" style="margin-bottom: 1.5rem; display: flex; gap: 0.5rem;">
-  <button class="filter-pill active" data-target="executive" onclick="filterKudozReports('executive', this)"> 📊 Executive Reports</button>
-  <button class="filter-pill" data-target="student" onclick="filterKudozReports('student', this)"> 🚀 Student Summaries</button>
-  <button class="filter-pill" data-target="weekly" onclick="filterKudozReports('weekly', this)">🏆 Weekly Rewards</button>
-</div>
+      <div class="kudoz-filter-bar">
+        <button class="filter-pill active" data-target="executive" onclick="filterKudozReports('executive', this)">📊 Executive Reports <span class="filter-badge" id="badgeExecutive">(0)</span></button>
+        <button class="filter-pill" data-target="student" onclick="filterKudozReports('student', this)">🚀 Student Summaries <span class="filter-badge" id="badgeStudent">(0)</span></button>
+        <button class="filter-pill" data-target="weekly" onclick="filterKudozReports('weekly', this)">🏆 Weekly Rewards <span class="filter-badge" id="badgeWeekly">(0)</span></button>
+      </div>
 
       <div id="reportsList" class="reports-list"></div>
     </div>
@@ -2483,8 +2648,8 @@ body {
 </div>
 
 <script>
-  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-07T18:08:26.239086+00:00", "chart_days": ["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07"], "chart_hours": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "top_apps_labels": [], "top_apps_values": [], "compliance_grid": {"2026-09-01": {"tracker": false, "academic": false, "parent": false}, "2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}]};
-  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "0ylwwU4ExDX+2nAdtNVeDZxqbz7ZFSYzAjqu+Y2XbzA9gyj0s+hXdRvRHUihXI6lROmXDp19A5Qhpn2D2tMMzFeeoECi/lH5dPetAcPwPr3naC/YX/Uah7tXMNYeTo1FthzACOvJu0C4rBSemv+TCA==", "token_parent": "DZXqlELJ7jYvxk5+30Y50IvC9qjppig7z7W7QG58ZR3uoj4Dow43u7ZAb3h/vSI/qwxo+PXks3jLaGKJbim0T0y+OBH1CBA7HVaDBqky9U5sHRm5yGFrGeKXxRQLCjRgu328gbFW1LmyaV+qTvYepw==", "token_admin": "NFCFQ0HKwLmdzFgqTwCOYmAYEGnSYZjdZpKkXTvfiMiGnnR7dW5QqxUOWVK8wSg/oE59fs+FFoBEimTjm23hogEvXDQgOZbktVVmZ8VQgmTHgqJ6zHBEYFWnv1vXr5l4ISFpvcrMllvz2Rb6uXP+BA=="};
+  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-07T18:30:25.895954+00:00", "chart_days": ["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07"], "chart_hours": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "top_apps_labels": [], "top_apps_values": [], "compliance_grid": {"2026-09-01": {"tracker": false, "academic": false, "parent": false}, "2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}]};
+  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "zCIK8k4+sbnOlbzEz6k26iQH77l9eRjtl5wbCqcYdsS3B4slc+2gMjFiXCXntJSFHcnWwJ1FnMvwgLez+SCNrAxMD+Gfyz1ZSbsOuQ/9GBuVzToKDYVRNAIEXBArKgXuR7ameLoR2e7fEOXc6rvHtw==", "token_parent": "bf2nwM2mhiS4QlrLvog2VtDoxWl3J2CG+gJpbFDUl8ngQgTQnBVliQOqmCo8n5yMieQdqeWxC5hCXz9VsDQIoJXBArPkdopg6iQW/yPTZPWSzoOnnZqQLLOBQ+OtgZgtqViaZdwzwpaqWybECR+HyA==", "token_admin": "tFx27xmK22nsIW78qhCDDyDk8M+K8hckGOrX1JgZiRREXJx/Cafn929kfDrHRUSC2oRRAbkQjd/VAAfryMDTG+9FqQfW1dLZyzERp2N6l+XcU8nCUzW1NABfACzQmtHuexl44Pga1CfztY+RPTjYXg=="};
 </script>
 <script>
   let currentRole = null;
@@ -2682,6 +2847,21 @@ function renderReportsList() {
     }
   });
 
+  // Update dynamic deliverable count badges on filter pills
+  const updateBadge = (id, count) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = `(${count})`;
+  };
+  updateBadge("badgeExecutive", categories.executive.length);
+  updateBadge("badgeStudent", categories.student.length);
+  updateBadge("badgeWeekly", categories.weekly.length);
+
+  document.querySelectorAll(".kudoz-filter-bar .filter-pill").forEach(pill => {
+    const target = pill.getAttribute("data-target");
+    const count = categories[target] ? categories[target].length : 0;
+    pill.classList.toggle("empty", count === 0);
+  });
+
   // Limit each category to the 7 latest records
   const limitedDeliverables = [
     ...categories.executive.slice(0, 7).map(i => ({ ...i, category: "executive" })),
@@ -2745,10 +2925,11 @@ function initCharts() {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
-        y: { grid: { color: "#1f2937" }, ticks: { color: "#9ca3af" } },
-        x: { grid: { color: "#1f2937" }, ticks: { color: "#9ca3af" } }
+        y: { grid: { color: "#1f2937" }, ticks: { color: "#9ca3af", font: { size: 11 } } },
+        x: { grid: { color: "#1f2937" }, ticks: { color: "#9ca3af", font: { size: 11 } } }
       }
     }
   });
@@ -2766,7 +2947,13 @@ function initCharts() {
     },
     options: {
       responsive: true,
-      plugins: { legend: { position: "bottom", labels: { color: "#9ca3af", font: { size: 10 } } } }
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: "bottom",
+          labels: { color: "#9ca3af", font: { size: 11 }, boxWidth: 12, padding: 8 }
+        }
+      }
     }
   });
   chartInstances.push(chart2);
