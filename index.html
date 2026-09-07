@@ -82,48 +82,651 @@ body {
   color: var(--muted);
 }
 
-.auth-box {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 2.25rem;
-  text-align: center;
-  max-width: 420px;
-  margin: 3rem auto;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
-.auth-box input {
+/* --- Enterprise Authentication Hero & Showcase --- */
+.auth-hero-section {
   width: 100%;
-  padding: 0.8rem 1rem;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #0b0f19;
-  color: #fff;
-  font-size: 0.95rem;
-  margin: 1.2rem 0;
-  outline: none;
+  margin-bottom: 2.5rem;
+  animation: fadeInAuth 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.auth-box input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+@keyframes fadeInAuth {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.btn-auth {
-  width: 100%;
-  padding: 0.8rem;
-  border-radius: 8px;
-  background: var(--primary);
-  color: #fff;
+/* Announcement trust bar */
+.auth-announcement-bar {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 999px;
+  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.announcement-badge {
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.announcement-text {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.announcement-link {
+  background: transparent;
+  border: none;
+  color: #60a5fa;
+  font-size: 0.8rem;
   font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.announcement-link:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+/* 2-Column Hero Grid */
+.auth-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Left Showcase Column */
+.auth-showcase-col {
+  padding-top: 0.5rem;
+}
+
+.showcase-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.showcase-title {
+  font-size: 2.1rem;
+  font-weight: 900;
+  line-height: 1.22;
+  letter-spacing: -0.6px;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.showcase-desc {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.showcase-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.feature-icon {
+  font-size: 1.25rem;
+  background: #1e293b;
+  border: 1px solid #334155;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feature-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin-bottom: 0.15rem;
+}
+
+.feature-desc {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+/* Plan promotional upsell card */
+.plan-promo-card {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(67, 56, 202, 0.25));
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.plan-promo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.promo-tag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #93c5fd;
+  letter-spacing: 0.4px;
+}
+
+.promo-price {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+.plan-promo-body {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+}
+
+.btn-promo-action {
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.btn-promo-action:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+/* Right Column: Authentication Card */
+.auth-card-col {
+  width: 100%;
+}
+
+.auth-card {
+  background: #111827;
+  border: 1px solid #374151;
+  border-radius: 16px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+}
+
+.auth-card.shake-card {
+  animation: authShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes authShake {
+  10%, 90% { transform: translate3d(-2px, 0, 0); }
+  20%, 80% { transform: translate3d(4px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+  40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+
+.auth-card-header {
+  margin-bottom: 1.5rem;
+}
+
+.tenant-active-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  background: #1e293b;
+  border: 1px solid #334155;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-bottom: 0.85rem;
+}
+
+.pulse-light {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.auth-card-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.3px;
+}
+
+.auth-card-sub {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+/* Error Banner */
+.auth-error-banner {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid #ef4444;
+  color: #fca5a5;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  animation: fadeInAlert 0.25s ease-out;
+}
+
+.auth-form-group {
+  margin-bottom: 1.25rem;
+}
+
+.auth-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.auth-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-prefix-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 1rem;
+  color: #64748b;
+  pointer-events: none;
+}
+
+.auth-input-field {
+  width: 100%;
+  padding: 0.85rem 2.8rem 0.85rem 2.5rem;
+  border-radius: 8px;
+  border: 1.5px solid #374151;
+  background: #0b0f19;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.auth-input-field:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  background: #0d1322;
+}
+
+.btn-toggle-eye {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+
+.btn-toggle-eye:hover {
+  opacity: 0.8;
+}
+
+.btn-unlock-primary {
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 800;
   border: none;
   cursor: pointer;
-  transition: 0.15s;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
 }
 
-.btn-auth:hover {
-  background: var(--primary-hover);
+.btn-unlock-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+.btn-unlock-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spinLoader 0.75s linear infinite;
+  display: inline-block;
+}
+
+.auth-roles-guide {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #1f2937;
+}
+
+.roles-guide-title {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.3px;
+}
+
+.role-pill-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.guide-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+}
+
+.pill-student {
+  background: rgba(30, 58, 138, 0.35);
+  border-color: rgba(59, 130, 246, 0.35);
+  color: #93c5fd;
+}
+
+.pill-parent {
+  background: rgba(131, 24, 67, 0.35);
+  border-color: rgba(236, 72, 153, 0.35);
+  color: #fbcfe8;
+}
+
+.pill-admin {
+  background: rgba(120, 53, 15, 0.35);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fef3c7;
+}
+
+.auth-security-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #1f2937;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.security-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+/* --- Plan Comparison Modal --- */
+.kudoz-plan-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 12000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  animation: fadeInStatusModal 0.25s ease-out;
+}
+
+.kudoz-plan-modal-dialog {
+  background: #111827;
+  border: 1px solid #374151;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 880px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  box-sizing: border-box;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+}
+
+.plan-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #1f2937;
+}
+
+.modal-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #60a5fa;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.plan-modal-header h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 0.25rem;
+}
+
+.btn-plan-close {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #ffffff;
+  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-plan-close:hover {
+  background: #334155;
+}
+
+.plan-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.tier-card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 12px;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.tier-card:hover {
+  transform: translateY(-2px);
+  border-color: #4b5563;
+}
+
+.tier-card.tier-featured {
+  background: #1e293b;
+  border: 2px solid #3b82f6;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+}
+
+.featured-ribbon {
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+}
+
+.tier-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+}
+
+.tier-price {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #60a5fa;
+  margin-bottom: 0.65rem;
+}
+
+.tier-price span {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.tier-desc {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+  min-height: 44px;
+}
+
+.tier-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.tier-features li {
+  line-height: 1.35;
+}
+
+.plan-modal-footer {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #1f2937;
+  font-size: 0.84rem;
+  color: #94a3b8;
+}
+
+.plan-modal-footer strong {
+  color: #60a5fa;
 }
 
 .portal-content {
@@ -782,6 +1385,14 @@ body {
 
 /* --- Responsive Viewport Optimizations (Mobile & Tablet) --- */
 @media (max-width: 768px) {
+  .auth-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .plan-modal-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
   .charts-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -800,6 +1411,21 @@ body {
 @media (max-width: 640px) {
   body {
     padding: 0.75rem 0.5rem;
+  }
+  .auth-announcement-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    border-radius: 12px;
+  }
+  .showcase-title {
+    font-size: 1.65rem;
+  }
+  .auth-card {
+    padding: 1.5rem 1.25rem;
+  }
+  .kudoz-plan-modal-dialog {
+    padding: 1.25rem 1rem;
   }
   .portal-header {
     flex-direction: column;
@@ -925,12 +1551,189 @@ body {
     </div>
   </header>
 
-  <!-- Login Form -->
-  <div id="authSection" class="auth-box">
-    <h3 style="margin-bottom: 0.4rem; color: #fff;">Workspace Sign-In</h3>
-    <p style="color: var(--muted); font-size: 0.84rem;">Enter your student, parent, or admin passkey</p>
-    <input type="password" id="passkeyInput" placeholder="Passkey..." onkeydown="if(event.key==='Enter') unlockPortal();" />
-    <button class="btn-auth" onclick="unlockPortal()">Unlock Portal</button>
+  <!-- Enterprise Auth Hero Section -->
+  <div id="authSection" class="auth-hero-section">
+    <!-- Top Enterprise Trust Announcement Bar -->
+    <div class="auth-announcement-bar">
+      <span class="announcement-badge">ENTERPRISE v3.1</span>
+      <span class="announcement-text">Military-Grade Client Cryptography &bull; Automated Telemetry Audits</span>
+      <button type="button" class="announcement-link" onclick="openPlanModal()">Explore Plans & Quotas &rarr;</button>
+    </div>
+
+    <div class="auth-hero-grid">
+      <!-- Left Column: High-Converting SaaS Showcase -->
+      <div class="auth-showcase-col">
+        <div class="showcase-badge-pill">
+          <span class="pill-dot"></span> Habit & Productivity Intelligence Engine
+        </div>
+        <h1 class="showcase-title">
+          Where Screen Time Becomes <span class="gradient-text">Supercharged Potential</span>
+        </h1>
+        <p class="showcase-desc">
+          Kudoz AI continuously monitors student and team telemetry via ActivityWatch, generating cryptographic progress reports and milestone-driven AI coaching without human surveillance.
+        </p>
+
+        <div class="showcase-features-list">
+          <div class="feature-item">
+            <div class="feature-icon">🧠</div>
+            <div>
+              <div class="feature-title">Autonomous AI Coaching</div>
+              <div class="feature-desc">Turn-by-turn habit audits and motivational quest guidance delivered daily.</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⏱️</div>
+            <div>
+              <div class="feature-title">Zero-Surveillance Telemetry</div>
+              <div class="feature-desc">ActivityWatch logs parsed client-side with 100% private zero-knowledge encryption.</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🏆</div>
+            <div>
+              <div class="feature-title">Saturday Reward Certifications</div>
+              <div class="feature-desc">Automated weekly reward audits and executive PDF summaries for parents & coaches.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan Upsell Card -->
+        <div class="plan-promo-card">
+          <div class="plan-promo-header">
+            <span class="promo-tag">🚀 ENTERPRISE ACADEMY TIER</span>
+            <span class="promo-price">Custom / Academy</span>
+          </div>
+          <p class="plan-promo-body">
+            Deploy dedicated private portals with automated GitHub Actions pipelines for multi-student households or full educational academies.
+          </p>
+          <div class="plan-promo-footer">
+            <button type="button" class="btn-promo-action" onclick="openPlanModal()">View Tier Comparison & Features</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Authentication Card -->
+      <div class="auth-card-col">
+        <div class="auth-card" id="authCard">
+          <div class="auth-card-header">
+            <div class="tenant-active-indicator">
+              <span class="pulse-light"></span>
+              <span>Tenant Node: <strong>tenant_demo</strong></span>
+            </div>
+            <h2 class="auth-card-title">Workspace Sign-In</h2>
+            <p class="auth-card-sub">Enter your student, parent, or admin passkey to unlock your secure workspace.</p>
+          </div>
+
+          <!-- Inline Error Banner -->
+          <div id="authErrorBanner" class="auth-error-banner" style="display: none;">
+            <span class="error-icon">⚠️</span>
+            <span id="authErrorMessage" class="error-text">Invalid passkey. Access denied.</span>
+          </div>
+
+          <!-- Passkey Form -->
+          <div class="auth-form-group">
+            <label for="passkeyInput" class="auth-label">Cryptographic Passkey</label>
+            <div class="auth-input-container">
+              <span class="input-prefix-icon">🔑</span>
+              <input
+                type="password"
+                id="passkeyInput"
+                class="auth-input-field"
+                placeholder="Enter client passkey..."
+                autocomplete="current-password"
+                onkeydown="if(event.key==='Enter') unlockPortal();"
+                oninput="clearAuthError()"
+              />
+              <button type="button" class="btn-toggle-eye" onclick="togglePasskeyVisibility()" title="Toggle visibility" aria-label="Toggle password visibility">
+                <span id="eyeIcon">👁️</span>
+              </button>
+            </div>
+          </div>
+
+          <button id="btnUnlockPortal" class="btn-unlock-primary" onclick="unlockPortal()">
+            <span id="unlockBtnSpinner" class="btn-spinner" style="display: none;"></span>
+            <span id="unlockBtnText">Unlock Workspace</span>
+          </button>
+
+          <!-- Accepted Roles Visual Helpers -->
+          <div class="auth-roles-guide">
+            <span class="roles-guide-title">Single Sign-In for All Roles:</span>
+            <div class="role-pill-group">
+              <span class="guide-pill pill-student">🎮 Student</span>
+              <span class="guide-pill pill-parent">👨‍👩‍👦 Parent</span>
+              <span class="guide-pill pill-admin">⚙️ Admin</span>
+            </div>
+          </div>
+
+          <!-- Security Trust Credentials Footer -->
+          <div class="auth-security-footer">
+            <div class="security-badge-item">
+              <span class="sec-icon">🔒</span>
+              <span>AES-256 Client-Side Decryption</span>
+            </div>
+            <div class="security-badge-item">
+              <span class="sec-icon">🛡️</span>
+              <span>Zero-Knowledge Ingestion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Plan Comparison Modal -->
+  <div id="kudozPlanModal" class="kudoz-plan-modal-overlay" style="display: none;" onclick="handlePlanModalBackdropClick(event)">
+    <div class="kudoz-plan-modal-dialog">
+      <div class="plan-modal-header">
+        <div>
+          <span class="modal-badge">KUDOZ AI TIERS</span>
+          <h3>Select Your Focus & Coaching Tier</h3>
+        </div>
+        <button type="button" class="btn-plan-close" onclick="closePlanModal()">✕</button>
+      </div>
+      <div class="plan-modal-grid">
+        <div class="tier-card">
+          <div class="tier-name">Student Starter</div>
+          <div class="tier-price">$29<span>/mo</span></div>
+          <p class="tier-desc">Designed for single students building disciplined daily focus habits.</p>
+          <ul class="tier-features">
+            <li>✅ 1 ActivityWatch Monitored Device</li>
+            <li>✅ Daily AI Habit Analysis</li>
+            <li>✅ In-Portal AES-256 Decryption</li>
+            <li>❌ Saturday Reward Report Engine</li>
+            <li>❌ Parent Compliance Matrix</li>
+          </ul>
+        </div>
+        <div class="tier-card tier-featured">
+          <div class="featured-ribbon">POPULAR</div>
+          <div class="tier-name">Family Academy</div>
+          <div class="tier-price">$69<span>/mo</span></div>
+          <p class="tier-desc">Complete dual-role coaching for students and parent accountability.</p>
+          <ul class="tier-features">
+            <li>✅ Up to 3 Monitored Devices</li>
+            <li>✅ Dual Student & Parent Workspaces</li>
+            <li>✅ Saturday Weekly Reward Engine</li>
+            <li>✅ Academic Test Grading Integration</li>
+            <li>✅ In-Portal PDF Document Viewer</li>
+          </ul>
+        </div>
+        <div class="tier-card">
+          <div class="tier-name">Institutional / Coach</div>
+          <div class="tier-price">Custom</div>
+          <p class="tier-desc">For learning centers, academies, and private coaching institutions.</p>
+          <ul class="tier-features">
+            <li>✅ Unlimited Multi-Tenant Portals</li>
+            <li>✅ Dedicated CI/CD Automation Pipelines</li>
+            <li>✅ White-Label Custom Domains</li>
+            <li>✅ 7-Day Ingestion & Compliance Matrix</li>
+            <li>✅ Priority Model Execution (Gemini 2.5 Pro)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="plan-modal-footer">
+        <p>Enterprise license inquiries: Contact <strong>sales@kudoz.ai</strong> or your dedicated account engineer.</p>
+      </div>
+    </div>
   </div>
 
   <!-- Authenticated Portal View -->
@@ -2661,8 +3464,8 @@ body {
 </div>
 
 <script>
-  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-07T18:47:32.620485+00:00", "chart_days": ["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07"], "chart_hours": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "top_apps_labels": [], "top_apps_values": [], "compliance_grid": {"2026-09-01": {"tracker": false, "academic": false, "parent": false}, "2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}]};
-  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "2JWawMeRzws+VwudbewZjV5MEjloDUiGzSVe4uQkTzHt6eZgxvuawNTmyZlkAdl2yEsDyQ4colbrsVKHM6WMvPm6SYaGReUQ+lO25qJa6RJl8gxSp3W1HlPZ8qIyCObTc5u6yhwAETifR1oDjbF9yQ==", "token_parent": "gPfqNigCM1du2Ok5JUozSRrldv1++7d29gwZgSmf/JoDwQnpw36IBFxJ1+E83J7HorIsp20RYfeqMe9mLic3N1Vqqy0Qwv1IN0mW0QdKHP5pDR1ToonAdIeQPtRKx/empf8H4dPhGyYUGNnoKRR35w==", "token_admin": "29VxBtPhU8bv9D40zpHpxC/OlXi+PtHgqbvmXWb2hXdATjT2/FZ7M9IdxBwgWOPGzJMDzC7PoWz+GHVbo9OHEy9b3bg18dB4S0ZdlcxXFHpaFUvhkaQlhttZFvzhg9Jhs4RQpyRW8tWe/81U5hX3cw=="};
+  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-07T19:00:00.142764+00:00", "chart_days": ["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07"], "chart_hours": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "top_apps_labels": [], "top_apps_values": [], "compliance_grid": {"2026-09-01": {"tracker": false, "academic": false, "parent": false}, "2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}]};
+  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "+eTJyNYrHOyYrG7ZiVxZgs6Q6AmNEG1byukDDHWpMBJ8GF9c2ReIK7ptE3RFfRFZmqO8J5yoClukGzoG/sjh4mXYE3TOMDrbtiihrHAHup/fxy2D23QVvaFM7ASh9uWY3c20usREp9wIFGf80J3Etg==", "token_parent": "ES4hGYzutmQ3wXCevpBg20P4NuCxdOTiLGzb4i3081FBv1Jodks9dB+n3KtnwHa7zcl/m/2AUq+Nsxyigfoc75S1VOkk+4Y5nYkXOG40YFyg0hJ+HRopBGSeJnACcQDxpPhmocFAY54fAlVSdXGsNw==", "token_admin": "nVA+vsVh25+Br50ygjTUx+7ZsRGF/pquDRAkDdyeM42dWH66sp97V5cRH0Fg6FDnpHyziTE4cWwZRibV3U6DXcgVTISqhQWaQWRTCLf9qetA+MqZtOb2I5SYqjUF+50nyF84oooOcc2bSbF9QOgOYw=="};
 </script>
 <script>
   let currentRole = null;
@@ -2708,29 +3511,118 @@ async function deriveKeyFromPlain(passphrase) {
   return await crypto.subtle.importKey("raw", hash, { name: "AES-CBC" }, false, ["decrypt", "encrypt"]);
 }
 
-async function unlockPortal() {
-  const inputVal = document.getElementById("passkeyInput").value.trim();
-  if (!inputVal) return;
-
-  const inputHash = await sha256Hex(inputVal);
-
-  if (inputVal === ENV_CONFIG.admin_pass) {
-    currentRole = "admin";
-    activeKeyBytes = await deriveKeyFromPlain(inputVal);
-    rawStudentKey = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.student_hash);
-    rawParentKey = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.parent_hash);
-  } else if (inputHash === ENV_CONFIG.student_hash) {
-    currentRole = "student";
-    activeKeyBytes = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.student_hash);
-  } else if (inputHash === ENV_CONFIG.parent_hash) {
-    currentRole = "parent";
-    activeKeyBytes = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.parent_hash);
+// --- Phase 1: Authentication & Plan Modal Controllers ---
+function togglePasskeyVisibility() {
+  const input = document.getElementById("passkeyInput");
+  const eyeIcon = document.getElementById("eyeIcon");
+  if (!input || !eyeIcon) return;
+  if (input.type === "password") {
+    input.type = "text";
+    eyeIcon.textContent = "🙈";
   } else {
-    alert("Invalid passkey. Access denied.");
+    input.type = "password";
+    eyeIcon.textContent = "👁️";
+  }
+}
+
+function showAuthError(message) {
+  const banner = document.getElementById("authErrorBanner");
+  const textEl = document.getElementById("authErrorMessage");
+  const input = document.getElementById("passkeyInput");
+  const card = document.getElementById("authCard");
+
+  if (textEl) textEl.textContent = message || "Invalid passkey. Access denied.";
+  if (banner) banner.style.display = "flex";
+  if (input) input.classList.add("input-invalid");
+
+  if (card) {
+    card.classList.remove("shake-card");
+    void card.offsetWidth; // Reflow trigger to restart animation
+    card.classList.add("shake-card");
+    setTimeout(() => card.classList.remove("shake-card"), 500);
+  }
+
+  if (input) input.focus();
+}
+
+function clearAuthError() {
+  const banner = document.getElementById("authErrorBanner");
+  const input = document.getElementById("passkeyInput");
+  if (banner) banner.style.display = "none";
+  if (input) input.classList.remove("input-invalid");
+}
+
+window.openPlanModal = function() {
+  const modal = document.getElementById("kudozPlanModal");
+  if (modal) {
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
+};
+
+window.closePlanModal = function() {
+  const modal = document.getElementById("kudozPlanModal");
+  if (modal) {
+    modal.style.display = "none";
+    document.body.style.overflow = "";
+  }
+};
+
+window.handlePlanModalBackdropClick = function(event) {
+  if (event.target.id === "kudozPlanModal") {
+    closePlanModal();
+  }
+};
+
+async function unlockPortal() {
+  const input = document.getElementById("passkeyInput");
+  const inputVal = input ? input.value.trim() : "";
+  const btn = document.getElementById("btnUnlockPortal");
+  const spinner = document.getElementById("unlockBtnSpinner");
+  const btnText = document.getElementById("unlockBtnText");
+
+  if (!inputVal) {
+    showAuthError("Please enter your workspace passkey.");
     return;
   }
 
-  renderPortalView();
+  clearAuthError();
+
+  // Set loading state
+  if (btn) btn.disabled = true;
+  if (spinner) spinner.style.display = "inline-block";
+  if (btnText) btnText.textContent = "Decrypting Workspace...";
+
+  try {
+    const inputHash = await sha256Hex(inputVal);
+
+    if (inputVal === ENV_CONFIG.admin_pass) {
+      currentRole = "admin";
+      activeKeyBytes = await deriveKeyFromPlain(inputVal);
+      rawStudentKey = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.student_hash);
+      rawParentKey = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.parent_hash);
+    } else if (inputHash === ENV_CONFIG.student_hash) {
+      currentRole = "student";
+      activeKeyBytes = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.student_hash);
+    } else if (inputHash === ENV_CONFIG.parent_hash) {
+      currentRole = "parent";
+      activeKeyBytes = await deriveKeyFromHash(ENV_CONFIG.tenant_id, ENV_CONFIG.parent_hash);
+    } else {
+      if (btn) btn.disabled = false;
+      if (spinner) spinner.style.display = "none";
+      if (btnText) btnText.textContent = "Unlock Workspace";
+      showAuthError("Invalid passkey. Access denied for this tenant node.");
+      return;
+    }
+
+    renderPortalView();
+  } catch (err) {
+    showAuthError("Cryptographic key derivation failed. Please try again.");
+  } finally {
+    if (btn) btn.disabled = false;
+    if (spinner) spinner.style.display = "none";
+    if (btnText) btnText.textContent = "Unlock Workspace";
+  }
 }
 
 function renderPortalView() {
@@ -3011,7 +3903,14 @@ function lockPortal() {
   activeKeyBytes = null;
   rawStudentKey = null;
   rawParentKey = null;
-  document.getElementById("passkeyInput").value = "";
+  const input = document.getElementById("passkeyInput");
+  if (input) {
+    input.value = "";
+    input.type = "password";
+  }
+  const eye = document.getElementById("eyeIcon");
+  if (eye) eye.textContent = "👁️";
+  clearAuthError();
   document.getElementById("authSection").style.display = "block";
   document.getElementById("portalContent").style.display = "none";
 }
@@ -3186,6 +4085,10 @@ document.addEventListener("keydown", function(e) {
     const modal = document.getElementById("kudozPdfModal");
     if (modal && modal.style.display === "flex") {
       closeKudozPdfViewer();
+    }
+    const planModal = document.getElementById("kudozPlanModal");
+    if (planModal && planModal.style.display === "flex") {
+      closePlanModal();
     }
   }
 });
