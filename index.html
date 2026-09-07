@@ -430,11 +430,24 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 7px;
+  margin-left: 6px;
+  border-radius: 999px;
   font-size: 11px;
   font-weight: 800;
-  margin-left: 2px;
-  opacity: 0.9;
-  letter-spacing: normal;
+  background: #e2e8f0;
+  color: #1e293b;
+  line-height: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.filter-pill.active .filter-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  box-shadow: none;
 }
 
 /* --- In-Portal PDF Viewer Modal --- */
@@ -988,9 +1001,9 @@ body {
       
       <!-- Report Deliverables Category Filter Bar -->
       <div class="kudoz-filter-bar">
-        <button class="filter-pill active" data-target="executive" onclick="filterKudozReports('executive', this)">📊 Executive Reports <span class="filter-badge" id="badgeExecutive">(0)</span></button>
-        <button class="filter-pill" data-target="student" onclick="filterKudozReports('student', this)">🚀 Student Summaries <span class="filter-badge" id="badgeStudent">(0)</span></button>
-        <button class="filter-pill" data-target="weekly" onclick="filterKudozReports('weekly', this)">🏆 Weekly Rewards <span class="filter-badge" id="badgeWeekly">(0)</span></button>
+        <button class="filter-pill active" data-target="executive" onclick="filterKudozReports('executive', this)">📊 Executive Reports <span class="filter-badge" id="badgeExecutive">2</span></button>
+        <button class="filter-pill" data-target="student" onclick="filterKudozReports('student', this)">🚀 Student Summaries <span class="filter-badge" id="badgeStudent">2</span></button>
+        <button class="filter-pill" data-target="weekly" onclick="filterKudozReports('weekly', this)">🏆 Weekly Rewards <span class="filter-badge" id="badgeWeekly">1</span></button>
       </div>
 
       <div id="reportsList" class="reports-list"></div>
@@ -2648,8 +2661,8 @@ body {
 </div>
 
 <script>
-  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-07T18:30:25.895954+00:00", "chart_days": ["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07"], "chart_hours": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "top_apps_labels": [], "top_apps_values": [], "compliance_grid": {"2026-09-01": {"tracker": false, "academic": false, "parent": false}, "2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}]};
-  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "zCIK8k4+sbnOlbzEz6k26iQH77l9eRjtl5wbCqcYdsS3B4slc+2gMjFiXCXntJSFHcnWwJ1FnMvwgLez+SCNrAxMD+Gfyz1ZSbsOuQ/9GBuVzToKDYVRNAIEXBArKgXuR7ameLoR2e7fEOXc6rvHtw==", "token_parent": "bf2nwM2mhiS4QlrLvog2VtDoxWl3J2CG+gJpbFDUl8ngQgTQnBVliQOqmCo8n5yMieQdqeWxC5hCXz9VsDQIoJXBArPkdopg6iQW/yPTZPWSzoOnnZqQLLOBQ+OtgZgtqViaZdwzwpaqWybECR+HyA==", "token_admin": "tFx27xmK22nsIW78qhCDDyDk8M+K8hckGOrX1JgZiRREXJx/Cafn929kfDrHRUSC2oRRAbkQjd/VAAfryMDTG+9FqQfW1dLZyzERp2N6l+XcU8nCUzW1NABfACzQmtHuexl44Pga1CfztY+RPTjYXg=="};
+  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-07T18:47:32.620485+00:00", "chart_days": ["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07"], "chart_hours": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "top_apps_labels": [], "top_apps_values": [], "compliance_grid": {"2026-09-01": {"tracker": false, "academic": false, "parent": false}, "2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}]};
+  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "2JWawMeRzws+VwudbewZjV5MEjloDUiGzSVe4uQkTzHt6eZgxvuawNTmyZlkAdl2yEsDyQ4colbrsVKHM6WMvPm6SYaGReUQ+lO25qJa6RJl8gxSp3W1HlPZ8qIyCObTc5u6yhwAETifR1oDjbF9yQ==", "token_parent": "gPfqNigCM1du2Ok5JUozSRrldv1++7d29gwZgSmf/JoDwQnpw36IBFxJ1+E83J7HorIsp20RYfeqMe9mLic3N1Vqqy0Qwv1IN0mW0QdKHP5pDR1ToonAdIeQPtRKx/empf8H4dPhGyYUGNnoKRR35w==", "token_admin": "29VxBtPhU8bv9D40zpHpxC/OlXi+PtHgqbvmXWb2hXdATjT2/FZ7M9IdxBwgWOPGzJMDzC7PoWz+GHVbo9OHEy9b3bg18dB4S0ZdlcxXFHpaFUvhkaQlhttZFvzhg9Jhs4RQpyRW8tWe/81U5hX3cw=="};
 </script>
 <script>
   let currentRole = null;
@@ -2824,11 +2837,6 @@ function renderReportsList() {
 
   document.getElementById("metricDeliverables").innerText = accessible.length + " Reports";
 
-  if (accessible.length === 0) {
-    list.innerHTML = "<p style='color: var(--muted); text-align:center; padding: 2rem;'>No deliverables generated yet.</p>";
-    return;
-  }
-
   // Segregate deliverables into categories (case-insensitive check)
   const categories = {
     weekly: [],
@@ -2850,7 +2858,7 @@ function renderReportsList() {
   // Update dynamic deliverable count badges on filter pills
   const updateBadge = (id, count) => {
     const el = document.getElementById(id);
-    if (el) el.textContent = `(${count})`;
+    if (el) el.textContent = count;
   };
   updateBadge("badgeExecutive", categories.executive.length);
   updateBadge("badgeStudent", categories.student.length);
@@ -2861,6 +2869,11 @@ function renderReportsList() {
     const count = categories[target] ? categories[target].length : 0;
     pill.classList.toggle("empty", count === 0);
   });
+
+  if (accessible.length === 0) {
+    list.innerHTML = "<p style='color: var(--muted); text-align:center; padding: 2rem;'>No deliverables generated yet.</p>";
+    return;
+  }
 
   // Limit each category to the 7 latest records
   const limitedDeliverables = [
