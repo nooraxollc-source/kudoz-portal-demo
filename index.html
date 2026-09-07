@@ -507,6 +507,236 @@ body {
   display: block;
 }
 
+/* --- Form Status Alerts, Spinners & Validation Feedback --- */
+.form-alert {
+  padding: 0.85rem 1.15rem;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  animation: fadeInAlert 0.25s ease-in-out;
+}
+
+@keyframes fadeInAlert {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-alert-info {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid #3b82f6;
+  color: #bfdbfe;
+}
+
+.form-alert-success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid #10b981;
+  color: #a7f3d0;
+}
+
+.form-alert-error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid #ef4444;
+  color: #fecaca;
+}
+
+.form-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: spinLoader 0.75s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes spinLoader {
+  to { transform: rotate(360deg); }
+}
+
+.input-invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 1px #ef4444 !important;
+}
+
+/* --- High-Impact Submission Status Modal --- */
+.kudoz-status-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 11000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  animation: fadeInStatusModal 0.25s ease-out;
+}
+
+@keyframes fadeInStatusModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.kudoz-status-modal-dialog {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 460px;
+  padding: 2.25rem 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  animation: scaleUpStatusModal 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scaleUpStatusModal {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.kudoz-status-icon-wrapper {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  transition: all 0.3s ease;
+}
+
+.status-icon-progress {
+  background: rgba(59, 130, 246, 0.12);
+  border: 2px solid #3b82f6;
+  color: #60a5fa;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.status-icon-success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 2px solid #10b981;
+  color: #34d399;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
+  animation: popSuccess 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popSuccess {
+  0% { transform: scale(0.6); }
+  70% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.status-icon-error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 2px solid #ef4444;
+  color: #f87171;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.35);
+  animation: shakeError 0.4s ease-in-out;
+}
+
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.status-modal-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.3px;
+}
+
+.status-modal-message {
+  font-size: 0.92rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Progress bar */
+.status-progress-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+
+.status-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+  background-size: 200% 100%;
+  width: 45%;
+  transition: width 0.4s ease, background 0.3s ease;
+}
+
+.status-progress-bar.animated-pulse {
+  animation: progressPulse 1.8s infinite linear;
+}
+
+@keyframes progressPulse {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+.status-progress-bar.bar-success {
+  width: 100% !important;
+  background: linear-gradient(90deg, #10b981, #059669) !important;
+}
+
+.status-progress-bar.bar-error {
+  width: 100% !important;
+  background: linear-gradient(90deg, #ef4444, #dc2626) !important;
+}
+
+.status-modal-spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid rgba(59, 130, 246, 0.25);
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spinStatusLoader 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spinStatusLoader {
+  to { transform: rotate(360deg); }
+}
+
+.btn-status-modal-close {
+  padding: 0.75rem 1.75rem;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-status-modal-close:hover {
+  background: #1d4ed8;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+  transform: translateY(-1px);
+}
+
+
+
   </style>
 </head>
 <body>
@@ -856,6 +1086,7 @@ body {
 </style>
 
 <div class="kudoz-tracker-container">
+  <div id="trackerStatusBanner" style="display:none;"></div>
   <!-- Step 1: ActivityWatch Screen Time Synchronization -->
   <div class="step-banner">
     <div class="step-num">1</div>
@@ -1165,53 +1396,234 @@ body {
     reader.readAsText(file);
   }
 
+  function resetTrackerForm() {
+    const q1 = document.getElementById('trackerQ1');
+    const q2 = document.getElementById('trackerQ2');
+    const q5 = document.getElementById('trackerQ5');
+    if (q1) q1.value = '';
+    if (q2) q2.value = '';
+    if (q5) q5.value = '';
+
+    document.querySelectorAll('input[name="tracker_q3_status"]').forEach(r => r.checked = false);
+    document.querySelectorAll('input[name="tracker_q4_deadlines"]').forEach(r => r.checked = false);
+
+    const hDesc = document.getElementById('trackerHobbyDesc');
+    const hHours = document.getElementById('trackerHobbyHours');
+    const lDesc = document.getElementById('trackerLeisureDesc');
+    const offGaming = document.getElementById('trackerOfflineGaming');
+    if (hDesc) hDesc.value = '';
+    if (hHours) hHours.value = '';
+    if (lDesc) lDesc.value = '';
+    if (offGaming) offGaming.value = '';
+
+    loadedAWJson = null;
+    const awInput = document.getElementById('awFileInput');
+    if (awInput) awInput.value = '';
+    const indicator = document.getElementById('fileSelectedIndicator');
+    if (indicator) {
+      indicator.style.display = 'none';
+      indicator.innerHTML = '';
+    }
+
+    localStorage.removeItem(TRACKER_DRAFT_KEY);
+    document.querySelectorAll('.input-invalid').forEach(el => el.classList.remove('input-invalid'));
+    if (window.clearFormAlert) window.clearFormAlert('trackerStatusBanner');
+  }
+
   async function syncUploadedAWOnly() {
     if (!loadedAWJson) {
-      alert("Please export and select your ActivityWatch JSON file first (Step 1).");
+      if (window.openSubmissionModal) {
+        window.openSubmissionModal('Missing File', 'Please drop or select your ActivityWatch export first.');
+        window.showSubmissionError('File Required', 'Please drop or select your ActivityWatch JSON file before attempting to sync.');
+      } else {
+        alert("Please export and select your ActivityWatch JSON file first (Step 1).");
+      }
       return;
     }
 
     const btn = document.getElementById('btnAwSyncOnly');
-    btn.innerText = "⏳ Uploading Screen Time...";
+    btn.innerHTML = "<span class='form-spinner'></span> Uploading Screen Time...";
     btn.disabled = true;
+
+    if (window.openSubmissionModal) {
+      window.openSubmissionModal('Uploading Screen Time...', 'Sending ActivityWatch export directly to Kudoz AI repository...');
+    }
 
     if (window.pushActivityWatchOnly) {
       const ok = await window.pushActivityWatchOnly(loadedAWJson);
       if (ok) {
         const nowIso = new Date().toISOString();
         if (window.MANIFEST) window.MANIFEST.aw_last_synced = nowIso;
-        alert("🎉 Successfully uploaded ActivityWatch screen time to KudozAI Server!");
-        updateAWStatusBadge();
+        
+        // Reset dropzone file
+        loadedAWJson = null;
+        const awInput = document.getElementById('awFileInput');
+        if (awInput) awInput.value = '';
+        const indicator = document.getElementById('fileSelectedIndicator');
+        if (indicator) {
+          indicator.style.display = 'none';
+          indicator.innerHTML = '';
+        }
+
+        if (window.showSubmissionSuccess) {
+          window.showSubmissionSuccess('Screen Time Synced! ⚡', 'ActivityWatch telemetry was successfully committed to your tenant storage.');
+        } else {
+          alert("🎉 Successfully uploaded ActivityWatch screen time to KudozAI Server!");
+        }
+        if (typeof updateAWStatusBadge === "function") updateAWStatusBadge();
       } else {
-        alert("❌ Failed to push ActivityWatch data to server.");
+        const errMsg = window.lastSubmissionError || 'Failed to push ActivityWatch data to repository.';
+        if (window.showSubmissionError) {
+          window.showSubmissionError('Upload Failed', errMsg);
+        } else {
+          alert("❌ " + errMsg);
+        }
       }
     }
 
-    btn.innerText = "⚡ Push Screen Time File Only";
+    btn.innerHTML = "⚡ Push Screen Time File Only";
     btn.disabled = false;
   }
 
   async function submitTrackerAndAW() {
     const btn = document.getElementById('btnTrackerSubmit');
-    const confirmed = confirm("Submit daily progress to KudozAI Server?");
-    if (!confirmed) return;
+    if (window.clearFormAlert) window.clearFormAlert('trackerStatusBanner');
 
-    btn.disabled = true;
-    btn.innerText = "⏳ Submitting questionnaire...";
+    // 1. Validate Student Name
+    const nameEl = document.getElementById('trackerStudentName');
+    const name = nameEl.value.trim();
+    if (!name) {
+      nameEl.classList.add('input-invalid');
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Validation Required', 'Student Name is required.');
+        window.showSubmissionError('Name Missing', 'Please enter your Student Name before submitting.');
+      } else {
+        alert('Please enter your Student Name before submitting.');
+      }
+      nameEl.focus();
+      return;
+    }
+    nameEl.classList.remove('input-invalid');
 
-    const name = document.getElementById('trackerStudentName').value.trim() || 'Student';
-    const date = document.getElementById('trackerDate').value;
-    const q1 = document.getElementById('trackerQ1').value.trim() || 'None configured';
-    const q2 = document.getElementById('trackerQ2').value.trim() || 'None finalized';
-    const q3 = document.querySelector('input[name="tracker_q3_status"]:checked').value;
-    const q4 = document.querySelector('input[name="tracker_q4_deadlines"]:checked').value;
+    // 2. Validate Submission Date
+    const dateEl = document.getElementById('trackerDate');
+    const date = dateEl.value;
+    if (!date) {
+      dateEl.classList.add('input-invalid');
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Validation Required', 'Submission Date is required.');
+        window.showSubmissionError('Date Missing', 'Please select a valid submission date.');
+      } else {
+        alert('Please select a valid submission date.');
+      }
+      dateEl.focus();
+      return;
+    }
+    dateEl.classList.remove('input-invalid');
+
+    // 3. Validate Plan Questions (Q1 & Q2)
+    const q1El = document.getElementById('trackerQ1');
+    const q1 = q1El.value.trim();
+    if (!q1) {
+      q1El.classList.add('input-invalid');
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Question 1 Incomplete', 'Today\'s plan is required.');
+        window.showSubmissionError('Incomplete Plan', 'Please describe your configured tasks for today (Question 1).');
+      } else {
+        alert('Please describe your configured tasks for today (Question 1).');
+      }
+      q1El.focus();
+      return;
+    }
+    q1El.classList.remove('input-invalid');
+
+    const q2El = document.getElementById('trackerQ2');
+    const q2 = q2El.value.trim();
+    if (!q2) {
+      q2El.classList.add('input-invalid');
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Question 2 Incomplete', 'Tomorrow\'s plan is required.');
+        window.showSubmissionError('Incomplete Plan', 'Please describe your finalized plan for tomorrow (Question 2).');
+      } else {
+        alert('Please describe your finalized plan for tomorrow (Question 2).');
+      }
+      q2El.focus();
+      return;
+    }
+    q2El.classList.remove('input-invalid');
+
+    // 4. Safely Validate Radio Selections (Q3 & Q4)
+    const q3Radio = document.querySelector('input[name="tracker_q3_status"]:checked');
+    if (!q3Radio) {
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Status Selection Required', 'Please select completion status.');
+        window.showSubmissionError('Status Missing', 'Please select your work completion status (Question 3).');
+      } else {
+        alert('Please select your work completion status (Question 3).');
+      }
+      return;
+    }
+    const q3 = q3Radio.value;
+
+    const q4Radio = document.querySelector('input[name="tracker_q4_deadlines"]:checked');
+    if (!q4Radio) {
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Deadlines Selection Required', 'Please select deadlines status.');
+        window.showSubmissionError('Deadlines Missing', 'Please select your overall deadlines status (Question 4).');
+      } else {
+        alert('Please select your overall deadlines status (Question 4).');
+      }
+      return;
+    }
+    const q4 = q4Radio.value;
+
     const q5 = document.getElementById('trackerQ5').value.trim() || 'Standard work completed';
-
     const hobbyDesc = document.getElementById('trackerHobbyDesc').value.trim() || "None";
     const hobbyCat = document.getElementById('trackerHobbyCategory').value;
-    const hobbyHours = parseFloat(document.getElementById('trackerHobbyHours').value) || 0.0;
+
+    // 5. Validate Numeric Hours
+    const hobbyHoursEl = document.getElementById('trackerHobbyHours');
+    const hobbyHours = parseFloat(hobbyHoursEl.value) || 0.0;
+    if (hobbyHours < 0 || hobbyHours > 24) {
+      hobbyHoursEl.classList.add('input-invalid');
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Invalid Input', 'Hobby hours out of range.');
+        window.showSubmissionError('Invalid Hours', 'Hobby hours must be a realistic number between 0 and 24.');
+      } else {
+        alert('Hobby hours must be between 0 and 24.');
+      }
+      hobbyHoursEl.focus();
+      return;
+    }
+    hobbyHoursEl.classList.remove('input-invalid');
+
     const leisureDesc = document.getElementById('trackerLeisureDesc').value.trim() || "None";
-    const offlineGaming = parseFloat(document.getElementById('trackerOfflineGaming').value) || 0.0;
+
+    const offlineGamingEl = document.getElementById('trackerOfflineGaming');
+    const offlineGaming = parseFloat(offlineGamingEl.value) || 0.0;
+    if (offlineGaming < 0 || offlineGaming > 24) {
+      offlineGamingEl.classList.add('input-invalid');
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Invalid Input', 'Gaming hours out of range.');
+        window.showSubmissionError('Invalid Hours', 'Offline gaming hours must be between 0 and 24.');
+      } else {
+        alert('Offline gaming hours must be between 0 and 24.');
+      }
+      offlineGamingEl.focus();
+      return;
+    }
+    offlineGamingEl.classList.remove('input-invalid');
+
+    // Launch High-Impact Modal & Set In-flight State
+    btn.disabled = true;
+    btn.innerHTML = "<span class='form-spinner'></span> Submitting...";
+
+    if (window.openSubmissionModal) {
+      window.openSubmissionModal(
+        'Submitting Daily Tracker...',
+        'Committing progress questionnaire' + (loadedAWJson ? ' and ActivityWatch logs' : '') + ' to Kudoz AI repository...'
+      );
+    }
 
     const trackerPayload = {
       meta: { student_name: name, submission_date: date, created_at: new Date().toISOString() },
@@ -1232,20 +1644,36 @@ body {
     };
 
     if (window.submitTenantBundle) {
-      const success = await window.submitTenantBundle(trackerPayload, loadedAWJson, name);
-      if (success) {
+      const res = await window.submitTenantBundle(trackerPayload, loadedAWJson, name, date);
+      const isSuccess = (res === true || (res && res.ok === true));
+      if (isSuccess) {
         const nowIso = new Date().toISOString();
         if (loadedAWJson && window.MANIFEST) window.MANIFEST.aw_last_synced = nowIso;
-        localStorage.removeItem(TRACKER_DRAFT_KEY);
-        alert("🎉 Successfully submitted Daily Tracker" + (loadedAWJson ? " & Screen Time" : "") + " to KudozAI Server!");
-        updateAWStatusBadge();
+        
+        // Clear and reset form completely
+        resetTrackerForm();
+
+        if (window.showSubmissionSuccess) {
+          window.showSubmissionSuccess(
+            'Daily Tracker Submitted! 🎉',
+            'Your progress questionnaire' + (loadedAWJson ? ' & Screen Time' : '') + ' was safely committed. The form has been reset for your next session.'
+          );
+        } else {
+          alert("🎉 Successfully submitted Daily Tracker to KudozAI Server!");
+        }
+        if (typeof updateAWStatusBadge === "function") updateAWStatusBadge();
       } else {
-        alert("⚠️ Upload failed. Please check network connection.");
+        const errMsg = (res && res.error) || window.lastSubmissionError || 'Upload failed. Please check network connection and credentials.';
+        if (window.showSubmissionError) {
+          window.showSubmissionError('Submission Failed', errMsg);
+        } else {
+          alert("⚠️ " + errMsg);
+        }
       }
     }
 
     btn.disabled = false;
-    btn.innerText = "🚀 Submit Daily Progress Questionnaire";
+    btn.innerHTML = "🚀 Submit Daily Progress Questionnaire";
   }
 </script>
 
@@ -1372,6 +1800,7 @@ body {
 </style>
 
 <div class="kudoz-academic-container">
+  <div id="academicStatusBanner" style="display:none;"></div>
   <h2>
     <span>📝 Academic & Practice Test Entries</span>
     <span class="counter" id="recordCounter">1 / 50 Records</span>
@@ -1533,34 +1962,120 @@ body {
     addAcademicRow();
   }
 
-  async function submitAcademicProgress() {
-    const confirmed = confirm("Do you want to push your academic records to KudozAI Server?");
-    if (!confirmed) return;
-
+  function resetAcademicForm() {
     const tableBody = document.getElementById('testTableBody');
-    const rows = tableBody.rows;
-    const entryDate = document.getElementById('academicSubmissionDate').value;
+    if (tableBody) {
+      tableBody.innerHTML = '';
+      addAcademicRow();
+    }
+    const dInput = document.getElementById('academicSubmissionDate');
+    if (dInput) dInput.valueAsDate = new Date();
+    localStorage.removeItem(ACADEMIC_DRAFT_KEY);
+    updateCounterAndAverages();
+    document.querySelectorAll('.input-invalid').forEach(el => el.classList.remove('input-invalid'));
+    if (window.clearFormAlert) window.clearFormAlert('academicStatusBanner');
+  }
+
+  async function submitAcademicProgress() {
+    if (window.clearFormAlert) window.clearFormAlert('academicStatusBanner');
+
+    const dateInput = document.getElementById('academicSubmissionDate');
+    const entryDate = dateInput ? dateInput.value : '';
 
     if (!entryDate) {
-      alert("Please select a valid date.");
+      if (dateInput) dateInput.classList.add('input-invalid');
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Validation Required', 'Entry date is required.');
+        window.showSubmissionError('Date Required', 'Please select a valid entry date before submitting.');
+      } else {
+        alert("Please select a valid entry date.");
+      }
+      if (dateInput) dateInput.focus();
+      return;
+    }
+    if (dateInput) dateInput.classList.remove('input-invalid');
+
+    const tableBody = document.getElementById('testTableBody');
+    const rows = tableBody ? tableBody.rows : [];
+
+    if (!rows || rows.length === 0) {
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Empty Record List', 'No records found to submit.');
+        window.showSubmissionError('Empty Table', 'Please add at least one test record before submitting.');
+      } else {
+        alert("Please add at least one test record before submitting.");
+      }
       return;
     }
 
     const testsList = [];
+    let hasValidationError = false;
+
     for (let i = 0; i < rows.length; i++) {
       const row = rows[i];
+      const subjectEl = row.querySelector('.subject-input');
+      const obtainedEl = row.querySelector('.obtained-input');
+      const totalEl = row.querySelector('.total-input');
+
+      if (subjectEl) subjectEl.classList.remove('input-invalid');
+      if (obtainedEl) obtainedEl.classList.remove('input-invalid');
+      if (totalEl) totalEl.classList.remove('input-invalid');
+
       const category = row.querySelector('.category-input').value;
-      const subject = row.querySelector('.subject-input').value.trim();
-      const obtained = parseFloat(row.querySelector('.obtained-input').value);
-      const total = parseFloat(row.querySelector('.total-input').value);
+      const subject = subjectEl ? subjectEl.value.trim() : '';
+      const obtained = obtainedEl ? parseFloat(obtainedEl.value) : NaN;
+      const total = totalEl ? parseFloat(totalEl.value) : NaN;
 
       if (!subject) {
-        alert(`Row ${i + 1}: Subject cannot be empty.`);
-        return;
+        if (subjectEl) subjectEl.classList.add('input-invalid');
+        if (window.showSubmissionError) {
+          window.openSubmissionModal('Validation Error', `Subject missing in Row ${i + 1}`);
+          window.showSubmissionError('Subject Required', `Row ${i + 1}: Subject cannot be empty.`);
+        } else {
+          alert(`Row ${i + 1}: Subject cannot be empty.`);
+        }
+        if (subjectEl) subjectEl.focus();
+        hasValidationError = true;
+        break;
       }
-      if (isNaN(obtained) || isNaN(total) || total <= 0 || obtained > total) {
-        alert(`Row ${i + 1}: Please enter valid marks (Obtained <= Total).`);
-        return;
+
+      if (isNaN(obtained) || obtained < 0) {
+        if (obtainedEl) obtainedEl.classList.add('input-invalid');
+        if (window.showSubmissionError) {
+          window.openSubmissionModal('Validation Error', `Invalid obtained marks in Row ${i + 1}`);
+          window.showSubmissionError('Invalid Marks', `Row ${i + 1}: Obtained marks must be a valid non-negative number.`);
+        } else {
+          alert(`Row ${i + 1}: Obtained marks must be a valid non-negative number.`);
+        }
+        if (obtainedEl) obtainedEl.focus();
+        hasValidationError = true;
+        break;
+      }
+
+      if (isNaN(total) || total <= 0) {
+        if (totalEl) totalEl.classList.add('input-invalid');
+        if (window.showSubmissionError) {
+          window.openSubmissionModal('Validation Error', `Invalid total marks in Row ${i + 1}`);
+          window.showSubmissionError('Invalid Total', `Row ${i + 1}: Total marks must be greater than 0.`);
+        } else {
+          alert(`Row ${i + 1}: Total marks must be greater than 0.`);
+        }
+        if (totalEl) totalEl.focus();
+        hasValidationError = true;
+        break;
+      }
+
+      if (obtained > total) {
+        if (obtainedEl) obtainedEl.classList.add('input-invalid');
+        if (window.showSubmissionError) {
+          window.openSubmissionModal('Validation Error', `Obtained exceeds total in Row ${i + 1}`);
+          window.showSubmissionError('Marks Mismatch', `Row ${i + 1}: Obtained marks (${obtained}) cannot exceed Total marks (${total}).`);
+        } else {
+          alert(`Row ${i + 1}: Obtained marks cannot exceed Total marks.`);
+        }
+        if (obtainedEl) obtainedEl.focus();
+        hasValidationError = true;
+        break;
       }
 
       testsList.push({
@@ -1572,6 +2087,21 @@ body {
       });
     }
 
+    if (hasValidationError || testsList.length === 0) return;
+
+    const btn = document.getElementById('btnAcademicSubmit');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = "<span class='form-spinner'></span> Pushing...";
+    }
+
+    if (window.openSubmissionModal) {
+      window.openSubmissionModal(
+        'Submitting Academic Records...',
+        `Committing ${testsList.length} test result(s) to Kudoz AI repository...`
+      );
+    }
+
     const payload = {
       type: "academic_tests_batch",
       date: entryDate,
@@ -1580,13 +2110,39 @@ body {
     };
 
     if (window.submitTenantFeedback) {
-      const ok = await window.submitTenantFeedback("academic_tests", payload, "parent");
-      if (ok) {
-        localStorage.removeItem(ACADEMIC_DRAFT_KEY);
-        alert("🎉 Successfully pushed Academic Tests to KudozAI Server!");
+      const res = await window.submitTenantFeedback("academic_tests", payload, "parent", entryDate);
+      const isSuccess = (res === true || (res && res.ok === true));
+      if (isSuccess) {
+        // Clear and reset form table
+        resetAcademicForm();
+
+        if (window.showSubmissionSuccess) {
+          window.showSubmissionSuccess(
+            'Academic Records Logged! 📝',
+            `Successfully pushed ${testsList.length} Academic Test record(s). The table has been reset for new entries.`
+          );
+        } else {
+          alert("🎉 Successfully pushed Academic Tests to KudozAI Server!");
+        }
+      } else {
+        const errMsg = (res && res.error) || window.lastSubmissionError || "Upload failed. Please check network connection and credentials.";
+        if (window.showSubmissionError) {
+          window.showSubmissionError('Upload Failed', errMsg);
+        } else {
+          alert("⚠️ " + errMsg);
+        }
       }
     } else {
-      alert("Portal core handler window.submitTenantFeedback not found.");
+      if (window.showSubmissionError) {
+        window.showSubmissionError('Handler Missing', 'Portal core handler window.submitTenantFeedback not found.');
+      } else {
+        alert("Portal core handler window.submitTenantFeedback not found.");
+      }
+    }
+
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = "🚀 Push Academic Tests to KudozAI Server";
     }
   }
 </script>
@@ -1653,6 +2209,7 @@ body {
 </style>
 
 <div class="kudoz-parent-feedback-container">
+  <div id="parentStatusBanner" style="display:none;"></div>
   <h2>👨‍👩‍👦 Weekly Parental Feedback</h2>
   <form id="parentFeedbackForm" onsubmit="event.preventDefault(); submitParentFeedback();">
     <label>Review Date (Saturday):</label>
@@ -1677,7 +2234,7 @@ body {
     <textarea id="balanceNotes" placeholder="Did the student balance screens with physical hobbies, crafts, or reading?"></textarea>
 
     <div id="parentDraftStatus" class="parent-draft-indicator">Draft auto-saves locally</div>
-    <button type="submit" class="btn-submit-action">
+    <button type="submit" id="btnParentSubmit" class="btn-submit-action">
       🚀 Push Parent Feedback to KudozAI Server
     </button>
   </form>
@@ -1732,18 +2289,93 @@ body {
     } catch(e) {}
   }
 
+  function resetParentForm() {
+    const form = document.getElementById('parentFeedbackForm');
+    if (form) form.reset();
+    const dInput = document.getElementById('parentReviewDate');
+    if (dInput) dInput.valueAsDate = new Date();
+    localStorage.removeItem(PARENT_DRAFT_KEY);
+    const st = document.getElementById('parentDraftStatus');
+    if (st) st.textContent = "Draft cleared";
+    document.querySelectorAll('.input-invalid').forEach(el => el.classList.remove('input-invalid'));
+    if (window.clearFormAlert) window.clearFormAlert('parentStatusBanner');
+  }
+
   async function submitParentFeedback() {
-    const confirmed = confirm("Do you want to push your weekly feedback to KudozAI Server?");
-    if (!confirmed) return;
+    if (window.clearFormAlert) window.clearFormAlert('parentStatusBanner');
 
-    const dateVal = document.getElementById('parentReviewDate').value;
-    const mScore = parseFloat(document.getElementById('motherScore').value);
-    const fScore = parseFloat(document.getElementById('fatherScore').value);
-    const bScore = parseFloat(document.getElementById('balanceScore').value) || 8.0;
+    const dateInput = document.getElementById('parentReviewDate');
+    const dateVal = dateInput ? dateInput.value : '';
 
-    if (isNaN(mScore) || isNaN(fScore)) {
-      alert("Please provide both Mother and Father ratings out of 10.");
+    if (!dateVal) {
+      if (dateInput) dateInput.classList.add('input-invalid');
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Validation Required', 'Review date is required.');
+        window.showSubmissionError('Date Required', 'Please select a valid review date before submitting.');
+      } else {
+        alert("Please select a valid review date.");
+      }
+      if (dateInput) dateInput.focus();
       return;
+    }
+    if (dateInput) dateInput.classList.remove('input-invalid');
+
+    const mScoreEl = document.getElementById('motherScore');
+    const mScore = mScoreEl ? parseFloat(mScoreEl.value) : NaN;
+    if (isNaN(mScore) || mScore < 1 || mScore > 10) {
+      if (mScoreEl) mScoreEl.classList.add('input-invalid');
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Validation Error', 'Mother rating out of range.');
+        window.showSubmissionError('Invalid Rating', 'Mother rating must be a valid number between 1 and 10.');
+      } else {
+        alert("Mother rating must be a valid number between 1 and 10.");
+      }
+      if (mScoreEl) mScoreEl.focus();
+      return;
+    }
+    if (mScoreEl) mScoreEl.classList.remove('input-invalid');
+
+    const fScoreEl = document.getElementById('fatherScore');
+    const fScore = fScoreEl ? parseFloat(fScoreEl.value) : NaN;
+    if (isNaN(fScore) || fScore < 1 || fScore > 10) {
+      if (fScoreEl) fScoreEl.classList.add('input-invalid');
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Validation Error', 'Father rating out of range.');
+        window.showSubmissionError('Invalid Rating', 'Father rating must be a valid number between 1 and 10.');
+      } else {
+        alert("Father rating must be a valid number between 1 and 10.");
+      }
+      if (fScoreEl) fScoreEl.focus();
+      return;
+    }
+    if (fScoreEl) fScoreEl.classList.remove('input-invalid');
+
+    const bScoreEl = document.getElementById('balanceScore');
+    const bScore = (bScoreEl && bScoreEl.value !== "") ? parseFloat(bScoreEl.value) : 8.0;
+    if (isNaN(bScore) || bScore < 1 || bScore > 10) {
+      if (bScoreEl) bScoreEl.classList.add('input-invalid');
+      if (window.showSubmissionError) {
+        window.openSubmissionModal('Validation Error', 'Balance rating out of range.');
+        window.showSubmissionError('Invalid Rating', 'Screen-Free Balance rating must be between 1 and 10.');
+      } else {
+        alert("Screen-Free Balance rating must be between 1 and 10.");
+      }
+      if (bScoreEl) bScoreEl.focus();
+      return;
+    }
+    if (bScoreEl) bScoreEl.classList.remove('input-invalid');
+
+    const btn = document.getElementById('btnParentSubmit');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = "<span class='form-spinner'></span> Pushing...";
+    }
+
+    if (window.openSubmissionModal) {
+      window.openSubmissionModal(
+        'Submitting Parental Review...',
+        'Committing weekly evaluations and milestone contract to Kudoz AI repository...'
+      );
     }
 
     const payload = {
@@ -1768,13 +2400,39 @@ body {
     };
 
     if (window.submitTenantFeedback) {
-      const ok = await window.submitTenantFeedback("parent_feedback", payload, "parent");
-      if (ok) {
-        localStorage.removeItem(PARENT_DRAFT_KEY);
-        alert("🎉 Successfully pushed Parent Feedback to KudozAI Server!");
+      const res = await window.submitTenantFeedback("parent_feedback", payload, "parent", dateVal);
+      const isSuccess = (res === true || (res && res.ok === true));
+      if (isSuccess) {
+        // Clear and reset form
+        resetParentForm();
+
+        if (window.showSubmissionSuccess) {
+          window.showSubmissionSuccess(
+            'Parent Feedback Submitted! 👨‍👩‍👦',
+            'Your weekly evaluations and milestone contract were committed safely. The form has been reset.'
+          );
+        } else {
+          alert("🎉 Successfully pushed Parent Feedback to KudozAI Server!");
+        }
+      } else {
+        const errMsg = (res && res.error) || window.lastSubmissionError || "Upload failed. Please verify network and write permissions.";
+        if (window.showSubmissionError) {
+          window.showSubmissionError('Upload Failed', errMsg);
+        } else {
+          alert("⚠️ " + errMsg);
+        }
       }
     } else {
-      alert("Portal core handler window.submitTenantFeedback not found.");
+      if (window.showSubmissionError) {
+        window.showSubmissionError('Handler Missing', 'Portal core handler window.submitTenantFeedback not found.');
+      } else {
+        alert("Portal core handler window.submitTenantFeedback not found.");
+      }
+    }
+
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = "🚀 Push Parent Feedback to KudozAI Server";
     }
   }
 </script>
@@ -1802,11 +2460,31 @@ body {
       </div>
     </div>
   </div>
+
+  <!-- Submission & Status Feedback Modal -->
+  <div id="kudozStatusModal" class="kudoz-status-modal-overlay" style="display: none;" onclick="handleStatusModalBackdropClick(event)">
+    <div class="kudoz-status-modal-dialog">
+      <div class="kudoz-status-icon-wrapper status-icon-progress" id="statusModalIcon">
+        <span class="status-modal-spinner"></span>
+      </div>
+      <h3 class="status-modal-title" id="statusModalTitle">Submitting Records...</h3>
+      <p class="status-modal-message" id="statusModalMessage">Synchronizing telemetry and progress to Kudoz AI repository.</p>
+      
+      <!-- Animated Progress Bar -->
+      <div class="status-progress-track" id="statusProgressTrack">
+        <div class="status-progress-bar animated-pulse" id="statusProgressBar" style="width: 45%;"></div>
+      </div>
+      
+      <div class="status-modal-actions" id="statusModalActions" style="display: none;">
+        <button type="button" class="btn-status-modal-close" id="btnStatusModalClose" onclick="closeSubmissionModal()">Awesome, Got it!</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-07T17:53:01.626961+00:00", "chart_days": ["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07"], "chart_hours": [2.73, 3.13, 3.75, 4.58, 1.28, 0.0, 0.0], "top_apps_labels": ["ApplicationFrameHost.exe", "chrome.exe", "explorer.exe", "LockApp.exe", "FoxitPDFReader.exe"], "top_apps_values": [40.68, 28.32, 12.3, 6.9, 4.25], "compliance_grid": {"2026-09-01": {"tracker": false, "academic": false, "parent": false}, "2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": true, "academic": true, "parent": true}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}]};
-  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "spe4Cdo3Zv7UIWLH/qrIC6SNkP3YGfZeuCYEpVzqfM54UGlgtkmxdg4aUT4y0ez32aFfQXKZnxnnx9SuPl25nT7syhruoiK/9m5ux0EExZ91ZXa3WSATwYmoQdR5Qz+ANwgchkAjwpGf/sg9HY0wLw==", "token_parent": "OxSXcXEQn1pLweIg420noqLRffyD7hwddHeVYpQRHPKr0InzyYF/DRKbjReDQnKBecFikfLSuxoz0yMXiUn8iCk2vfGO7W9zxdGRBFVwM0KusT+AAIw6gpuKcbjll1W1ty7WO7NZhGCb//frkouL6Q==", "token_admin": "jYqkgJPLevm35jhoA62ZsbgwO6t6Ckt15xDDnzjQ/tAEdqm8UchSlmGx+fnNJcPHJgd7OgBG5OAebZ41qXk+SyA1ofBjoQsBcw1FSG0QhhsV+oJKXg05ToMrU5Mn+At4Pxn1fEUSgKuav7QpORsgYw=="};
+  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-07T18:08:26.239086+00:00", "chart_days": ["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07"], "chart_hours": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "top_apps_labels": [], "top_apps_values": [], "compliance_grid": {"2026-09-01": {"tracker": false, "academic": false, "parent": false}, "2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}]};
+  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "0ylwwU4ExDX+2nAdtNVeDZxqbz7ZFSYzAjqu+Y2XbzA9gyj0s+hXdRvRHUihXI6lROmXDp19A5Qhpn2D2tMMzFeeoECi/lH5dPetAcPwPr3naC/YX/Uah7tXMNYeTo1FthzACOvJu0C4rBSemv+TCA==", "token_parent": "DZXqlELJ7jYvxk5+30Y50IvC9qjppig7z7W7QG58ZR3uoj4Dow43u7ZAb3h/vSI/qwxo+PXks3jLaGKJbim0T0y+OBH1CBA7HVaDBqky9U5sHRm5yGFrGeKXxRQLCjRgu328gbFW1LmyaV+qTvYepw==", "token_admin": "NFCFQ0HKwLmdzFgqTwCOYmAYEGnSYZjdZpKkXTvfiMiGnnR7dW5QqxUOWVK8wSg/oE59fs+FFoBEimTjm23hogEvXDQgOZbktVVmZ8VQgmTHgqJ6zHBEYFWnv1vXr5l4ISFpvcrMllvz2Rb6uXP+BA=="};
 </script>
 <script>
   let currentRole = null;
@@ -2157,11 +2835,48 @@ function utf8ToBase64(str) {
   return window.btoa(unescape(encodeURIComponent(str)));
 }
 
+function formatDateForStorage(dateInput) {
+  if (typeof dateInput === "string" && dateInput.trim()) {
+    const clean = dateInput.trim().replace(/-/g, "_");
+    const parts = clean.split("_");
+    if (parts.length === 3 && parts[0].length === 4 && parts[1].length === 2 && parts[2].length === 2) {
+      return clean;
+    }
+  }
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  return `${yyyy}_${mm}_${dd}`;
+}
+
+window.showFormAlert = function(containerId, message, type) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const alertType = type || "info";
+  container.className = `form-alert form-alert-${alertType}`;
+  let icon = "ℹ️";
+  if (alertType === "success") icon = "✅";
+  if (alertType === "error") icon = "❌";
+  if (alertType === "info") icon = "<span class='form-spinner'></span>";
+  container.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+  container.style.display = "flex";
+};
+
+window.clearFormAlert = function(containerId) {
+  const container = document.getElementById(containerId);
+  if (container) {
+    container.innerHTML = "";
+    container.style.display = "none";
+  }
+};
+
+window.lastSubmissionError = null;
+
 async function pushFileToCore(filePath, contentString, commitMessage) {
   const token = await getCoreToken();
   if (!token) {
-    alert("Error: Write token not available. Please re-login.");
-    return false;
+    return { ok: false, error: "Write authorization token not available in session. Please re-login." };
   }
 
   const apiUrl = `https://api.github.com/repos/${ENV_CONFIG.core_repo}/contents/${filePath}`;
@@ -2171,12 +2886,20 @@ async function pushFileToCore(filePath, contentString, commitMessage) {
     if (checkRes.ok) sha = (await checkRes.json()).sha;
   } catch (err) {}
 
-  const res = await fetch(apiUrl, {
-    method: "PUT",
-    headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json", "Accept": "application/vnd.github+json" },
-    body: JSON.stringify({ message: commitMessage, content: utf8ToBase64(contentString), branch: "main", ...(sha ? { sha } : {}) })
-  });
-  return res.ok;
+  try {
+    const res = await fetch(apiUrl, {
+      method: "PUT",
+      headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json", "Accept": "application/vnd.github+json" },
+      body: JSON.stringify({ message: commitMessage, content: utf8ToBase64(contentString), branch: "main", ...(sha ? { sha } : {}) })
+    });
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      return { ok: false, error: errData.message || `GitHub API error (${res.status})` };
+    }
+    return { ok: true };
+  } catch (netErr) {
+    return { ok: false, error: "Network connection error while communicating with GitHub API." };
+  }
 }
 
 window.pushActivityWatchOnly = async function(awExportJson) {
@@ -2184,31 +2907,39 @@ window.pushActivityWatchOnly = async function(awExportJson) {
   return await pushFileToCore(awPath, JSON.stringify(awExportJson), `chore(${ENV_CONFIG.tenant_id}): quick-sync activitywatch dump [skip ci]`);
 };
 
-window.submitTenantBundle = async function(trackerJson, awExportJson, studentName) {
-  const now = new Date();
-  const yyyy = now.getFullYear();
-  const mm = String(now.getMonth() + 1).padStart(2, '0');
-  const dd = String(now.getDate()).padStart(2, '0');
+window.submitTenantBundle = async function(trackerJson, awExportJson, studentName, targetDate) {
+  window.lastSubmissionError = null;
+  const dateStr = formatDateForStorage(targetDate || (trackerJson && trackerJson.meta && trackerJson.meta.submission_date));
   const cleanName = studentName ? "_" + studentName.trim().replace(/[^a-zA-Z0-9]/g, '_') : "";
 
-  const trackerPath = `data/${ENV_CONFIG.tenant_id}/feedbacks/Tracker${cleanName}_${yyyy}_${mm}_${dd}.json`;
-  const okTracker = await pushFileToCore(trackerPath, JSON.stringify(trackerJson, null, 2), `chore(${ENV_CONFIG.tenant_id}): update daily tracker [skip ci]`);
+  const trackerPath = `data/${ENV_CONFIG.tenant_id}/feedbacks/Tracker${cleanName}_${dateStr}.json`;
+  const resTracker = await pushFileToCore(trackerPath, JSON.stringify(trackerJson, null, 2), `chore(${ENV_CONFIG.tenant_id}): update daily tracker [skip ci]`);
+  if (!resTracker.ok) {
+    window.lastSubmissionError = resTracker.error;
+    return resTracker;
+  }
 
-  let okAW = true;
   if (awExportJson) {
     const awPath = `data/${ENV_CONFIG.tenant_id}/raw_aw/aw-export-latest.json`;
-    okAW = await pushFileToCore(awPath, JSON.stringify(awExportJson), `chore(${ENV_CONFIG.tenant_id}): sync activitywatch logs [skip ci]`);
+    const resAW = await pushFileToCore(awPath, JSON.stringify(awExportJson), `chore(${ENV_CONFIG.tenant_id}): sync activitywatch logs [skip ci]`);
+    if (!resAW.ok) {
+      window.lastSubmissionError = resAW.error;
+      return resAW;
+    }
   }
-  return okTracker && okAW;
+
+  return { ok: true };
 };
 
-window.submitTenantFeedback = async function(prefix, payloadJson, role) {
-  const now = new Date();
-  const yyyy = now.getFullYear();
-  const mm = String(now.getMonth() + 1).padStart(2, '0');
-  const dd = String(now.getDate()).padStart(2, '0');
-  const feedbackPath = `data/${ENV_CONFIG.tenant_id}/feedbacks/${prefix}_${yyyy}_${mm}_${dd}.json`;
-  return await pushFileToCore(feedbackPath, JSON.stringify(payloadJson, null, 2), `chore(${ENV_CONFIG.tenant_id}): submit ${prefix} [skip ci]`);
+window.submitTenantFeedback = async function(prefix, payloadJson, role, targetDate) {
+  window.lastSubmissionError = null;
+  const dateStr = formatDateForStorage(targetDate || (payloadJson && payloadJson.date));
+  const feedbackPath = `data/${ENV_CONFIG.tenant_id}/feedbacks/${prefix}_${dateStr}.json`;
+  const res = await pushFileToCore(feedbackPath, JSON.stringify(payloadJson, null, 2), `chore(${ENV_CONFIG.tenant_id}): submit ${prefix} [skip ci]`);
+  if (!res.ok) {
+    window.lastSubmissionError = res.error;
+  }
+  return res;
 };
 
 // --- In-Portal PDF Viewer Modal Controller ---
@@ -2293,6 +3024,120 @@ window.filterKudozReports = function(categoryKey, clickedBtn) {
     emptyNotice.style.display = "none";
   }
 };
+
+// --- Submission Status Modal Controller ---
+let statusModalOnClose = null;
+
+window.openSubmissionModal = function(title = "Submitting Records...", message = "Uploading data directly to repository...") {
+  const modal = document.getElementById("kudozStatusModal");
+  if (!modal) return;
+  statusModalOnClose = null;
+
+  const iconWrap = document.getElementById("statusModalIcon");
+  const titleEl = document.getElementById("statusModalTitle");
+  const msgEl = document.getElementById("statusModalMessage");
+  const bar = document.getElementById("statusProgressBar");
+  const actions = document.getElementById("statusModalActions");
+
+  if (iconWrap) {
+    iconWrap.className = "kudoz-status-icon-wrapper status-icon-progress";
+    iconWrap.innerHTML = '<span class="status-modal-spinner"></span>';
+  }
+  if (titleEl) titleEl.textContent = title;
+  if (msgEl) msgEl.textContent = message;
+  if (bar) {
+    bar.className = "status-progress-bar animated-pulse";
+    bar.style.width = "40%";
+  }
+  if (actions) actions.style.display = "none";
+
+  modal.style.display = "flex";
+  document.body.style.overflow = "hidden";
+};
+
+window.updateSubmissionProgress = function(percent, message) {
+  const bar = document.getElementById("statusProgressBar");
+  const msgEl = document.getElementById("statusModalMessage");
+  if (bar && percent !== undefined) {
+    bar.style.width = percent + "%";
+  }
+  if (msgEl && message) {
+    msgEl.textContent = message;
+  }
+};
+
+window.showSubmissionSuccess = function(title = "Submission Successful!", message = "Your records were committed successfully to Kudoz AI.", onCloseCallback = null) {
+  statusModalOnClose = onCloseCallback;
+  const iconWrap = document.getElementById("statusModalIcon");
+  const titleEl = document.getElementById("statusModalTitle");
+  const msgEl = document.getElementById("statusModalMessage");
+  const bar = document.getElementById("statusProgressBar");
+  const actions = document.getElementById("statusModalActions");
+  const closeBtn = document.getElementById("btnStatusModalClose");
+
+  if (iconWrap) {
+    iconWrap.className = "kudoz-status-icon-wrapper status-icon-success";
+    iconWrap.innerHTML = '🎉';
+  }
+  if (titleEl) titleEl.textContent = title;
+  if (msgEl) msgEl.textContent = message;
+  if (bar) {
+    bar.className = "status-progress-bar bar-success";
+    bar.style.width = "100%";
+  }
+  if (closeBtn) {
+    closeBtn.textContent = "Awesome, Got it!";
+    closeBtn.style.background = "#2563eb";
+  }
+  if (actions) actions.style.display = "block";
+};
+
+window.showSubmissionError = function(title = "Upload Failed", message = "Could not push data to repository. Please verify your connection or write token.", onCloseCallback = null) {
+  statusModalOnClose = onCloseCallback;
+  const iconWrap = document.getElementById("statusModalIcon");
+  const titleEl = document.getElementById("statusModalTitle");
+  const msgEl = document.getElementById("statusModalMessage");
+  const bar = document.getElementById("statusProgressBar");
+  const actions = document.getElementById("statusModalActions");
+  const closeBtn = document.getElementById("btnStatusModalClose");
+
+  if (iconWrap) {
+    iconWrap.className = "kudoz-status-icon-wrapper status-icon-error";
+    iconWrap.innerHTML = '❌';
+  }
+  if (titleEl) titleEl.textContent = title;
+  if (msgEl) msgEl.textContent = message;
+  if (bar) {
+    bar.className = "status-progress-bar bar-error";
+    bar.style.width = "100%";
+  }
+  if (closeBtn) {
+    closeBtn.textContent = "Dismiss";
+    closeBtn.style.background = "#475569";
+  }
+  if (actions) actions.style.display = "block";
+};
+
+window.closeSubmissionModal = function() {
+  const modal = document.getElementById("kudozStatusModal");
+  if (modal) modal.style.display = "none";
+  document.body.style.overflow = "";
+  if (typeof statusModalOnClose === "function") {
+    const cb = statusModalOnClose;
+    statusModalOnClose = null;
+    cb();
+  }
+};
+
+window.handleStatusModalBackdropClick = function(event) {
+  if (event.target.id === "kudozStatusModal") {
+    const actions = document.getElementById("statusModalActions");
+    if (actions && actions.style.display !== "none") {
+      closeSubmissionModal();
+    }
+  }
+};
+
 
 </script>
 
