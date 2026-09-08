@@ -2651,6 +2651,209 @@ body.portal-authenticated .brand-sub {
   }
 }
 
+/* --- Pending Extension Requests Intimation & Actions (Parent & Admin) --- */
+.pending-extensions-container {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(217, 119, 6, 0.03) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+}
+
+.pending-ext-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.pending-ext-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fbbf24;
+  letter-spacing: 0.02em;
+}
+
+.pending-ext-count-badge {
+  background: #f59e0b;
+  color: #0b0f19;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
+
+.pending-ext-card {
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid rgba(75, 85, 99, 0.4);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.pending-ext-card:hover {
+  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.1);
+}
+
+.pending-ext-card:last-child {
+  margin-bottom: 0;
+}
+
+.pending-ext-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.pending-ext-subject {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pending-ext-milestone-tag {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+}
+
+.pending-ext-urgency {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.pending-ext-urgency.urgent {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  animation: pulse-border 1.5s infinite;
+}
+
+.pending-ext-urgency.normal {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.pending-ext-timeline {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+  margin-bottom: 0.6rem;
+  background: rgba(31, 41, 55, 0.5);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  flex-wrap: wrap;
+}
+
+.pending-ext-date-current {
+  color: var(--dl-text-muted);
+  text-decoration: line-through;
+}
+
+.pending-ext-date-requested {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.pending-ext-reason-box {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #f59e0b;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.82rem;
+  color: var(--dl-text-secondary);
+  font-style: italic;
+  margin-bottom: 0.85rem;
+  border-radius: 0 6px 6px 0;
+}
+
+.pending-ext-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-ext-approve {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.btn-ext-approve:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-ext-decline {
+  background: rgba(31, 41, 55, 0.8);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.btn-ext-decline:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.6);
+}
+
+/* Tab Navigation Indicator Badge */
+.deadlines-tab-indicator-badge {
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+  margin-left: 0.4rem;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+  animation: pulse-border 1.5s infinite;
+}
+
+
   </style>
 </head>
 <body>
@@ -2938,6 +3141,11 @@ body.portal-authenticated .brand-sub {
        RBAC CONTAINER 1: Admin & Parent View (Interactive Read/Write Editor)
        ======================================================================== -->
   <div id="deadlinesAdminParentView" style="display: none;">
+    <!-- Pending Extension Requests Actionable Intimation Banner -->
+    <div id="pendingExtensionsContainer" class="pending-extensions-container" style="display: none;">
+      <!-- Dynamically populated by deadlines.js -->
+    </div>
+
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
       <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
         <button type="button" id="btnAddDeadlineRow" class="btn-deadline-action btn-add-row" onclick="addNewDeadlineRow()">
@@ -3773,8 +3981,9 @@ body.portal-authenticated .brand-sub {
     }
 
     if (window.pushActivityWatchOnly) {
-      const ok = await window.pushActivityWatchOnly(loadedAWJson);
-      if (ok) {
+      const res = await window.pushActivityWatchOnly(loadedAWJson);
+      const isSuccess = (res === true || (res && res.ok === true));
+      if (isSuccess) {
         const nowIso = new Date().toISOString();
         if (window.MANIFEST) window.MANIFEST.aw_last_synced = nowIso;
         
@@ -3795,7 +4004,7 @@ body.portal-authenticated .brand-sub {
         }
         if (typeof updateAWStatusBadge === "function") updateAWStatusBadge();
       } else {
-        const errMsg = window.lastSubmissionError || 'Failed to push ActivityWatch data to repository.';
+        const errMsg = (res && res.error) || window.lastSubmissionError || 'Failed to push ActivityWatch data to repository. Please verify write authorization.';
         if (window.showSubmissionError) {
           window.showSubmissionError('Upload Failed', errMsg);
         } else {
@@ -4806,8 +5015,8 @@ body.portal-authenticated .brand-sub {
 </div>
 
 <script>
-  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-08T15:46:40.457464+00:00", "chart_days": ["2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07", "2026-09-08"], "chart_hours": [4.16, 7.2, 9.21, 6.62, 4.29, 5.45, 0.0], "top_apps_labels": ["YouTube", "WhatsApp", "TikTok", "Quickstep", "Chrome"], "top_apps_values": [18.91, 10.4, 7.92, 4.78, 4.58], "compliance_grid": {"2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": true, "academic": true, "parent": true}, "2026-09-08": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-08", "file": "reports/Summary_For_Kids_2026-09-08.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-08", "file": "reports/Productivity_Report_2026-09-08.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}], "telemetry_metrics": {"exists": true, "last_synced_utc": "2026-09-08T15:46:40.457464+00:00", "total_hours": 36.93, "device_breakdown": {"Android": 36.93}, "daily_average": 5.28, "daily_average_active_days": 6.16, "active_days_count": 6, "delta_percentage": 41.7, "delta_direction": "up", "delta_badge_text": "+41.7% vs last week", "delta_comparison_type": "previous_period", "focus_score": 0, "productive_hours": 0.03, "non_productive_hours": 19.72, "neutral_hours": 12.84, "unclassified_hours": 4.34, "productive_percentage": 0.1, "non_productive_percentage": 53.4, "neutral_percentage": 34.8, "top_categories": [{"category": "Distraction / Gaming", "hours": 19.72, "percentage": 53.4, "is_productive": false}, {"category": "Neutral / Utility", "hours": 12.84, "percentage": 34.8, "is_productive": false}, {"category": "Unclassified", "hours": 4.34, "percentage": 11.8, "is_productive": false}, {"category": "Deep Work / Study", "hours": 0.03, "percentage": 0.1, "is_productive": true}], "top_apps": [{"app": "YouTube", "hours": 9.46, "category": "Distraction / Gaming", "is_productive": false}, {"app": "TikTok", "hours": 7.92, "category": "Distraction / Gaming", "is_productive": false}, {"app": "WhatsApp", "hours": 5.39, "category": "Neutral / Utility", "is_productive": false}, {"app": "Quickstep", "hours": 2.84, "category": "Neutral / Utility", "is_productive": false}, {"app": "YT Kids", "hours": 2.31, "category": "Distraction / Gaming", "is_productive": false}, {"app": "Chrome", "hours": 2.3, "category": "Neutral / Utility", "is_productive": false}, {"app": "WhatsApp\u00a0Business", "hours": 2.1, "category": "Neutral / Utility", "is_productive": false}, {"app": "ChatGPT", "hours": 0.71, "category": "Unclassified", "is_productive": false}, {"app": "Phone", "hours": 0.43, "category": "Unclassified", "is_productive": false}, {"app": "LunaSpeak", "hours": 0.43, "category": "Unclassified", "is_productive": false}], "daily_hours_7d": {"2026-09-02": 4.16, "2026-09-03": 7.2, "2026-09-04": 9.21, "2026-09-05": 6.62, "2026-09-06": 4.29, "2026-09-07": 5.45, "2026-09-08": 0.0}, "previous_period_hours": 26.06, "period_start": "2026-09-02", "period_end": "2026-09-08", "feedback_metrics": {"tracker_count": 2, "academic_tests_count": 1, "parent_feedback_count": 1, "total_submissions": 4, "academic_average_percentage": 50.0, "feedback_bonus_score": 2.0, "compliance_by_date": {}}}, "deadlines_data": {"format": "json", "title": "STUDENT ACADEMIC DEADLINES TRACKER", "academic_session": "2026-2027", "date_modified": "September 05, 2026", "headers": ["S#", "Subject", "Syllabus", "Deadline (Notebook)", "Deadline (Tests)", "Current Status"], "deadlines": [{"s_no": "01", "subject": "English", "syllabus": "Ch 1-10 &Grammar", "deadline_notebook": "10 Sep, 2026", "deadline_tests": "15 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "02", "subject": "Physics", "syllabus": "Ch 1, 2, 3, 4 & 7", "deadline_notebook": "06 Sep, 2026", "deadline_tests": "15 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "03", "subject": "Chemistry", "syllabus": "Ch 1, 2, 3 & Ch 4", "deadline_notebook": "08 Sep, 2026", "deadline_tests": "11 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "04", "subject": "Computer", "syllabus": "Ch 1, 2, 4 & 5", "deadline_notebook": "31 Aug, 2026", "deadline_tests": "18 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "05", "subject": "Urdu", "syllabus": "2 Ghazals & 01 Ch", "deadline_notebook": "20 Sep, 2026", "deadline_tests": "25 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "06", "subject": "Islamiat", "syllabus": "Surah Infaal 06 Asbaaq", "deadline_notebook": "10 Sep, 2026", "deadline_tests": "17 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "07", "subject": "Math", "syllabus": "Ch 01 to Ch 07", "deadline_notebook": "09 Sep, 2026", "deadline_tests": "20 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "08", "subject": "T-Q", "syllabus": "Total 08 Asbaaq", "deadline_notebook": "11 Sep, 2026", "deadline_tests": "19 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "09", "subject": "Pak Study", "syllabus": "Ch 1 & Ch 2", "deadline_notebook": "14 Aug, 2026", "deadline_tests": "31 Aug, 2026", "status": "Completed", "current_status": "Completed"}, {"s_no": "10", "subject": "Public Speaking", "syllabus": "Discipline Life", "deadline_notebook": "", "deadline_tests": "13 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}], "notes": ["Physics: Ensure copy checking to teacher or parent before deadline as its near.", "Ensure all assignment notebooks are checked and signed by respective subject teachers prior to test dates.", "Update \"Current Status\" and \"Syllabus\" as chapters are completed or revised."], "notes_and_reminders": ["Physics: Ensure copy checking to teacher or parent before deadline as its near.", "Ensure all assignment notebooks are checked and signed by respective subject teachers prior to test dates.", "Update \"Current Status\" and \"Syllabus\" as chapters are completed or revised."], "file_path": "/home/runner/work/kudoz-ai-v3.1/kudoz-ai-v3.1/data/tenant_demo/deadlines.json", "file_name": "deadlines.json", "tenant_id": "tenant_demo"}};
-  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "2RW7JIA8W9Evr45b5MxY+4ZBj1HG44FibPm8UlgOw0Y92gHAl1gQURhRUFUOkJiAD8MoNXTOS9qZccP/BVtNcFK1ki1e5Wq2ll5D1IHmJzNSuHX35iTBplWO62kbZQiIpqPtfdUOt+RXJEHAgUpt7A==", "token_parent": "cUnrDB9BpiKCNmIWikE4gp4gD14SkcErKGFDvFiKCtZn6WxX41coS714QPSMN2bHC/umm7SHAJmbJIxlF7icE4f1OWw8eBjLSdCXdj9adkYw3Q1aF5QAz85UmRgOL5jduIoYE4e8DgE0Y2n2DMIw0g==", "token_admin": "Mkdx0DlgRUEYJcXcGjxwSrxTOBd4pX2l3kRM5oBi3wkhlZDyHAhtIoaojdc9H4ru3ioRUkweuETpmHOEUXJqv90vnJHvdqG9KWVYVsnkqsv/tU2m/msfa1DrC7RDsYQ6X/vUuokmk7qboHH7FeA0XQ=="};
+  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-08T16:17:36.237210+00:00", "chart_days": ["2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07", "2026-09-08"], "chart_hours": [4.16, 7.2, 9.21, 6.62, 4.29, 5.78, 4.15], "top_apps_labels": ["YouTube", "WhatsApp", "TikTok", "Quickstep", "Chrome"], "top_apps_values": [18.91, 11.66, 10.39, 4.97, 4.62], "compliance_grid": {"2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": true, "academic": true, "parent": true}, "2026-09-08": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-08", "file": "reports/Summary_For_Kids_2026-09-08.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-08", "file": "reports/Productivity_Report_2026-09-08.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}], "telemetry_metrics": {"exists": true, "last_synced_utc": "2026-09-08T16:17:36.237210+00:00", "total_hours": 41.41, "device_breakdown": {"Android": 41.41}, "daily_average": 5.92, "daily_average_active_days": 5.92, "active_days_count": 7, "delta_percentage": 58.9, "delta_direction": "up", "delta_badge_text": "+58.9% vs last week", "delta_comparison_type": "previous_period", "focus_score": 0, "productive_hours": 0.03, "non_productive_hours": 22.32, "neutral_hours": 14.45, "unclassified_hours": 4.61, "productive_percentage": 0.1, "non_productive_percentage": 53.9, "neutral_percentage": 34.9, "top_categories": [{"category": "Distraction / Gaming", "hours": 22.32, "percentage": 53.9, "is_productive": false}, {"category": "Neutral / Utility", "hours": 14.45, "percentage": 34.9, "is_productive": false}, {"category": "Unclassified", "hours": 4.61, "percentage": 11.1, "is_productive": false}, {"category": "Deep Work / Study", "hours": 0.03, "percentage": 0.1, "is_productive": true}], "top_apps": [{"app": "TikTok", "hours": 10.39, "category": "Distraction / Gaming", "is_productive": false}, {"app": "YouTube", "hours": 9.46, "category": "Distraction / Gaming", "is_productive": false}, {"app": "WhatsApp", "hours": 6.64, "category": "Neutral / Utility", "is_productive": false}, {"app": "Quickstep", "hours": 3.03, "category": "Neutral / Utility", "is_productive": false}, {"app": "YT Kids", "hours": 2.43, "category": "Distraction / Gaming", "is_productive": false}, {"app": "Chrome", "hours": 2.33, "category": "Neutral / Utility", "is_productive": false}, {"app": "WhatsApp\u00a0Business", "hours": 2.23, "category": "Neutral / Utility", "is_productive": false}, {"app": "ChatGPT", "hours": 0.71, "category": "Unclassified", "is_productive": false}, {"app": "Phone", "hours": 0.47, "category": "Unclassified", "is_productive": false}, {"app": "LunaSpeak", "hours": 0.43, "category": "Unclassified", "is_productive": false}], "daily_hours_7d": {"2026-09-02": 4.16, "2026-09-03": 7.2, "2026-09-04": 9.21, "2026-09-05": 6.62, "2026-09-06": 4.29, "2026-09-07": 5.78, "2026-09-08": 4.15}, "previous_period_hours": 26.06, "period_start": "2026-09-02", "period_end": "2026-09-08", "feedback_metrics": {"tracker_count": 2, "academic_tests_count": 1, "parent_feedback_count": 1, "total_submissions": 4, "academic_average_percentage": 50.0, "feedback_bonus_score": 2.0, "compliance_by_date": {}}}, "deadlines_data": {"format": "json", "title": "STUDENT ACADEMIC DEADLINES TRACKER", "academic_session": "2026-2027", "date_modified": "September 05, 2026", "headers": ["S#", "Subject", "Syllabus", "Deadline (Notebook)", "Deadline (Tests)", "Current Status"], "deadlines": [{"s_no": "01", "subject": "English", "syllabus": "Ch 1-10 &Grammar", "deadline_notebook": "10 Sep, 2026", "deadline_tests": "15 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "02", "subject": "Physics", "syllabus": "Ch 1, 2, 3, 4 & 7", "deadline_notebook": "06 Sep, 2026", "deadline_tests": "15 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "03", "subject": "Chemistry", "syllabus": "Ch 1, 2, 3 & Ch 4", "deadline_notebook": "08 Sep, 2026", "deadline_tests": "11 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "04", "subject": "Computer", "syllabus": "Ch 1, 2, 4 & 5", "deadline_notebook": "31 Aug, 2026", "deadline_tests": "18 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "05", "subject": "Urdu", "syllabus": "2 Ghazals & 01 Ch", "deadline_notebook": "20 Sep, 2026", "deadline_tests": "25 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "06", "subject": "Islamiat", "syllabus": "Surah Infaal 06 Asbaaq", "deadline_notebook": "10 Sep, 2026", "deadline_tests": "17 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "07", "subject": "Math", "syllabus": "Ch 01 to Ch 07", "deadline_notebook": "09 Sep, 2026", "deadline_tests": "20 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "08", "subject": "T-Q", "syllabus": "Total 08 Asbaaq", "deadline_notebook": "11 Sep, 2026", "deadline_tests": "19 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "09", "subject": "Pak Study", "syllabus": "Ch 1 & Ch 2", "deadline_notebook": "14 Aug, 2026", "deadline_tests": "31 Aug, 2026", "status": "Completed", "current_status": "Completed"}, {"s_no": "10", "subject": "Pubic Speaking", "syllabus": "Discipline Life", "deadline_notebook": "", "deadline_tests": "15 Sep, 2026", "status": "Pending", "current_status": "Pending"}], "notes": ["Physics: Ensure copy checking to teacher or parent before deadline as its near.", "Ensure all assignment notebooks are checked and signed by respective subject teachers prior to test dates.", "Update \"Current Status\" and \"Syllabus\" as chapters are completed or revised."], "notes_and_reminders": ["Physics: Ensure copy checking to teacher or parent before deadline as its near.", "Ensure all assignment notebooks are checked and signed by respective subject teachers prior to test dates.", "Update \"Current Status\" and \"Syllabus\" as chapters are completed or revised."], "file_path": "/home/runner/work/kudoz-ai-v3.1/kudoz-ai-v3.1/data/tenant_demo/deadlines.json", "file_name": "deadlines.json", "tenant_id": "tenant_demo", "pending_extensions": [{"type": "extension_request", "tenant_id": "tenant_demo", "student_role": "student", "subject": "Chemistry", "current_deadline": "08 Sep, 2026", "requested_deadline": "2026-09-11", "milestone_type": "Notebook Submission", "urgency": "Urgent", "reason": "Baba please", "submission_timestamp": "2026-09-08T14:10:37.052Z", "status": "pending_approval", "file_name": "Extension_Request_Chemistry_2026_09_11.json", "relative_path": "feedbacks/Extension_Request_Chemistry_2026_09_11.json"}]}};
+  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "P0dglwcEaksJHuMCBKmsr+OIfwMhvuAxXJRNgRIU7S5CwQ+IhEwqgu15qYmIFTDuEh5covYfS+IPP3dEpKK6p/2ZHdKodgWO8W1p7KqQmKfdiZgSeRLk7sywvXksvyjmB7Qmd5qvBtEDKp9tnk+8bA==", "token_parent": "nOHTyrLfV+koBQlHDEq9htSdZWea5mpJc7Qxp+1vg2CszkAe1dT462OfPhbuEAWf+sJIwwfajK0E0JbmZOESk/7a2iqGVsXmAtAQs/tKrMuAyfUGDVGLsww4mN3S1sNJ244WYzCmWGWsNQgkLb5NHw==", "token_admin": "hsIsI3hHF8dolgrDewEGEXjpo6rEzVPWfw8xr1HWsxQvO6Si1MCj+19jff0DIfsqRYs13NAQVJuzFIqT9fS/flIIqq+NuVxY/4yAT43WVSkXpNZakDoijq/oNMgx6MLARdidA2mRabgZBMiIxaGLqw=="};
 </script>
 <script>
   let currentRole = null;
@@ -5338,7 +5547,58 @@ async function getCoreToken() {
 }
 
 function utf8ToBase64(str) {
-  return window.btoa(unescape(encodeURIComponent(str)));
+  try {
+    const bytes = new TextEncoder().encode(str);
+    const CHUNK_SIZE = 0x8000; // 32KB chunks prevent call stack overflow
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += CHUNK_SIZE) {
+      const chunk = bytes.subarray(i, i + CHUNK_SIZE);
+      binary += String.fromCharCode.apply(null, chunk);
+    }
+    return window.btoa(binary);
+  } catch (e) {
+    return window.btoa(unescape(encodeURIComponent(str)));
+  }
+}
+
+function detectAWDevicePlatform(awExportJson) {
+  if (!awExportJson) return "desktop";
+  
+  try {
+    const buckets = awExportJson.buckets || {};
+    for (const bId of Object.keys(buckets)) {
+      const b = buckets[bId] || {};
+      const client = String(b.client || "").toLowerCase();
+      const id = String(bId).toLowerCase();
+      const host = String(b.hostname || "").toLowerCase();
+
+      // Android signatures
+      if (client.includes("android") || id.includes("android")) return "android";
+
+      const events = b.events || [];
+      for (let i = 0; i < Math.min(events.length, 15); i++) {
+        const data = (events[i] && events[i].data) || {};
+        if (data.package || data.classname) return "android";
+        const app = String(data.app || "").toLowerCase();
+        if (app.endsWith(".exe")) return "windows";
+      }
+
+      if (host.includes("mac") || host.includes("apple") || client.includes("darwin")) return "macos";
+      if (host.includes("win") || host.includes("desktop") || host.includes("laptop")) return "windows";
+    }
+  } catch (e) {
+    console.warn("[Kudoz Portal] Platform detection error:", e);
+  }
+
+  // Fallback to client browser agent
+  if (typeof navigator !== "undefined" && navigator.userAgent) {
+    const ua = navigator.userAgent.toLowerCase();
+    if (ua.includes("android")) return "android";
+    if (ua.includes("windows")) return "windows";
+    if (ua.includes("macintosh") || ua.includes("mac os")) return "macos";
+  }
+
+  return "desktop";
 }
 
 function formatDateForStorage(dateInput) {
@@ -5382,35 +5642,51 @@ window.lastSubmissionError = null;
 async function pushFileToCore(filePath, contentString, commitMessage) {
   const token = await getCoreToken();
   if (!token) {
-    return { ok: false, error: "Write authorization token not available in session. Please re-login." };
+    const err = "Write authorization token not available in session. Please re-login.";
+    console.error("[Kudoz Upload]", err);
+    return { ok: false, error: err };
   }
 
+  const targetBranch = (window.ENV_CONFIG && window.ENV_CONFIG.branch) || "main";
   const apiUrl = `https://api.github.com/repos/${ENV_CONFIG.core_repo}/contents/${filePath}`;
   let sha = null;
   try {
-    const checkRes = await fetch(apiUrl, { headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" } });
-    if (checkRes.ok) sha = (await checkRes.json()).sha;
-  } catch (err) {}
+    const checkRes = await fetch(`${apiUrl}?ref=${encodeURIComponent(targetBranch)}&_t=${Date.now()}`, {
+      headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" },
+      cache: "no-store"
+    });
+    if (checkRes.ok) {
+      const checkData = await checkRes.json();
+      sha = checkData.sha;
+    }
+  } catch (err) {
+    console.warn("[Kudoz Upload] SHA lookup note:", err);
+  }
 
   try {
+    const encodedContent = utf8ToBase64(contentString);
     const res = await fetch(apiUrl, {
       method: "PUT",
       headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json", "Accept": "application/vnd.github+json" },
-      body: JSON.stringify({ message: commitMessage, content: utf8ToBase64(contentString), branch: "main", ...(sha ? { sha } : {}) })
+      body: JSON.stringify({ message: commitMessage, content: encodedContent, branch: targetBranch, ...(sha ? { sha } : {}) })
     });
     if (!res.ok) {
       const errData = await res.json().catch(() => ({}));
-      return { ok: false, error: errData.message || `GitHub API error (${res.status})` };
+      const errMsg = errData.message || `GitHub API error (${res.status})`;
+      console.error("[Kudoz Upload] PUT error:", res.status, errMsg);
+      return { ok: false, error: errMsg };
     }
     return { ok: true };
   } catch (netErr) {
+    console.error("[Kudoz Upload] Network exception:", netErr);
     return { ok: false, error: "Network connection error while communicating with GitHub API." };
   }
 }
 
 window.pushActivityWatchOnly = async function(awExportJson) {
-  const awPath = `data/${ENV_CONFIG.tenant_id}/raw_aw/aw-export-latest.json`;
-  return await pushFileToCore(awPath, JSON.stringify(awExportJson), `chore(${ENV_CONFIG.tenant_id}): quick-sync activitywatch dump [skip ci]`);
+  const platform = detectAWDevicePlatform(awExportJson);
+  const awPath = `data/${ENV_CONFIG.tenant_id}/raw_aw/aw-export-${platform}.json`;
+  return await pushFileToCore(awPath, JSON.stringify(awExportJson, null, 2), `chore(${ENV_CONFIG.tenant_id}): sync ${platform} activitywatch dump [skip ci]`);
 };
 
 window.submitTenantBundle = async function(trackerJson, awExportJson, studentName, targetDate) {
@@ -5426,8 +5702,9 @@ window.submitTenantBundle = async function(trackerJson, awExportJson, studentNam
   }
 
   if (awExportJson) {
-    const awPath = `data/${ENV_CONFIG.tenant_id}/raw_aw/aw-export-latest.json`;
-    const resAW = await pushFileToCore(awPath, JSON.stringify(awExportJson), `chore(${ENV_CONFIG.tenant_id}): sync activitywatch logs [skip ci]`);
+    const platform = detectAWDevicePlatform(awExportJson);
+    const awPath = `data/${ENV_CONFIG.tenant_id}/raw_aw/aw-export-${platform}.json`;
+    const resAW = await pushFileToCore(awPath, JSON.stringify(awExportJson, null, 2), `chore(${ENV_CONFIG.tenant_id}): sync ${platform} activitywatch logs [skip ci]`);
     if (!resAW.ok) {
       window.lastSubmissionError = resAW.error;
       return resAW;
@@ -6459,6 +6736,8 @@ window.handleStatusModalBackdropClick = function(event) {
    * Render the interactive editable form for Admin & Parent
    */
   function renderAdminParentEditor() {
+    renderPendingExtensionRequests();
+
     const tbody = document.getElementById("deadlinesEditTableBody");
     if (!tbody) return;
     tbody.innerHTML = "";
@@ -6784,10 +7063,227 @@ window.handleStatusModalBackdropClick = function(event) {
     }
   }
 
-  function handleExtensionModalBackdrop(event) {
-    if (event.target.id === "deadlinesExtensionModal") {
-      closeExtensionModal();
+  // ==========================================================================
+  // PENDING EXTENSION REQUESTS INTIMATION & ACTIONS (ADMIN & PARENT)
+  // ==========================================================================
+
+  function updateDeadlinesTabBadge(count) {
+    const tabBtns = document.querySelectorAll('.nav-tab, .tab-btn, button[onclick*="deadlines"]');
+    tabBtns.forEach(btn => {
+      let badge = btn.querySelector('.deadlines-tab-indicator-badge');
+      if (count > 0) {
+        if (!badge) {
+          badge = document.createElement('span');
+          badge.className = 'deadlines-tab-indicator-badge';
+          btn.appendChild(badge);
+        }
+        badge.textContent = `${count} Action Required`;
+      } else if (badge) {
+        badge.remove();
+      }
+    });
+  }
+
+  function renderPendingExtensionRequests() {
+    const container = document.getElementById("pendingExtensionsContainer");
+    if (!container) return;
+
+    const list = (activeDeadlines && activeDeadlines.pending_extensions) || [];
+    const pendingList = list.filter(r => (r.status === "pending_approval" || r.status === "pending" || !r.status));
+
+    updateDeadlinesTabBadge(pendingList.length);
+
+    if (pendingList.length === 0) {
+      container.style.display = "none";
+      container.innerHTML = "";
+      return;
     }
+
+    container.style.display = "block";
+    let cardsHtml = `
+      <div class="pending-ext-header">
+        <div class="pending-ext-title">
+          <span>🔔</span> Action Required: Student Deadline Extension Requests
+          <span class="pending-ext-count-badge">${pendingList.length} Pending</span>
+        </div>
+        <span style="font-size: 0.78rem; color: #fbbf24;">Review and approve new milestone dates below</span>
+      </div>
+    `;
+
+    pendingList.forEach((req, idx) => {
+      const subject = req.subject || "Subject";
+      const studentName = req.student_name || req.meta?.student_name || "Student";
+      const milestone = req.milestone_type || "Notebook Submission";
+      const currentDl = req.current_deadline || "Current";
+      const requestedDl = req.requested_deadline || "Requested";
+      const urgency = req.urgency || "Normal";
+      const urgencyClass = urgency.toLowerCase() === "urgent" ? "urgent" : "normal";
+      const reason = req.reason || "No reason provided.";
+      const createdStr = req.submission_timestamp ? new Date(req.submission_timestamp).toLocaleDateString() : "";
+
+      cardsHtml += `
+        <div class="pending-ext-card" id="extCard_${idx}">
+          <div class="pending-ext-meta">
+            <div class="pending-ext-subject">
+              <span>📚 ${subject}</span>
+              <span class="pending-ext-milestone-tag">${milestone}</span>
+              ${studentName ? `<span style="font-size: 0.75rem; color: var(--dl-text-muted);">by <strong>${studentName}</strong></span>` : ""}
+            </div>
+            <div>
+              <span class="pending-ext-urgency ${urgencyClass}">Urgency: ${urgency}</span>
+              ${createdStr ? `<span style="font-size: 0.72rem; color: var(--dl-text-muted); margin-left: 0.5rem;">${createdStr}</span>` : ""}
+            </div>
+          </div>
+
+          <div class="pending-ext-timeline">
+            <span>Current Deadline: <span class="pending-ext-date-current">${currentDl}</span></span>
+            <span>➡️</span>
+            <span>Requested Extension: <span class="pending-ext-date-requested">📅 ${requestedDl}</span></span>
+          </div>
+
+          <div class="pending-ext-reason-box">
+            "<strong>Student Note:</strong> ${reason}"
+          </div>
+
+          <div class="pending-ext-actions">
+            <button type="button" class="btn-ext-decline" onclick="declineExtensionRequest(${idx})">
+              <span>❌</span> Decline
+            </button>
+            <button type="button" class="btn-ext-approve" onclick="approveExtensionRequest(${idx})">
+              <span>✅</span> Approve & Update Deadline
+            </button>
+          </div>
+        </div>
+      `;
+    });
+
+    container.innerHTML = cardsHtml;
+  }
+
+  async function approveExtensionRequest(index) {
+    const list = (activeDeadlines && activeDeadlines.pending_extensions) || [];
+    const pendingList = list.filter(r => (r.status === "pending_approval" || r.status === "pending" || !r.status));
+    const req = pendingList[index];
+    if (!req) return;
+
+    const confirmMsg = `Approve extension for "${req.subject}" to ${req.requested_deadline}? This will update the deadline in the table and sync with the repository.`;
+    if (!confirm(confirmMsg)) return;
+
+    // 1. Find matching row in activeDeadlines.deadlines
+    let matchedRow = null;
+    const cleanReqSub = String(req.subject || "").trim().toLowerCase();
+    for (const d of activeDeadlines.deadlines) {
+      if (String(d.subject || "").trim().toLowerCase() === cleanReqSub) {
+        matchedRow = d;
+        break;
+      }
+    }
+
+    if (matchedRow) {
+      const milestone = String(req.milestone_type || "").toLowerCase();
+      if (milestone.includes("test")) {
+        matchedRow.deadline_tests = req.requested_deadline;
+      } else {
+        matchedRow.deadline_notebook = req.requested_deadline;
+      }
+      matchedRow.status = "In Progress";
+      matchedRow.current_status = "In Progress";
+    }
+
+    // 2. Mark request as approved
+    req.status = "approved";
+    req.approved_by = getEffectiveRole();
+    req.approved_at = new Date().toISOString();
+
+    // 3. Save deadlines and update request JSON
+    showDeadlinesAlert(`Approving extension for ${req.subject}... Committing updates to GitHub.`, "info");
+    
+    try {
+      const tenantId = getTenantId();
+      const coreRepo = getCoreRepo();
+      const targetBranch = (window.ENV_CONFIG && window.ENV_CONFIG.branch) || "main";
+      const token = (typeof window.getCoreToken === "function") ? await window.getCoreToken() : null;
+
+      if (token && req.file_name) {
+        const reqFilePath = `data/${tenantId}/feedbacks/${req.file_name}`;
+        const reqApiUrl = `https://api.github.com/repos/${coreRepo}/contents/${reqFilePath}`;
+        let reqSha = null;
+        try {
+          const checkRes = await fetch(`${reqApiUrl}?ref=${encodeURIComponent(targetBranch)}&_t=${Date.now()}`, {
+            headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" },
+            cache: "no-store"
+          });
+          if (checkRes.ok) reqSha = (await checkRes.json()).sha;
+        } catch (e) {}
+
+        await fetch(reqApiUrl, {
+          method: "PUT",
+          headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json", "Accept": "application/vnd.github+json" },
+          body: JSON.stringify({
+            message: `feat(${tenantId}): approve extension request for ${req.subject} [skip ci]`,
+            content: utf8ToBase64(JSON.stringify(req, null, 2)),
+            branch: targetBranch,
+            ...(reqSha ? { sha: reqSha } : {})
+          })
+        });
+      }
+    } catch (pushErr) {
+      console.warn("[Kudoz Deadlines] Could not update extension file status:", pushErr);
+    }
+
+    // Re-render and save deadlines table
+    renderAdminParentEditor();
+    await saveAndPushDeadlines();
+    showDeadlinesAlert(`🎉 Extension approved for "${req.subject}"! Deadline updated to ${req.requested_deadline} and committed to GitHub.`, "success");
+  }
+
+  async function declineExtensionRequest(index) {
+    const list = (activeDeadlines && activeDeadlines.pending_extensions) || [];
+    const pendingList = list.filter(r => (r.status === "pending_approval" || r.status === "pending" || !r.status));
+    const req = pendingList[index];
+    if (!req) return;
+
+    if (!confirm(`Decline extension request for "${req.subject}"?`)) return;
+
+    req.status = "declined";
+    req.declined_by = getEffectiveRole();
+    req.declined_at = new Date().toISOString();
+
+    try {
+      const tenantId = getTenantId();
+      const coreRepo = getCoreRepo();
+      const targetBranch = (window.ENV_CONFIG && window.ENV_CONFIG.branch) || "main";
+      const token = (typeof window.getCoreToken === "function") ? await window.getCoreToken() : null;
+
+      if (token && req.file_name) {
+        const reqFilePath = `data/${tenantId}/feedbacks/${req.file_name}`;
+        const reqApiUrl = `https://api.github.com/repos/${coreRepo}/contents/${reqFilePath}`;
+        let reqSha = null;
+        try {
+          const checkRes = await fetch(`${reqApiUrl}?ref=${encodeURIComponent(targetBranch)}&_t=${Date.now()}`, {
+            headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" },
+            cache: "no-store"
+          });
+          if (checkRes.ok) reqSha = (await checkRes.json()).sha;
+        } catch (e) {}
+
+        await fetch(reqApiUrl, {
+          method: "PUT",
+          headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json", "Accept": "application/vnd.github+json" },
+          body: JSON.stringify({
+            message: `feat(${tenantId}): decline extension request for ${req.subject} [skip ci]`,
+            content: utf8ToBase64(JSON.stringify(req, null, 2)),
+            branch: targetBranch,
+            ...(reqSha ? { sha: reqSha } : {})
+          })
+        });
+      }
+    } catch (e) {
+      console.warn("[Kudoz Deadlines] Could not update decline status on GitHub:", e);
+    }
+
+    renderPendingExtensionRequests();
+    showDeadlinesAlert(`Extension request for "${req.subject}" has been declined.`, "info");
   }
 
   /**
@@ -6886,8 +7382,10 @@ window.handleStatusModalBackdropClick = function(event) {
       }
 
       if (success) {
+        if (!activeDeadlines.pending_extensions) activeDeadlines.pending_extensions = [];
+        activeDeadlines.pending_extensions.unshift(payload);
         closeExtensionModal();
-        showDeadlinesAlert(`Extension request for "${subject}" submitted successfully! Your parent and coach have been notified.`, "success");
+        showDeadlinesAlert(`🎉 Extension request for "${subject}" submitted successfully! A priority action notification has been dispatched to your Parent & Admin dashboard.`, "success");
       } else {
         throw new Error(errorMessage || "Could not commit extension request.");
       }
@@ -6903,6 +7401,9 @@ window.handleStatusModalBackdropClick = function(event) {
   // --- Attach Public APIs to Window ---
   window.DEADLINES_STATE = activeDeadlines;
   window.initDeadlinesManager = initDeadlinesManager;
+  window.renderPendingExtensionRequests = renderPendingExtensionRequests;
+  window.approveExtensionRequest = approveExtensionRequest;
+  window.declineExtensionRequest = declineExtensionRequest;
   window.addNewDeadlineRow = addNewDeadlineRow;
   window.deleteDeadlineRow = deleteDeadlineRow;
   window.saveAndPushDeadlines = saveAndPushDeadlines;
