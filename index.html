@@ -1554,6 +1554,1103 @@ body.portal-authenticated .brand-sub {
 
 
 
+
+/* --- Phase 2 Dashboard Telemetry Styles --- */
+/* ==========================================================================
+   Kudoz AI v3.1 — Command Center Telemetry & Insights Stylesheet
+   Modern enterprise telemetry cards, status beacons, delta badges & chart styling
+   ========================================================================== */
+
+/* Root Variables for Telemetry Theme */
+:root {
+  --telemetry-bg: #111827;
+  --telemetry-surface: #1f2937;
+  --telemetry-border: #374151;
+  --telemetry-border-focus: #3b82f6;
+  --telemetry-text-main: #f9fafb;
+  --telemetry-text-muted: #9ca3af;
+  --telemetry-accent-blue: #3b82f6;
+  --telemetry-accent-green: #10b981;
+  --telemetry-accent-amber: #f59e0b;
+  --telemetry-accent-red: #ef4444;
+  --telemetry-glow-blue: rgba(59, 130, 246, 0.25);
+  --telemetry-glow-green: rgba(16, 185, 129, 0.25);
+  --telemetry-glow-red: rgba(239, 68, 68, 0.25);
+}
+
+/* Telemetry Command Center Banner Container */
+.telemetry-command-banner {
+  background: var(--surface, #111827);
+  border: 1px solid var(--border, #374151);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.telemetry-command-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6 0%, #10b981 50%, #8b5cf6 100%);
+}
+
+/* Banner Header & Title */
+.telemetry-banner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+}
+
+.banner-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.command-center-pill {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.banner-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text, #f9fafb);
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+/* Dynamic Status Beacon */
+.banner-beacon-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.status-beacon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  position: relative;
+  background: rgba(17, 24, 39, 0.8);
+  border: 1px solid var(--border, #374151);
+}
+
+.status-beacon .beacon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+
+.status-beacon .beacon-pulse {
+  position: absolute;
+  left: 0.85rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Beacon State: Active Live Stream */
+.status-beacon.beacon-active {
+  border-color: rgba(16, 185, 129, 0.45);
+  background: rgba(16, 185, 129, 0.1);
+  color: #34d399;
+}
+
+.status-beacon.beacon-active .beacon-dot {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.status-beacon.beacon-active .beacon-pulse {
+  background: rgba(16, 185, 129, 0.5);
+  animation: beaconPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Beacon State: Synced Today */
+.status-beacon.beacon-synced {
+  border-color: rgba(59, 130, 246, 0.45);
+  background: rgba(59, 130, 246, 0.1);
+  color: #60a5fa;
+}
+
+.status-beacon.beacon-synced .beacon-dot {
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
+}
+
+.status-beacon.beacon-synced .beacon-pulse {
+  background: rgba(59, 130, 246, 0.5);
+  animation: beaconPing 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Beacon State: Idle / Pending Sync */
+.status-beacon.beacon-idle {
+  border-color: rgba(245, 158, 11, 0.45);
+  background: rgba(245, 158, 11, 0.1);
+  color: #fbbf24;
+}
+
+.status-beacon.beacon-idle .beacon-dot {
+  background: #f59e0b;
+}
+
+.status-beacon.beacon-idle .beacon-pulse {
+  display: none;
+}
+
+/* Beacon State: Offline */
+.status-beacon.beacon-offline {
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
+
+.status-beacon.beacon-offline .beacon-dot {
+  background: #ef4444;
+}
+
+.status-beacon.beacon-offline .beacon-pulse {
+  display: none;
+}
+
+@keyframes beaconPing {
+  75%, 100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+/* Telemetry Cards Grid */
+.telemetry-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+/* Telemetry Card Base */
+.telemetry-card {
+  background: var(--surface-card, #1f2937);
+  border: 1px solid var(--border, #374151);
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.telemetry-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(96, 165, 250, 0.4);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.card-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted, #9ca3af);
+}
+
+.card-icon {
+  font-size: 1rem;
+}
+
+.card-metric-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-primary-stat {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+.card-sub-info {
+  font-size: 0.78rem;
+  color: var(--muted, #9ca3af);
+  line-height: 1.3;
+}
+
+.card-sub-info strong {
+  color: #e5e7eb;
+}
+
+/* Delta Comparison Badges */
+.delta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+  transition: transform 0.15s ease;
+}
+
+.delta-badge .delta-arrow {
+  font-size: 0.65rem;
+  line-height: 1;
+}
+
+/* Positive Delta (e.g. +12% vs last week in green) */
+.delta-badge.delta-positive {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+/* Negative Delta (e.g. -5% in red/amber) */
+.delta-badge.delta-negative {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+/* Neutral Delta (0%) */
+.delta-badge.delta-neutral {
+  background: rgba(156, 163, 175, 0.12);
+  color: #9ca3af;
+  border: 1px solid rgba(156, 163, 175, 0.25);
+}
+
+/* Focus Intel Score Card Styles */
+.focus-score-value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.focus-score-value.score-high {
+  color: #34d399;
+}
+
+.focus-score-value.score-mid {
+  color: #fbbf24;
+}
+
+.focus-score-value.score-low {
+  color: #f87171;
+}
+
+.score-max {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted, #9ca3af);
+}
+
+.card-tag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.card-tag.score-high {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.card-tag.score-mid {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.card-tag.score-low {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.focus-mini-bar-track {
+  width: 60px;
+  height: 6px;
+  background: rgba(55, 65, 81, 0.8);
+  border-radius: 3px;
+  overflow: hidden;
+  align-self: center;
+}
+
+.focus-mini-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.focus-mini-bar-fill.score-high {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.focus-mini-bar-fill.score-mid {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.focus-mini-bar-fill.score-low {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+/* Productivity Stacked Bar */
+.productivity-stacked-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(55, 65, 81, 0.6);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  margin: 0.6rem 0;
+}
+
+.stack-segment {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.stack-prod {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.stack-nonprod {
+  background: linear-gradient(90deg, #f87171, #ef4444);
+}
+
+.productivity-legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  color: var(--muted, #9ca3af);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-prod {
+  background: #3b82f6;
+}
+
+.dot-dist {
+  background: #ef4444;
+}
+
+/* Responsive Telemetry Layout */
+@media (max-width: 768px) {
+  .telemetry-cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .telemetry-banner-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .telemetry-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* --- Academic Deadlines Styles --- */
+/* ==========================================================================
+   Kudoz AI v3.1 — Academic Deadlines Manager Component Styles
+   High-Contrast Responsive Styling & Role-Based Access Control (RBAC) UI
+   ========================================================================== */
+
+:root {
+  --dl-bg-card: #0f172a;
+  --dl-bg-surface: #1e293b;
+  --dl-bg-input: #0b1120;
+  --dl-border: #334155;
+  --dl-border-light: #475569;
+  --dl-text-primary: #f8fafc;
+  --dl-text-secondary: #94a3b8;
+  --dl-text-muted: #64748b;
+  --dl-primary: #38bdf8;
+  --dl-primary-hover: #0ea5e9;
+  --dl-success: #10b981;
+  --dl-warning: #f59e0b;
+  --dl-danger: #ef4444;
+  --dl-purple: #a855f7;
+  --dl-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --dl-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* --- Container Frame --- */
+.kudoz-deadlines-container {
+  font-family: var(--dl-font-sans);
+  background: var(--dl-bg-card);
+  border: 1px solid var(--dl-border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  color: var(--dl-text-primary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+/* --- Header Section --- */
+.deadlines-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--dl-border);
+}
+
+.deadlines-title-block h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 0.35rem 0;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.deadlines-meta-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--dl-text-secondary);
+}
+
+.deadlines-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.deadlines-meta-item strong {
+  color: var(--dl-text-primary);
+}
+
+/* --- Role Badge --- */
+.deadlines-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+}
+
+.deadlines-role-badge.role-admin {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.deadlines-role-badge.role-parent {
+  background: rgba(236, 72, 153, 0.15);
+  color: #f472b6;
+  border-color: rgba(236, 72, 153, 0.4);
+}
+
+.deadlines-role-badge.role-student {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+/* --- Alert Messages --- */
+.deadlines-alert {
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.deadlines-alert.alert-success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--dl-success);
+  color: #34d399;
+}
+
+.deadlines-alert.alert-error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid var(--dl-danger);
+  color: #f87171;
+}
+
+.deadlines-alert.alert-info {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid var(--dl-primary);
+  color: #7dd3fc;
+}
+
+/* --- Table Wrapper & High-Contrast Table --- */
+.deadlines-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--dl-border);
+  border-radius: 10px;
+  background: var(--dl-bg-surface);
+  margin-bottom: 1.5rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.deadlines-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+  min-width: 780px;
+}
+
+.deadlines-table th {
+  background: #1e293b;
+  color: var(--dl-text-secondary);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.85rem 1rem;
+  border-bottom: 2px solid var(--dl-border);
+  white-space: nowrap;
+}
+
+.deadlines-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--dl-border);
+  vertical-align: middle;
+  color: var(--dl-text-primary);
+}
+
+.deadlines-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.deadlines-table tbody tr:hover {
+  background: rgba(51, 65, 85, 0.45);
+}
+
+.deadlines-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.deadlines-table .col-sno {
+  width: 60px;
+  text-align: center;
+  font-family: var(--dl-font-mono);
+  font-weight: 700;
+  color: var(--dl-text-secondary);
+}
+
+.deadlines-table .col-subject {
+  font-weight: 700;
+  color: #ffffff;
+  min-width: 140px;
+}
+
+.deadlines-table .col-syllabus {
+  color: #cbd5e1;
+  min-width: 180px;
+}
+
+.deadlines-table .col-deadline {
+  font-family: var(--dl-font-mono);
+  font-size: 0.84rem;
+  color: #e2e8f0;
+  min-width: 140px;
+}
+
+.deadlines-table .col-status {
+  width: 150px;
+  text-align: center;
+}
+
+.deadlines-table .col-actions {
+  width: 130px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* --- Form Inputs (Admin / Parent View) --- */
+.deadlines-input,
+.deadlines-select,
+.deadlines-textarea {
+  width: 100%;
+  background: var(--dl-bg-input);
+  border: 1px solid var(--dl-border);
+  border-radius: 6px;
+  color: #ffffff;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.85rem;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.deadlines-input:focus,
+.deadlines-select:focus,
+.deadlines-textarea:focus {
+  outline: none;
+  border-color: var(--dl-primary);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+.deadlines-input.input-invalid {
+  border-color: var(--dl-danger);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* --- Status Badges (High Contrast) --- */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.badge-status-in-progress {
+  background: rgba(59, 130, 246, 0.18);
+  color: #60a5fa;
+  border: 1px solid #3b82f6;
+}
+
+.badge-status-completed {
+  background: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  border: 1px solid #10b981;
+}
+
+.badge-status-pending {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+  border: 1px solid #f59e0b;
+}
+
+.badge-status-overdue {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid #ef4444;
+  animation: pulseOverdue 2s infinite ease-in-out;
+}
+
+@keyframes pulseOverdue {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+
+/* --- Action Buttons --- */
+.btn-deadline-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-add-row {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+}
+
+.btn-add-row:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+}
+
+.btn-save-deadlines {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.btn-save-deadlines:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.5);
+}
+
+.btn-save-deadlines:disabled,
+.btn-add-row:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-delete-row {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-delete-row:hover {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+}
+
+/* Student Request Extension Button */
+.btn-request-extension {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #ffffff;
+  border: none;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.3);
+}
+
+.btn-request-extension:hover {
+  background: linear-gradient(135deg, #6d28d9, #5b21b6);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(124, 58, 237, 0.45);
+}
+
+/* --- Notes & Reminders Section --- */
+.deadlines-notes-section {
+  background: var(--dl-bg-surface);
+  border: 1px solid var(--dl-border);
+  border-radius: 10px;
+  padding: 1.15rem;
+  margin-bottom: 1.5rem;
+}
+
+.deadlines-notes-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--dl-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.deadlines-notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.deadlines-notes-list li {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.45;
+}
+
+.deadlines-notes-list li::before {
+  content: "📌";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 0.75rem;
+}
+
+/* --- Footer Controls --- */
+.deadlines-footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--dl-border);
+}
+
+.deadlines-sync-status {
+  font-size: 0.82rem;
+  color: var(--dl-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* --- Extension Request Modal --- */
+.deadlines-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.deadlines-modal-dialog {
+  background: var(--dl-bg-card);
+  border: 1px solid var(--dl-border);
+  border-radius: 14px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.deadlines-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.15rem 1.35rem;
+  background: var(--dl-bg-surface);
+  border-bottom: 1px solid var(--dl-border);
+}
+
+.deadlines-modal-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.btn-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--dl-text-secondary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.btn-modal-close:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.deadlines-modal-body {
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.modal-form-group label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--dl-text-secondary);
+}
+
+.modal-form-group input[readonly],
+.modal-form-group select:disabled {
+  background: rgba(15, 23, 42, 0.6);
+  color: #94a3b8;
+  cursor: not-allowed;
+  border-color: #334155;
+}
+
+.deadlines-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.35rem;
+  background: var(--dl-bg-surface);
+  border-top: 1px solid var(--dl-border);
+}
+
+.btn-modal-cancel {
+  background: var(--dl-bg-input);
+  color: var(--dl-text-secondary);
+  border: 1px solid var(--dl-border);
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-modal-cancel:hover {
+  color: #ffffff;
+  border-color: var(--dl-text-secondary);
+}
+
+.btn-modal-submit {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
+  transition: all 0.2s ease;
+}
+
+.btn-modal-submit:hover {
+  background: linear-gradient(135deg, #6d28d9, #5b21b6);
+  transform: translateY(-1px);
+}
+
+.btn-modal-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --- Inline Spinner --- */
+.deadlines-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --- Responsive Adaptations --- */
+@media (max-width: 768px) {
+  .kudoz-deadlines-container {
+    padding: 1rem;
+  }
+  .deadlines-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .deadlines-footer-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-save-deadlines {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -1756,7 +2853,10 @@ body.portal-authenticated .brand-sub {
       <button class="btn-lock" onclick="lockPortal()">🔒 Lock Session</button>
     </div>
 
-    <!-- Analytics & Productivity Metrics Bar -->
+    <!-- Command Center Telemetry Banner & Status Beacon (Phase 2) -->
+    <div id="telemetryCommandCenter"></div>
+
+    <!-- Analytics & Productivity Metrics Bar (Standard Fallback) -->
     <div class="metrics-banner">
       <div class="metric-card">
         <div class="metric-title">Screen Time (Past 7 Days)</div>
@@ -1793,8 +2893,237 @@ body.portal-authenticated .brand-sub {
 
     <nav class="tabs-nav">
       <button id="tabBtnReports" class="tab-btn active" onclick="switchTab('reports')">📊 Analytics Deliverables</button>
+      <button id="tabBtnDeadlines" class="tab-btn" onclick="switchTab('deadlines')">📅 Academic Deadlines</button>
       <button id="tabBtnForms" class="tab-btn" onclick="switchTab('forms')">✍️ Daily Quest & Feedback</button>
     </nav>
+
+    <!-- Tab: Academic Deadlines (RBAC Multi-Role Manager) -->
+    <div id="paneDeadlines" class="tab-pane">
+      <!-- ==========================================================================
+     Kudoz AI v3.1 — Modular Academic Deadlines Manager Component
+     Role-Based Access Control (RBAC): Admin/Parent (Read/Write) vs Student (Read-Only)
+     ========================================================================== -->
+
+<link rel="stylesheet" href="templates/deadlines.css" />
+<link rel="stylesheet" href="../deadlines.css" />
+
+<div class="kudoz-deadlines-container" id="kudozDeadlinesContainer">
+  <!-- Component Header -->
+  <div class="deadlines-header">
+    <div class="deadlines-title-block">
+      <h2><span>📅</span> Student Academic Deadlines</h2>
+      <div class="deadlines-meta-bar">
+        <span class="deadlines-meta-item">
+          <span>Session:</span>
+          <strong id="deadlinesSessionDisplay">2026-2027</strong>
+        </span>
+        <span>&bull;</span>
+        <span class="deadlines-meta-item">
+          <span>Last Updated:</span>
+          <strong id="deadlinesDateModifiedDisplay">September 05, 2026</strong>
+        </span>
+      </div>
+    </div>
+    <div>
+      <span id="deadlinesRoleBadge" class="deadlines-role-badge role-student">
+        🎮 Student (Read-Only)
+      </span>
+    </div>
+  </div>
+
+  <!-- Dynamic Notification / Status Banner -->
+  <div id="deadlinesAlert" class="deadlines-alert" style="display: none;"></div>
+
+  <!-- ========================================================================
+       RBAC CONTAINER 1: Admin & Parent View (Interactive Read/Write Editor)
+       ======================================================================== -->
+  <div id="deadlinesAdminParentView" style="display: none;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+        <button type="button" id="btnAddDeadlineRow" class="btn-deadline-action btn-add-row" onclick="addNewDeadlineRow()">
+          <span>➕</span> Add Subject / Deadline
+        </button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem;">
+          <label for="inputAcademicSession" style="color: var(--dl-text-secondary); font-weight: 600;">Session:</label>
+          <input type="text" id="inputAcademicSession" class="deadlines-input" style="width: 110px;" value="2026-2027" />
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem;">
+          <label for="inputDateModified" style="color: var(--dl-text-secondary); font-weight: 600;">Date:</label>
+          <input type="text" id="inputDateModified" class="deadlines-input" style="width: 150px;" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Editable Deadlines Table -->
+    <div class="deadlines-table-wrapper">
+      <table class="deadlines-table" id="deadlinesEditTable">
+        <thead>
+          <tr>
+            <th class="col-sno">S#</th>
+            <th class="col-subject">Subject</th>
+            <th class="col-syllabus">Syllabus / Scope</th>
+            <th class="col-deadline">Deadline (Notebook)</th>
+            <th class="col-deadline">Deadline (Tests)</th>
+            <th class="col-status">Current Status</th>
+            <th class="col-actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="deadlinesEditTableBody">
+          <!-- Dynamic Editable Rows Rendered by deadlines.js -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Editable Notes & Reminders -->
+    <div class="deadlines-notes-section">
+      <div class="deadlines-notes-title">
+        <span>📌</span> Notes & Reminders (Admin / Parent View)
+      </div>
+      <p style="font-size: 0.78rem; color: var(--dl-text-muted); margin: 0 0 0.5rem 0;">
+        Enter bullet points below (one reminder per line). These will appear on the student dashboard and inside the ASCII deadlines table.
+      </p>
+      <textarea
+        id="deadlinesNotesEditor"
+        class="deadlines-textarea"
+        rows="4"
+        placeholder="* Physics: Ensure copy checking before deadline.&#10;* Ensure all assignment notebooks are checked and signed."
+      ></textarea>
+    </div>
+
+    <!-- Save & Push Action Bar -->
+    <div class="deadlines-footer-bar">
+      <div class="deadlines-sync-status" id="deadlinesAdminSyncStatus">
+        <span>🔒 Direct GitHub API commit to repository</span>
+      </div>
+      <button type="button" id="btnSaveDeadlines" class="btn-deadline-action btn-save-deadlines" onclick="saveAndPushDeadlines()">
+        <span id="saveDeadlinesSpinner" class="deadlines-spinner" style="display: none;"></span>
+        <span id="saveDeadlinesBtnText">💾 Save & Push Deadlines</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       RBAC CONTAINER 2: Student View (Strict Read-Only + Extension Requests)
+       ======================================================================== -->
+  <div id="deadlinesStudentView" style="display: none;">
+    <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.85rem; color: #7dd3fc; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+      <span>📖 Track your upcoming academic milestones. Need extra time? Click <strong>"Request Extension"</strong> on any subject.</span>
+      <span style="font-weight: 700; color: #38bdf8;">Strict Read-Only Mode Active</span>
+    </div>
+
+    <!-- Read-Only Deadlines Table -->
+    <div class="deadlines-table-wrapper">
+      <table class="deadlines-table" id="deadlinesReadOnlyTable">
+        <thead>
+          <tr>
+            <th class="col-sno">S#</th>
+            <th class="col-subject">Subject</th>
+            <th class="col-syllabus">Syllabus / Scope</th>
+            <th class="col-deadline">Deadline (Notebook)</th>
+            <th class="col-deadline">Deadline (Tests)</th>
+            <th class="col-status">Current Status</th>
+            <th class="col-actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="deadlinesReadOnlyTableBody">
+          <!-- Dynamic Read-Only Rows Rendered by deadlines.js -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Read-Only Notes & Reminders -->
+    <div class="deadlines-notes-section">
+      <div class="deadlines-notes-title">
+        <span>📌</span> Notes & Important Reminders
+      </div>
+      <ul class="deadlines-notes-list" id="deadlinesStudentNotesList">
+        <!-- Bullet points populated dynamically by deadlines.js -->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================================
+     STUDENT EXTENSION REQUEST MODAL
+     ======================================================================== -->
+<div id="deadlinesExtensionModal" class="deadlines-modal-overlay" style="display: none;" onclick="handleExtensionModalBackdrop(event)">
+  <div class="deadlines-modal-dialog">
+    <div class="deadlines-modal-header">
+      <h3><span>⏳</span> Request Deadline Extension</h3>
+      <button type="button" class="btn-modal-close" onclick="closeExtensionModal()" title="Close">&times;</button>
+    </div>
+
+    <div class="deadlines-modal-body">
+      <div class="modal-form-group">
+        <label for="extSubject">Subject</label>
+        <input type="text" id="extSubject" class="deadlines-input" readonly />
+      </div>
+
+      <div class="modal-form-group">
+        <label for="extCurrentDeadline">Current Deadline</label>
+        <input type="text" id="extCurrentDeadline" class="deadlines-input" readonly />
+      </div>
+
+      <div class="modal-form-group">
+        <label for="extDeadlineType">Target Milestone</label>
+        <select id="extDeadlineType" class="deadlines-select">
+          <option value="Notebook Submission">Notebook Submission</option>
+          <option value="Tests / Assessment">Tests / Assessment</option>
+          <option value="Both Notebook & Tests">Both Notebook & Tests</option>
+        </select>
+      </div>
+
+      <div class="modal-form-group">
+        <label for="extRequestedDate">Requested New Deadline *</label>
+        <input type="date" id="extRequestedDate" class="deadlines-input" required />
+      </div>
+
+      <div class="modal-form-group">
+        <label for="extUrgency">Urgency Level</label>
+        <select id="extUrgency" class="deadlines-select">
+          <option value="Normal">Normal — Minor schedule adjustment</option>
+          <option value="High">High — Multiple tests overlapping</option>
+          <option value="Urgent">Urgent — Illness / Emergency</option>
+        </select>
+      </div>
+
+      <div class="modal-form-group">
+        <label for="extReason">Reason for Extension Request *</label>
+        <textarea
+          id="extReason"
+          class="deadlines-textarea"
+          rows="3"
+          placeholder="Please explain why you need an extension and your revised plan to finish..."
+          required
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="deadlines-modal-footer">
+      <button type="button" class="btn-modal-cancel" onclick="closeExtensionModal()">Cancel</button>
+      <button type="button" id="btnSubmitExtension" class="btn-modal-submit" onclick="submitExtensionRequest()">
+        <span id="extSubmitSpinner" class="deadlines-spinner" style="display: none;"></span>
+        <span id="extSubmitBtnText">Submit Request</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="templates/deadlines.js"></script>
+<script src="../deadlines.js"></script>
+<script>
+  // Self-bootstraps if loaded in independent context
+  if (typeof initDeadlinesManager === "function") {
+    document.addEventListener("DOMContentLoaded", function() {
+      initDeadlinesManager();
+    });
+  }
+</script>
+
+    </div>
 
     <!-- Tab 1: Charts & Reports -->
     <div id="paneReports" class="tab-pane active">
@@ -1819,7 +3148,7 @@ body.portal-authenticated .brand-sub {
       <div class="kudoz-filter-bar">
         <button class="filter-pill active" data-target="executive" onclick="filterKudozReports('executive', this)">📊 Executive Reports <span class="filter-badge" id="badgeExecutive">3</span></button>
         <button class="filter-pill" data-target="student" onclick="filterKudozReports('student', this)">🚀 Student Summaries <span class="filter-badge" id="badgeStudent">3</span></button>
-        <button class="filter-pill" data-target="weekly" onclick="filterKudozReports('weekly', this)">🏆 Weekly Rewards <span class="filter-badge" id="badgeWeekly">1</span></button>
+        <button class="filter-pill" data-target="weekly" onclick="filterKudozReports('weekly', this)">🏆 Weekly Rewards <span class="filter-badge" id="badgeWeekly">2</span></button>
       </div>
 
       <div id="reportsList" class="reports-list"></div>
@@ -3477,8 +4806,8 @@ body.portal-authenticated .brand-sub {
 </div>
 
 <script>
-  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-08T13:09:36.140381+00:00", "chart_days": ["2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07", "2026-09-08"], "chart_hours": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "top_apps_labels": [], "top_apps_values": [], "compliance_grid": {"2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": false, "academic": false, "parent": false}, "2026-09-08": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-08", "file": "reports/Summary_For_Kids_2026-09-08.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-08", "file": "reports/Productivity_Report_2026-09-08.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}]};
-  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "Ror3o9F9RkwZMYABlUPR3vGcnnbN8JDAtRXJaEBn6lbnIdzJ9DOzPpSi16U5UpOF6wkfTHSclbojDiOmHQ00AyZ1mI1Y4nOaMm5OI2aoSfq60bwkbA7o/js4LSIFvhCUn3IDQb6xsehAEryHu39JkQ==", "token_parent": "UHpYHGf7hcSQc3DgwYw9WbA0ZJ5Yv6RVnJcGexpQC62KTnE+jbZ/e34u9luPNSya9t8UMJUCQRYwiBN2Zwe3iTw9CGM/NimvMzk4meg4zQnPFpT2nQ08CsQOGU8viAzZJ24azjj0gzeppdKqWv2qmQ==", "token_admin": "0jzFlThuWpTELrpwFbCkqFnNxk0iaIumtL150t5+ppCAhm0OtM7GnJLXYR553x7oa2dTbXIoIDw6Seo+AqJiuFLIDpjRn5jFGRy0Yj628dmsI+fZwPoGsmN9aKoQjSoeB+4c6z/smsu1zCya1cDWmg=="};
+  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-08T14:01:08.174861+00:00", "chart_days": ["2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07", "2026-09-08"], "chart_hours": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "top_apps_labels": [], "top_apps_values": [], "compliance_grid": {"2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": false, "academic": false, "parent": false}, "2026-09-08": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-08", "file": "reports/Weekly_Reward_Report_V2_2026-09-08.pdf.student.enc", "role": "student"}, {"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-08", "file": "reports/Summary_For_Kids_2026-09-08.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-08", "file": "reports/Weekly_Reward_Report_V2_2026-09-08.pdf.parent.enc", "role": "parent"}, {"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-08", "file": "reports/Productivity_Report_2026-09-08.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}], "telemetry_metrics": {"exists": true, "last_synced_utc": "2026-09-08T14:01:08.174861+00:00", "total_hours": 0.0, "daily_average": 0.0, "daily_average_active_days": 0.0, "active_days_count": 0, "delta_percentage": 0.0, "delta_direction": "neutral", "delta_badge_text": "0% vs daily avg", "delta_comparison_type": "daily_average", "focus_score": 0, "productive_hours": 0.0, "non_productive_hours": 0.0, "neutral_hours": 0.0, "unclassified_hours": 0.0, "productive_percentage": 0.0, "non_productive_percentage": 0.0, "neutral_percentage": 0.0, "top_categories": [{"category": "Deep Work / Study", "hours": 0.0, "percentage": 0.0, "is_productive": true}, {"category": "Neutral / Utility", "hours": 0.0, "percentage": 0.0, "is_productive": false}, {"category": "Distraction / Gaming", "hours": 0.0, "percentage": 0.0, "is_productive": false}], "top_apps": [], "daily_hours_7d": {"2026-09-02": 0.0, "2026-09-03": 0.0, "2026-09-04": 0.0, "2026-09-05": 0.0, "2026-09-06": 0.0, "2026-09-07": 0.0, "2026-09-08": 0.0}, "previous_period_hours": 0.0, "period_start": "2026-09-02", "period_end": "2026-09-08", "feedback_metrics": {"tracker_count": 0, "academic_tests_count": 0, "parent_feedback_count": 0, "total_submissions": 0, "academic_average_percentage": null, "feedback_bonus_score": 0.0, "compliance_by_date": {}}}, "deadlines_data": {"format": "json", "title": "STUDENT ACADEMIC DEADLINES TRACKER", "academic_session": "2026-2027", "date_modified": "2026-09-05", "headers": ["S#", "Subject", "Syllabus", "Deadline (Notebook)", "Deadline (Tests)", "Current Status"], "deadlines": [{"s_no": "01", "subject": "English", "syllabus": "Ch 1-10 &Grammar", "deadline_notebook": "2026-09-10", "deadline_tests": "2026-09-15", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "02", "subject": "Physics", "syllabus": "Ch 1, 2, 3, 4 & 7", "deadline_notebook": "2026-09-06", "deadline_tests": "2026-09-15", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "03", "subject": "Chemistry", "syllabus": "Ch 1, 2, 3 & Ch 4", "deadline_notebook": "2026-09-08", "deadline_tests": "2026-09-11", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "04", "subject": "Computer", "syllabus": "Ch 1, 2, 4 & 5", "deadline_notebook": "2026-08-31", "deadline_tests": "2026-09-18", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "05", "subject": "Urdu", "syllabus": "2 Ghazals & 01 Ch", "deadline_notebook": "2026-09-20", "deadline_tests": "2026-09-25", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "06", "subject": "Islamiat", "syllabus": "Surah Infaal 06 Asbaaq", "deadline_notebook": "2026-09-10", "deadline_tests": "2026-09-17", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "07", "subject": "Math", "syllabus": "Ch 01 to Ch 07", "deadline_notebook": "2026-09-09", "deadline_tests": "2026-09-20", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "08", "subject": "T-Q", "syllabus": "Total 08 Asbaaq", "deadline_notebook": "2026-09-11", "deadline_tests": "2026-09-19", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "09", "subject": "Pak Study", "syllabus": "Ch 1 & Ch 2", "deadline_notebook": "2026-08-14", "deadline_tests": "2026-08-31", "status": "Completed", "current_status": "Completed"}], "notes": ["Physics: Ensure copy checking to teacher or parent before deadline as its near.", "Ensure all assignment notebooks are checked and signed by respective subject teachers prior to test dates.", "Update 'Current Status' and 'Syllabus' as chapters are completed or revised."], "notes_and_reminders": ["Physics: Ensure copy checking to teacher or parent before deadline as its near.", "Ensure all assignment notebooks are checked and signed by respective subject teachers prior to test dates.", "Update 'Current Status' and 'Syllabus' as chapters are completed or revised."], "file_path": "/home/runner/work/kudoz-ai-v3.1/kudoz-ai-v3.1/data/tenant_demo/deadlines.json", "file_name": "deadlines.json", "tenant_id": "tenant_demo"}};
+  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "H/Bn8I5KKWisd3K8YIhIUad0Q7JOymFIcU2vk8TGF9uTy2GCRSILTh0XPMHbPqQWLSiE+yn5BifvvPFryH+ArvxsON6pU9RiiiKIrp7SRrcD0k0RRWY+ibY6Tc3jrtOBL8st8ataEINiV+c9ktVm8w==", "token_parent": "tZULihYLJ30Xt9FNHI+9/lQnqAzQx6PiE9HlD9N5br9JpmEx/2DqVE3tiCEldoQMza0tavKqyyyC1jrWYwEdlAaqrn9D8Demj+4fwpfLjuijcFFQNgHe+V7N5TQxqGz33jqQKeUgSMJOk8DuLlFxxw==", "token_admin": "5TPaR9YuSEYhKHwziMU2Rw9BMaxwpmasVFOmRvZ1+Jox26VtQR5wHpYkGe0hGM5oNG09Arxw34tg4aZ+f+0u5BrFE8IpiciNm76/xySUfVaesJcrP61PYreuWZOjrg3Am+ct2lINgsY9DXhv3ExVzg=="};
 </script>
 <script>
   let currentRole = null;
@@ -3698,6 +5027,12 @@ function renderPortalView() {
   }
 
   renderReportsList();
+  if (window.KudozTelemetry && typeof window.KudozTelemetry.init === "function") {
+    window.KudozTelemetry.init(window.MANIFEST);
+  }
+  if (typeof window.initDeadlinesManager === "function") {
+    window.initDeadlinesManager();
+  }
   initCharts();
   if (typeof updateAWStatusBadge === "function") updateAWStatusBadge();
 }
@@ -3832,7 +5167,40 @@ function initCharts() {
   chartInstances.forEach(c => c.destroy());
   chartInstances = [];
 
-  const ctxHours = document.getElementById("hoursChart").getContext("2d");
+  const canvasHours = document.getElementById("hoursChart");
+  const canvasApps = document.getElementById("appsChart");
+  if (!canvasHours || !canvasApps) return;
+
+  const deltaText = (window.MANIFEST.telemetry_metrics && window.MANIFEST.telemetry_metrics.delta_badge_text) || "";
+  const appCategories = {};
+  if (window.MANIFEST.telemetry_metrics && window.MANIFEST.telemetry_metrics.top_apps) {
+    window.MANIFEST.telemetry_metrics.top_apps.forEach(a => {
+      appCategories[a.app] = a.category;
+    });
+  }
+
+  // Phase 2: Enhanced Chart.js Tooltips & Gradients
+  if (window.KudozTelemetry && typeof window.KudozTelemetry.enhanceScreenTimeChart === "function") {
+    const chart1 = window.KudozTelemetry.enhanceScreenTimeChart(
+      canvasHours,
+      window.MANIFEST.chart_days,
+      window.MANIFEST.chart_hours,
+      deltaText
+    );
+    if (chart1) chartInstances.push(chart1);
+
+    const chart2 = window.KudozTelemetry.enhanceAppDistributionChart(
+      canvasApps,
+      window.MANIFEST.top_apps_labels,
+      window.MANIFEST.top_apps_values,
+      appCategories
+    );
+    if (chart2) chartInstances.push(chart2);
+    return;
+  }
+
+  // Fallback charts
+  const ctxHours = canvasHours.getContext("2d");
   const chart1 = new Chart(ctxHours, {
     type: "line",
     data: {
@@ -3859,7 +5227,7 @@ function initCharts() {
   });
   chartInstances.push(chart1);
 
-  const ctxApps = document.getElementById("appsChart").getContext("2d");
+  const ctxApps = canvasApps.getContext("2d");
   const chart2 = new Chart(ctxApps, {
     type: "doughnut",
     data: {
@@ -3911,10 +5279,24 @@ async function decryptAndOpen(filePath, docName, itemRole) {
 }
 
 function switchTab(tab) {
-  document.getElementById("tabBtnReports").classList.toggle("active", tab === "reports");
-  document.getElementById("tabBtnForms").classList.toggle("active", tab === "forms");
-  document.getElementById("paneReports").classList.toggle("active", tab === "reports");
-  document.getElementById("paneForms").classList.toggle("active", tab === "forms");
+  const btnReports = document.getElementById("tabBtnReports");
+  const btnDeadlines = document.getElementById("tabBtnDeadlines");
+  const btnForms = document.getElementById("tabBtnForms");
+  const paneReports = document.getElementById("paneReports");
+  const paneDeadlines = document.getElementById("paneDeadlines");
+  const paneForms = document.getElementById("paneForms");
+
+  if (btnReports) btnReports.classList.toggle("active", tab === "reports");
+  if (btnDeadlines) btnDeadlines.classList.toggle("active", tab === "deadlines");
+  if (btnForms) btnForms.classList.toggle("active", tab === "forms");
+
+  if (paneReports) paneReports.classList.toggle("active", tab === "reports");
+  if (paneDeadlines) paneDeadlines.classList.toggle("active", tab === "deadlines");
+  if (paneForms) paneForms.classList.toggle("active", tab === "forms");
+
+  if (tab === "deadlines" && typeof window.initDeadlinesManager === "function") {
+    window.initDeadlinesManager();
+  }
 }
 
 function lockPortal() {
@@ -4266,6 +5648,1271 @@ window.handleStatusModalBackdropClick = function(event) {
   }
 };
 
+
+
+/* --- Phase 2 Dashboard Telemetry Controller --- */
+/**
+ * Kudoz AI v3.1 - Command Center Telemetry & Insights Controller
+ * Handles client-side rendering for the real-time telemetry banner,
+ * dynamic status beacon, delta comparison badges, and enhanced Chart.js visualizations.
+ */
+
+(function(window) {
+  "use strict";
+
+  const KudozTelemetry = {
+    // Theme Palettes
+    colors: {
+      primary: "#3b82f6",
+      primaryGradientStart: "rgba(59, 130, 246, 0.35)",
+      primaryGradientStop: "rgba(59, 130, 246, 0.0)",
+      success: "#10b981",
+      successBg: "rgba(16, 185, 129, 0.15)",
+      warning: "#f59e0b",
+      warningBg: "rgba(245, 158, 11, 0.15)",
+      danger: "#ef4444",
+      dangerBg: "rgba(239, 68, 68, 0.15)",
+      neutral: "#9ca3af",
+      neutralBg: "rgba(156, 163, 175, 0.12)",
+      surfaceDark: "#111827",
+      surfaceCard: "#1f2937",
+      border: "#374151",
+      text: "#f9fafb",
+      muted: "#9ca3af",
+      donutPalette: [
+        "#3b82f6", // Blue - Primary Study
+        "#10b981", // Emerald - Secondary Study
+        "#8b5cf6", // Purple - Development
+        "#06b6d4", // Cyan - Research
+        "#f59e0b", // Amber - Utility / Neutral
+        "#ec4899", // Pink - Communication
+        "#ef4444"  // Red - Distraction
+      ]
+    },
+
+    /**
+     * Formats hours into human-friendly string (e.g., '14.5 hrs' or '45 mins')
+     */
+    formatHours: function(h) {
+      if (h === undefined || h === null || isNaN(h)) return "0.0 hrs";
+      const val = parseFloat(h);
+      if (val === 0) return "0.0 hrs";
+      if (val < 1.0) {
+        const mins = Math.round(val * 60);
+        return `${mins} mins`;
+      }
+      return `${val.toFixed(1)} hrs`;
+    },
+
+    /**
+     * Formats an ISO UTC date string into client locale string
+     */
+    formatDateStr: function(isoStr) {
+      if (!isoStr) return "N/A";
+      try {
+        const safe = (isoStr.endsWith("Z") || isoStr.includes("+")) ? isoStr : isoStr.replace(" ", "T") + "Z";
+        const d = new Date(safe);
+        if (isNaN(d.getTime())) return isoStr;
+        return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+      } catch (e) {
+        return isoStr;
+      }
+    },
+
+    /**
+     * Generates a Delta Badge component (+/- % focus time vs previous period or daily average)
+     * e.g., '+12% vs last week' in green, or '-5% vs daily avg' in red/amber.
+     */
+    renderDeltaBadge: function(deltaPercentage, badgeText, direction) {
+      const pct = parseFloat(deltaPercentage || 0);
+      let dir = direction;
+      if (!dir) {
+        if (pct > 0) dir = "up";
+        else if (pct < 0) dir = "down";
+        else dir = "neutral";
+      }
+
+      let badgeClass = "delta-badge delta-neutral";
+      let icon = "•";
+      let displayText = badgeText;
+
+      if (dir === "up") {
+        badgeClass = "delta-badge delta-positive";
+        icon = "▲";
+        if (!displayText) displayText = `+${Math.abs(pct).toFixed(1)}% vs last week`;
+      } else if (dir === "down") {
+        badgeClass = "delta-badge delta-negative";
+        icon = "▼";
+        if (!displayText) displayText = `-${Math.abs(pct).toFixed(1)}% vs last week`;
+      } else {
+        badgeClass = "delta-badge delta-neutral";
+        icon = "•";
+        if (!displayText) displayText = `0.0% vs avg`;
+      }
+
+      return `
+        <span class="${badgeClass}" title="Screen time trend comparison">
+          <span class="delta-arrow">${icon}</span>
+          <span class="delta-value">${displayText}</span>
+        </span>
+      `;
+    },
+
+    /**
+     * Renders a real-time status beacon indicating telemetry synchronization
+     */
+    renderStatusBeacon: function(lastSyncedIso) {
+      if (!lastSyncedIso) {
+        return `
+          <div class="status-beacon beacon-offline">
+            <span class="beacon-pulse"></span>
+            <span class="beacon-dot"></span>
+            <span class="beacon-text">TELEMETRY OFFLINE</span>
+          </div>
+        `;
+      }
+
+      const safeUtc = (lastSyncedIso.endsWith("Z") || lastSyncedIso.includes("+"))
+        ? lastSyncedIso
+        : lastSyncedIso.replace(" ", "T") + "Z";
+      const syncDate = new Date(safeUtc);
+      const now = new Date();
+      const diffMs = now - syncDate;
+      const diffMins = Math.floor(diffMs / 60000);
+
+      let stateClass = "beacon-active";
+      let stateLabel = "LIVE STREAM ACTIVE";
+
+      if (diffMins < 60) {
+        stateClass = "beacon-active";
+        stateLabel = "LIVE TELEMETRY STREAM";
+      } else if (diffMins < 1440) { // < 24 hrs
+        stateClass = "beacon-synced";
+        stateLabel = "SYNCED TODAY";
+      } else {
+        stateClass = "beacon-idle";
+        stateLabel = "DATA PENDING SYNC";
+      }
+
+      return `
+        <div class="status-beacon ${stateClass}">
+          <span class="beacon-pulse"></span>
+          <span class="beacon-dot"></span>
+          <span class="beacon-text">${stateLabel}</span>
+        </div>
+      `;
+    },
+
+    /**
+     * Renders the Command Center Telemetry Banner into the target container.
+     */
+    renderTelemetryBanner: function(containerId, manifest) {
+      const target = document.getElementById(containerId);
+      if (!target || !manifest) return;
+
+      const metrics = manifest.telemetry_metrics || {};
+      const chartHours = manifest.chart_hours || [];
+      const totalHours = (metrics.total_hours !== undefined)
+        ? metrics.total_hours
+        : chartHours.reduce((a, b) => a + b, 0);
+
+      const dailyAvg = (metrics.daily_average !== undefined)
+        ? metrics.daily_average
+        : (totalHours / 7.0);
+
+      const deltaPct = metrics.delta_percentage !== undefined ? metrics.delta_percentage : 0.0;
+      const deltaDir = metrics.delta_direction || (deltaPct > 0 ? "up" : (deltaPct < 0 ? "down" : "neutral"));
+      const deltaBadgeText = metrics.delta_badge_text || KudozTelemetry.computeFallbackBadgeText(deltaPct);
+
+      const focusScore = metrics.focus_score !== undefined ? metrics.focus_score : KudozTelemetry.computeFallbackFocusScore(metrics, totalHours);
+      const prodHours = metrics.productive_hours !== undefined ? metrics.productive_hours : (totalHours * 0.75);
+      const nonProdHours = metrics.non_productive_hours !== undefined ? metrics.non_productive_hours : (totalHours * 0.15);
+
+      const lastSync = manifest.aw_last_synced;
+      const beaconHtml = KudozTelemetry.renderStatusBeacon(lastSync);
+      const deltaBadgeHtml = KudozTelemetry.renderDeltaBadge(deltaPct, deltaBadgeText, deltaDir);
+
+      let focusCategory = "EXCELLENT";
+      let focusClass = "score-high";
+      if (focusScore < 50) {
+        focusCategory = "NEEDS ATTENTION";
+        focusClass = "score-low";
+      } else if (focusScore < 75) {
+        focusCategory = "MODERATE FOCUS";
+        focusClass = "score-mid";
+      }
+
+      target.innerHTML = `
+        <div class="telemetry-command-banner">
+          <div class="telemetry-banner-header">
+            <div class="banner-title-group">
+              <span class="command-center-pill">COMMAND CENTER</span>
+              <h2 class="banner-title">Telemetry & Focus Insights Engine</h2>
+            </div>
+            <div class="banner-beacon-wrapper">
+              ${beaconHtml}
+            </div>
+          </div>
+
+          <div class="telemetry-cards-grid">
+            <!-- Metric Card 1: 7-Day Screen Time & Delta -->
+            <div class="telemetry-card card-screentime">
+              <div class="card-meta">
+                <span class="card-label">7-DAY SCREEN TIME</span>
+                <span class="card-icon">⏱️</span>
+              </div>
+              <div class="card-metric-row">
+                <div class="card-primary-stat">${KudozTelemetry.formatHours(totalHours)}</div>
+                <div class="card-badge-container">
+                  ${deltaBadgeHtml}
+                </div>
+              </div>
+              <div class="card-sub-info">
+                <span>Daily Average: <strong>${dailyAvg.toFixed(1)} hrs/day</strong></span>
+              </div>
+            </div>
+
+            <!-- Metric Card 2: Enterprise Focus Score (0-100) -->
+            <div class="telemetry-card card-focus-score">
+              <div class="card-meta">
+                <span class="card-label">FOCUS INTEL SCORE</span>
+                <span class="card-tag ${focusClass}">${focusCategory}</span>
+              </div>
+              <div class="card-metric-row">
+                <div class="card-primary-stat focus-score-value ${focusClass}">${focusScore}<span class="score-max">/100</span></div>
+                <div class="focus-mini-bar-track">
+                  <div class="focus-mini-bar-fill ${focusClass}" style="width: ${Math.max(5, Math.min(100, focusScore))}%;"></div>
+                </div>
+              </div>
+              <div class="card-sub-info">
+                <span>Deep Work Ratio: <strong>${totalHours > 0 ? Math.round((prodHours / totalHours) * 100) : 0}%</strong></span>
+              </div>
+            </div>
+
+            <!-- Metric Card 3: Deep Work vs Distraction Breakdown -->
+            <div class="telemetry-card card-categorization">
+              <div class="card-meta">
+                <span class="card-label">PRODUCTIVITY BREAKDOWN</span>
+                <span class="card-icon">🎯</span>
+              </div>
+              <div class="productivity-stacked-bar">
+                <div class="stack-segment stack-prod" style="width: ${totalHours > 0 ? (prodHours / totalHours * 100) : 70}%;" title="Productive"></div>
+                <div class="stack-segment stack-nonprod" style="width: ${totalHours > 0 ? (nonProdHours / totalHours * 100) : 30}%;" title="Distraction"></div>
+              </div>
+              <div class="productivity-legend">
+                <div class="legend-item">
+                  <span class="dot dot-prod"></span>
+                  <span class="legend-text">Study: <strong>${KudozTelemetry.formatHours(prodHours)}</strong></span>
+                </div>
+                <div class="legend-item">
+                  <span class="dot dot-dist"></span>
+                  <span class="legend-text">Distraction: <strong>${KudozTelemetry.formatHours(nonProdHours)}</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Metric Card 4: Synchronization State & Deliverables -->
+            <div class="telemetry-card card-deliverables">
+              <div class="card-meta">
+                <span class="card-label">ENCRYPTED VAULT</span>
+                <span class="card-icon">🔒</span>
+              </div>
+              <div class="card-metric-row">
+                <div class="card-primary-stat" id="commandCenterDeliverablesCount">
+                  ${(manifest.student_reports?.length || 0) + (manifest.parent_reports?.length || 0)} Ready
+                </div>
+              </div>
+              <div class="card-sub-info">
+                <span>Client Decryption: <strong>AES-256-CBC</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    },
+
+    computeFallbackBadgeText: function(pct) {
+      if (pct > 0) return `+${pct.toFixed(1)}% vs last week`;
+      if (pct < 0) return `${pct.toFixed(1)}% vs last week`;
+      return `0.0% vs avg`;
+    },
+
+    computeFallbackFocusScore: function(metrics, totalHours) {
+      if (totalHours <= 0) return 0;
+      const prod = metrics.productive_hours || (totalHours * 0.7);
+      const nonProd = metrics.non_productive_hours || (totalHours * 0.2);
+      const ratio = (prod / (prod + nonProd + 0.001)) * 100;
+      return Math.round(Math.max(0, Math.min(100, ratio)));
+    },
+
+    /**
+     * Enhances the 7-day screen time line chart with modern gradients and formatted tooltips.
+     */
+    enhanceScreenTimeChart: function(canvasEl, days, hours, deltaBadgeText) {
+      if (!canvasEl) return null;
+      const ctx = canvasEl.getContext("2d");
+
+      // Build smooth vertical gradient
+      const height = canvasEl.clientHeight || 220;
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+      gradient.addColorStop(0, "rgba(59, 130, 246, 0.4)");
+      gradient.addColorStop(0.7, "rgba(59, 130, 246, 0.08)");
+      gradient.addColorStop(1, "rgba(59, 130, 246, 0.0)");
+
+      return new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: days.map(d => {
+            const parts = d.split("-");
+            return parts.length >= 3 ? `${parts[1]}/${parts[2]}` : d;
+          }),
+          datasets: [{
+            label: "Screen Time",
+            data: hours,
+            borderColor: "#3b82f6",
+            borderWidth: 2.5,
+            backgroundColor: gradient,
+            tension: 0.35,
+            fill: true,
+            pointBackgroundColor: "#1e3a8a",
+            pointBorderColor: "#60a5fa",
+            pointBorderWidth: 2,
+            pointRadius: 4.5,
+            pointHoverRadius: 7,
+            pointHoverBackgroundColor: "#3b82f6",
+            pointHoverBorderColor: "#ffffff",
+            pointHoverBorderWidth: 2.5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: "index",
+            intersect: false
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: "rgba(15, 23, 42, 0.92)",
+              titleColor: "#f8fafc",
+              titleFont: { size: 12, weight: "bold" },
+              bodyColor: "#93c5fd",
+              bodyFont: { size: 12 },
+              padding: 12,
+              cornerRadius: 8,
+              borderColor: "rgba(59, 130, 246, 0.4)",
+              borderWidth: 1,
+              displayColors: false,
+              callbacks: {
+                title: function(items) {
+                  const idx = items[0].dataIndex;
+                  return `📅 Date: ${days[idx] || items[0].label}`;
+                },
+                label: function(item) {
+                  const val = item.parsed.y;
+                  return `⏱️ Active Screen Time: ${val.toFixed(2)} hrs`;
+                },
+                afterLabel: function() {
+                  return deltaBadgeText ? `📈 Trend: ${deltaBadgeText}` : "";
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              grid: {
+                color: "rgba(55, 65, 81, 0.45)",
+                drawBorder: false
+              },
+              ticks: {
+                color: "#9ca3af",
+                font: { size: 11, family: "inherit" },
+                callback: function(val) {
+                  return val + "h";
+                }
+              }
+            },
+            x: {
+              grid: {
+                color: "rgba(55, 65, 81, 0.2)",
+                drawBorder: false
+              },
+              ticks: {
+                color: "#9ca3af",
+                font: { size: 11, family: "inherit" }
+              }
+            }
+          }
+        }
+      });
+    },
+
+    /**
+     * Enhances the application distribution doughnut chart with category badges and tooltips.
+     */
+    enhanceAppDistributionChart: function(canvasEl, labels, values, categories) {
+      if (!canvasEl) return null;
+      const ctx = canvasEl.getContext("2d");
+
+      return new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: labels,
+          datasets: [{
+            data: values,
+            backgroundColor: KudozTelemetry.colors.donutPalette.slice(0, labels.length),
+            borderColor: "#111827",
+            borderWidth: 2,
+            hoverOffset: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: "68%",
+          plugins: {
+            legend: {
+              position: "bottom",
+              labels: {
+                color: "#9ca3af",
+                font: { size: 11 },
+                boxWidth: 10,
+                padding: 10,
+                usePointStyle: true
+              }
+            },
+            tooltip: {
+              backgroundColor: "rgba(15, 23, 42, 0.94)",
+              titleColor: "#f8fafc",
+              titleFont: { size: 12, weight: "bold" },
+              bodyColor: "#e2e8f0",
+              bodyFont: { size: 11 },
+              padding: 12,
+              cornerRadius: 8,
+              borderColor: "rgba(55, 65, 81, 0.8)",
+              borderWidth: 1,
+              callbacks: {
+                label: function(item) {
+                  const val = item.parsed;
+                  const total = item.dataset.data.reduce((a, b) => a + b, 0);
+                  const pct = total > 0 ? ((val / total) * 100).toFixed(1) : 0;
+                  return `  ${val.toFixed(1)} hrs (${pct}%)`;
+                },
+                afterLabel: function(item) {
+                  const appName = item.label;
+                  const cat = (categories && categories[appName]) ? categories[appName] : null;
+                  return cat ? `  Category: ${cat}` : "";
+                }
+              }
+            }
+          }
+        }
+      });
+    },
+
+    /**
+     * Unified initialization method called upon workspace unlock.
+     */
+    init: function(manifest) {
+      if (!manifest) return;
+
+      // 1. Render or inject Command Center Telemetry Banner
+      const bannerTarget = document.getElementById("telemetryCommandCenter");
+      if (bannerTarget) {
+        KudozTelemetry.renderTelemetryBanner("telemetryCommandCenter", manifest);
+      } else {
+        // Fallback: Enhance existing .metrics-banner if dedicated container is not present
+        const existingBanner = document.querySelector(".metrics-banner");
+        if (existingBanner) {
+          const wrapper = document.createElement("div");
+          wrapper.id = "telemetryCommandCenter";
+          existingBanner.parentNode.insertBefore(wrapper, existingBanner);
+          existingBanner.style.display = "none";
+          KudozTelemetry.renderTelemetryBanner("telemetryCommandCenter", manifest);
+        }
+      }
+    }
+  };
+
+  // Expose globally
+  window.KudozTelemetry = KudozTelemetry;
+
+})(window);
+
+
+/* --- Academic Deadlines Controller --- */
+/**
+ * templates/deadlines.js — Kudoz AI v3.1 Academic Deadlines Manager
+ * Role-Based Access Control (RBAC) Logic:
+ * - Admin & Parent: Full Read/Write interactive table, status editing, row additions,
+ *   and direct GitHub REST API commit handler (`PUT /repos/{core_repo}/contents/data/{tenant_id}/deadlines.txt`).
+ * - Student: Strict Read-Only view, disabled edits, interactive "Request Extension"
+ *   modal committing to `data/{tenant_id}/feedbacks/Extension_Request_{subject}_{date}.json`.
+ */
+
+(function () {
+  // --- Default Fallback Dataset (Tenant 9019162 Baseline) ---
+  const DEFAULT_DEADLINES_STATE = {
+    title: "STUDENT ACADEMIC DEADLINES TRACKER",
+    academic_session: "2026-2027",
+    date_modified: "September 05, 2026",
+    deadlines: [
+      { s_no: "01", subject: "English", syllabus: "Ch 1-10 &Grammar", deadline_notebook: "10 Sep, 2026", deadline_tests: "15 Sep, 2026", status: "In Progress" },
+      { s_no: "02", subject: "Physics", syllabus: "Ch 1, 2, 3, 4 & 7", deadline_notebook: "06 Sep, 2026", deadline_tests: "15 Sep, 2026", status: "In Progress" },
+      { s_no: "03", subject: "Chemistry", syllabus: "Ch 1, 2, 3 & Ch 4", deadline_notebook: "08 Sep, 2026", deadline_tests: "11 Sep, 2026", status: "In Progress" },
+      { s_no: "04", subject: "Computer", syllabus: "Ch 1, 2, 4 & 5", deadline_notebook: "31 Aug, 2026", deadline_tests: "18 Sep, 2026", status: "In Progress" },
+      { s_no: "05", subject: "Urdu", syllabus: "2 Ghazals & 01 Ch", deadline_notebook: "20 Sep, 2026", deadline_tests: "25 Sep, 2026", status: "In Progress" },
+      { s_no: "06", subject: "Islamiat", syllabus: "Surah Infaal 06 Asbaaq", deadline_notebook: "10 Sep, 2026", deadline_tests: "17 Sep, 2026", status: "In Progress" },
+      { s_no: "07", math_subject: "Math", subject: "Math", syllabus: "Ch 01 to Ch 07", deadline_notebook: "09 Sep, 2026", deadline_tests: "20 Sep, 2026", status: "In Progress" },
+      { s_no: "08", subject: "T-Q", syllabus: "Total 08 Asbaaq", deadline_notebook: "11 Sep, 2026", deadline_tests: "19 Sep, 2026", status: "In Progress" },
+      { s_no: "09", subject: "Pak Study", syllabus: "Ch 1 & Ch 2", deadline_notebook: "14 Aug, 2026", deadline_tests: "31 Aug, 2026", status: "Completed" }
+    ],
+    notes: [
+      "Physics: Ensure copy checking to teacher or parent before deadline as its near.",
+      "Ensure all assignment notebooks are checked and signed by respective subject teachers prior to test dates.",
+      "Update \"Current Status\" and \"Syllabus\" as chapters are completed or revised."
+    ]
+  };
+
+  // Working state copy
+  let activeDeadlines = JSON.parse(JSON.stringify(DEFAULT_DEADLINES_STATE));
+
+  /**
+   * Helper: Determine effective user role.
+   * Prioritizes window.currentRole (from portal.js auth session),
+   * then global currentRole, then container attribute, defaulting to 'student'.
+   */
+  function getEffectiveRole() {
+    if (typeof window.currentRole === "string" && window.currentRole) {
+      return window.currentRole.toLowerCase();
+    }
+    if (typeof currentRole === "string" && currentRole) {
+      return currentRole.toLowerCase();
+    }
+    const container = document.getElementById("kudozDeadlinesContainer");
+    if (container && container.getAttribute("data-role")) {
+      return container.getAttribute("data-role").toLowerCase();
+    }
+    // Check URL parameters for standalone testing e.g. ?role=parent
+    const urlParams = new URLSearchParams(window.location.search);
+    const roleParam = urlParams.get("role");
+    if (roleParam && ["admin", "parent", "student"].includes(roleParam.toLowerCase())) {
+      return roleParam.toLowerCase();
+    }
+    return "student";
+  }
+
+  /**
+   * Helper: Get tenant ID.
+   */
+  function getTenantId() {
+    if (window.ENV_CONFIG && window.ENV_CONFIG.tenant_id) {
+      return window.ENV_CONFIG.tenant_id;
+    }
+    if (typeof ENV_CONFIG !== "undefined" && ENV_CONFIG.tenant_id) {
+      return ENV_CONFIG.tenant_id;
+    }
+    const container = document.getElementById("kudozDeadlinesContainer");
+    if (container && container.getAttribute("data-tenant-id")) {
+      return container.getAttribute("data-tenant-id");
+    }
+    return "tenant_9019162";
+  }
+
+  /**
+   * Helper: Get core repository name.
+   */
+  function getCoreRepo() {
+    if (window.ENV_CONFIG && window.ENV_CONFIG.core_repo) {
+      return window.ENV_CONFIG.core_repo;
+    }
+    if (typeof ENV_CONFIG !== "undefined" && ENV_CONFIG.core_repo) {
+      return ENV_CONFIG.core_repo;
+    }
+    return "user/kudoz-ai-v3.1";
+  }
+
+  /**
+   * Safe Base64 encoder for UTF-8 strings.
+   */
+  function utf8ToBase64(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
+  }
+
+  /**
+   * Format dates for feedback filenames (YYYY_MM_DD).
+   */
+  function formatDateForStorage(dateInput) {
+    if (typeof dateInput === "string" && dateInput.trim()) {
+      const clean = dateInput.trim().replace(/-/g, "_");
+      const parts = clean.split("_");
+      if (parts.length === 3 && parts[0].length === 4 && parts[1].length === 2 && parts[2].length === 2) {
+        return clean;
+      }
+    }
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+    const dd = String(now.getDate()).padStart(2, "0");
+    return `${yyyy}_${mm}_${dd}`;
+  }
+
+  /**
+   * Show component alert.
+   */
+  function showDeadlinesAlert(message, type) {
+    const alertEl = document.getElementById("deadlinesAlert");
+    if (!alertEl) return;
+    const alertType = type || "info";
+    alertEl.className = `deadlines-alert alert-${alertType}`;
+    let icon = "ℹ️";
+    if (alertType === "success") icon = "✅";
+    if (alertType === "error") icon = "❌";
+    alertEl.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+    alertEl.style.display = "flex";
+  }
+
+  function clearDeadlinesAlert() {
+    const alertEl = document.getElementById("deadlinesAlert");
+    if (alertEl) alertEl.style.display = "none";
+  }
+
+  /**
+   * Render status badges.
+   */
+  function renderStatusBadge(status) {
+    const clean = (status || "Pending").trim();
+    let cssClass = "badge-status-pending";
+    let icon = "⏳";
+
+    const lower = clean.toLowerCase();
+    if (lower.includes("progress")) {
+      cssClass = "badge-status-in-progress";
+      icon = "⚡";
+    } else if (lower.includes("complete") || lower.includes("done")) {
+      cssClass = "badge-status-completed";
+      icon = "✅";
+    } else if (lower.includes("overdue") || lower.includes("late") || lower.includes("urgent")) {
+      cssClass = "badge-status-overdue";
+      icon = "⚠️";
+    }
+
+    return `<span class="badge-status ${cssClass}"><span>${icon}</span> <span>${clean}</span></span>`;
+  }
+
+  /**
+   * Client-side ASCII Table Serializer
+   * Produces an ASCII table matching core/deadlines_parser.py.
+   */
+  function serializeDeadlinesToAscii(data) {
+    const title = data.title || "STUDENT ACADEMIC DEADLINES TRACKER";
+    const session = data.academic_session || "2026-2027";
+    const dateMod = data.date_modified || "September 05, 2026";
+    const list = data.deadlines || [];
+    const notes = data.notes || [];
+
+    const headers = ["S#", "Subject", "Syllabus", "Deadline (Notebook)", "Deadline (Tests)", "Current Status"];
+    const colWidths = [4, 15, 25, 22, 20, 20];
+
+    list.forEach((item, idx) => {
+      const sno = String(item.s_no || String(idx + 1).padStart(2, "0"));
+      const subj = String(item.subject || "");
+      const syll = String(item.syllabus || "");
+      const dnb = String(item.deadline_notebook || "");
+      const dtst = String(item.deadline_tests || "");
+      const st = String(item.status || "");
+
+      const rowVals = [sno, subj, syll, dnb, dtst, st];
+      rowVals.forEach((val, cIdx) => {
+        colWidths[cIdx] = Math.max(colWidths[cIdx], val.length + 2);
+      });
+    });
+
+    const border = "+" + colWidths.map(w => "-".repeat(w)).join("+") + "+";
+    const totalTableWidth = border.length;
+    const bannerWidth = Math.max(120, totalTableWidth);
+
+    const headerCells = headers.map((h, i) => (" " + h).padEnd(colWidths[i], " "));
+    const headerRow = "|" + headerCells.join("|") + "|";
+
+    const dataRows = list.map((item, idx) => {
+      const sno = String(item.s_no || String(idx + 1).padStart(2, "0"));
+      const subj = String(item.subject || "");
+      const syll = String(item.syllabus || "");
+      const dnb = String(item.deadline_notebook || "");
+      const dtst = String(item.deadline_tests || "");
+      const st = String(item.status || "");
+
+      const vals = [sno, subj, syll, dnb, dtst, st];
+      const cells = vals.map((v, i) => (" " + v).padEnd(colWidths[i], " "));
+      return "|" + cells.join("|") + "|";
+    });
+
+    const bannerLine = "=".repeat(bannerWidth);
+    const dividerLine = "-".repeat(bannerWidth);
+    const padTotal = Math.max(0, bannerWidth - title.length);
+    const padLeft = Math.floor(padTotal / 2);
+    const centeredTitle = " ".repeat(padLeft) + title;
+
+    const notesLines = notes
+      .map(n => String(n).trim())
+      .filter(n => n.length > 0)
+      .map(n => "  * " + n);
+
+    const out = [
+      bannerLine,
+      centeredTitle,
+      bannerLine,
+      "",
+      `Academic Session: ${session}`,
+      `Date Modified  : ${dateMod}`,
+      "",
+      border,
+      headerRow,
+      border,
+      ...dataRows,
+      border,
+      "",
+      dividerLine,
+      "NOTES & REMINDERS:",
+      ...notesLines,
+      bannerLine,
+      ""
+    ];
+
+    return out.join("\n");
+  }
+
+  /**
+   * Client-side JSON Serializer
+   * Serializes active deadlines state to structured JSON matching deadlines.json.
+   */
+  function serializeDeadlinesToJson(data) {
+    const list = data.deadlines || [];
+    const notes = data.notes_and_reminders || data.notes || [];
+    const payload = {
+      academic_session: data.academic_session || "2026-2027",
+      date_modified: data.date_modified || new Date().toISOString().split("T")[0],
+      deadlines: list.map((item, idx) => ({
+        serial_number: String(item.s_no || item.serial_number || String(idx + 1).padStart(2, "0")),
+        subject: item.subject || "",
+        syllabus: item.syllabus || "",
+        deadline_notebook: item.deadline_notebook || "",
+        deadline_tests: item.deadline_tests || "",
+        current_status: item.status || item.current_status || "Pending"
+      })),
+      notes_and_reminders: notes
+    };
+    return JSON.stringify(payload, null, 4);
+  }
+
+  // ==========================================================================
+  // RBAC RENDER CONTROLLERS
+  // ==========================================================================
+
+  /**
+   * Main entry point to initialize & render the Deadlines Component
+   */
+  function initDeadlinesManager(customData) {
+    if (customData) {
+      activeDeadlines = JSON.parse(JSON.stringify(customData));
+    } else if (window.DEADLINES_DATA) {
+      activeDeadlines = JSON.parse(JSON.stringify(window.DEADLINES_DATA));
+    }
+
+    const role = getEffectiveRole();
+    const roleBadge = document.getElementById("deadlinesRoleBadge");
+    const adminParentView = document.getElementById("deadlinesAdminParentView");
+    const studentView = document.getElementById("deadlinesStudentView");
+
+    // Update Session & Date displays
+    const sessionDisp = document.getElementById("deadlinesSessionDisplay");
+    const dateDisp = document.getElementById("deadlinesDateModifiedDisplay");
+    if (sessionDisp) sessionDisp.textContent = activeDeadlines.academic_session || "2026-2027";
+    if (dateDisp) dateDisp.textContent = activeDeadlines.date_modified || "September 05, 2026";
+
+    if (role === "admin" || role === "parent") {
+      // --- Admin & Parent RBAC View ---
+      if (roleBadge) {
+        roleBadge.className = `deadlines-role-badge role-${role}`;
+        roleBadge.innerHTML = role === "admin" ? "⚙️ Admin Mode (Full Access)" : "👥 Parent Mode (Full Access)";
+      }
+      if (adminParentView) adminParentView.style.display = "block";
+      if (studentView) studentView.style.display = "none";
+
+      renderAdminParentEditor();
+    } else {
+      // --- Student RBAC View (Strict Read-Only) ---
+      if (roleBadge) {
+        roleBadge.className = "deadlines-role-badge role-student";
+        roleBadge.innerHTML = "🎮 Student Mode (Read-Only)";
+      }
+      if (adminParentView) adminParentView.style.display = "none";
+      if (studentView) studentView.style.display = "block";
+
+      renderStudentReadOnlyView();
+    }
+  }
+
+  /**
+   * Render the interactive editable form for Admin & Parent
+   */
+  function renderAdminParentEditor() {
+    const tbody = document.getElementById("deadlinesEditTableBody");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    const sessionInput = document.getElementById("inputAcademicSession");
+    const dateInput = document.getElementById("inputDateModified");
+    if (sessionInput) sessionInput.value = activeDeadlines.academic_session || "2026-2027";
+    if (dateInput) dateInput.value = activeDeadlines.date_modified || new Date().toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" });
+
+    activeDeadlines.deadlines.forEach((item, index) => {
+      const tr = document.createElement("tr");
+      tr.setAttribute("data-row-index", index);
+
+      const sNo = item.s_no || item.serial_number || String(index + 1).padStart(2, "0");
+      const currentStatus = item.status || item.current_status || "In Progress";
+
+      tr.innerHTML = `
+        <td class="col-sno">
+          <input type="text" class="deadlines-input input-sno" value="${sNo}" style="width: 45px; text-align: center;" />
+        </td>
+        <td class="col-subject">
+          <input type="text" class="deadlines-input input-subject" value="${item.subject || ""}" placeholder="Subject name" required />
+        </td>
+        <td class="col-syllabus">
+          <input type="text" class="deadlines-input input-syllabus" value="${item.syllabus || ""}" placeholder="Chapters / Scope" />
+        </td>
+        <td class="col-deadline">
+          <input type="text" class="deadlines-input input-deadline-nb" value="${item.deadline_notebook || ""}" placeholder="DD Mon, YYYY" />
+        </td>
+        <td class="col-deadline">
+          <input type="text" class="deadlines-input input-deadline-tests" value="${item.deadline_tests || ""}" placeholder="DD Mon, YYYY" />
+        </td>
+        <td class="col-status">
+          <select class="deadlines-select select-status">
+            <option value="In Progress" ${currentStatus === "In Progress" ? "selected" : ""}>In Progress</option>
+            <option value="Completed" ${currentStatus === "Completed" ? "selected" : ""}>Completed</option>
+            <option value="Pending" ${currentStatus === "Pending" ? "selected" : ""}>Pending</option>
+            <option value="Overdue" ${currentStatus === "Overdue" ? "selected" : ""}>Overdue</option>
+          </select>
+        </td>
+        <td class="col-actions">
+          <button type="button" class="btn-delete-row" onclick="deleteDeadlineRow(${index})" title="Delete row">
+            🗑️ Delete
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    // Populate notes editor
+    const notesEditor = document.getElementById("deadlinesNotesEditor");
+    if (notesEditor) {
+      const rawNotes = activeDeadlines.notes_and_reminders || activeDeadlines.notes || [];
+      notesEditor.value = rawNotes.join("\n");
+    }
+  }
+
+  /**
+   * Render the strict read-only table for Students
+   */
+  function renderStudentReadOnlyView() {
+    const tbody = document.getElementById("deadlinesReadOnlyTableBody");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    activeDeadlines.deadlines.forEach((item, index) => {
+      const tr = document.createElement("tr");
+      const sNo = item.s_no || item.serial_number || String(index + 1).padStart(2, "0");
+      const subjectEscaped = (item.subject || "").replace(/"/g, "&quot;");
+      const deadlineNbEscaped = (item.deadline_notebook || "").replace(/"/g, "&quot;");
+      const deadlineTestsEscaped = (item.deadline_tests || "").replace(/"/g, "&quot;");
+      const curStatus = item.status || item.current_status || "In Progress";
+
+      tr.innerHTML = `
+        <td class="col-sno">${sNo}</td>
+        <td class="col-subject"><strong>${item.subject || "Untitled"}</strong></td>
+        <td class="col-syllabus">${item.syllabus || "—"}</td>
+        <td class="col-deadline">${item.deadline_notebook || "—"}</td>
+        <td class="col-deadline">${item.deadline_tests || "—"}</td>
+        <td class="col-status">${renderStatusBadge(curStatus)}</td>
+        <td class="col-actions">
+          <button type="button" class="btn-request-extension" onclick="openExtensionModal('${subjectEscaped}', '${deadlineNbEscaped || deadlineTestsEscaped}', 'Notebook Submission')">
+            ⏳ Request Extension
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    // Populate read-only notes list
+    const notesList = document.getElementById("deadlinesStudentNotesList");
+    if (notesList) {
+      notesList.innerHTML = "";
+      const notes = activeDeadlines.notes_and_reminders || activeDeadlines.notes || [];
+      if (notes.length === 0) {
+        notesList.innerHTML = `<li style="color: var(--dl-text-muted);">No current reminders posted.</li>`;
+      } else {
+        notes.forEach(note => {
+          const li = document.createElement("li");
+          li.textContent = note;
+          notesList.appendChild(li);
+        });
+      }
+    }
+  }
+
+  /**
+   * Add a new editable deadline row (Admin / Parent View)
+   */
+  function addNewDeadlineRow() {
+    const nextIdx = activeDeadlines.deadlines.length + 1;
+    activeDeadlines.deadlines.push({
+      s_no: String(nextIdx).padStart(2, "0"),
+      subject: "",
+      syllabus: "",
+      deadline_notebook: "",
+      deadline_tests: "",
+      status: "Pending"
+    });
+    renderAdminParentEditor();
+  }
+
+  /**
+   * Delete a deadline row (Admin / Parent View)
+   */
+  function deleteDeadlineRow(index) {
+    if (confirm("Are you sure you want to remove this subject deadline?")) {
+      activeDeadlines.deadlines.splice(index, 1);
+      // Re-index remaining rows
+      activeDeadlines.deadlines.forEach((item, idx) => {
+        item.s_no = String(idx + 1).padStart(2, "0");
+      });
+      renderAdminParentEditor();
+    }
+  }
+
+  /**
+   * Gather edited data from HTML inputs back into activeDeadlines state
+   */
+  function collectEditorData() {
+    const sessionInput = document.getElementById("inputAcademicSession");
+    const dateInput = document.getElementById("inputDateModified");
+    const notesEditor = document.getElementById("deadlinesNotesEditor");
+
+    if (sessionInput) activeDeadlines.academic_session = sessionInput.value.trim() || "2026-2027";
+    if (dateInput) activeDeadlines.date_modified = dateInput.value.trim() || new Date().toLocaleDateString("en-US", { month: "long", day: "2-digit", year: "numeric" });
+
+    if (notesEditor) {
+      activeDeadlines.notes = notesEditor.value
+        .split("\n")
+        .map(l => l.replace(/^\s*[\*\-]\s*/, "").trim())
+        .filter(l => l.length > 0);
+    }
+
+    const rows = document.querySelectorAll("#deadlinesEditTableBody tr");
+    const updatedDeadlines = [];
+
+    for (let r of rows) {
+      const sno = r.querySelector(".input-sno") ? r.querySelector(".input-sno").value.trim() : "";
+      const subj = r.querySelector(".input-subject") ? r.querySelector(".input-subject").value.trim() : "";
+      const syll = r.querySelector(".input-syllabus") ? r.querySelector(".input-syllabus").value.trim() : "";
+      const dnb = r.querySelector(".input-deadline-nb") ? r.querySelector(".input-deadline-nb").value.trim() : "";
+      const dtst = r.querySelector(".input-deadline-tests") ? r.querySelector(".input-deadline-tests").value.trim() : "";
+      const st = r.querySelector(".select-status") ? r.querySelector(".select-status").value.trim() : "Pending";
+
+      if (subj) {
+        updatedDeadlines.push({
+          s_no: sno,
+          subject: subj,
+          syllabus: syll,
+          deadline_notebook: dnb,
+          deadline_tests: dtst,
+          status: st
+        });
+      }
+    }
+
+    activeDeadlines.deadlines = updatedDeadlines;
+    return activeDeadlines;
+  }
+
+  // ==========================================================================
+  // GITHUB API WRITE HANDLERS (ADMIN / PARENT COMMIT)
+  // ==========================================================================
+
+  /**
+   * Save & Push Deadlines back to repo via GitHub REST API
+   * Target: data/{tenant_id}/deadlines.txt
+   */
+  async function saveAndPushDeadlines() {
+    clearDeadlinesAlert();
+    const data = collectEditorData();
+
+    if (data.deadlines.length === 0) {
+      showDeadlinesAlert("Please add at least one subject deadline before saving.", "error");
+      return;
+    }
+
+    const btn = document.getElementById("btnSaveDeadlines");
+    const spinner = document.getElementById("saveDeadlinesSpinner");
+    const btnText = document.getElementById("saveDeadlinesBtnText");
+    const syncStatus = document.getElementById("deadlinesAdminSyncStatus");
+
+    if (btn) btn.disabled = true;
+    if (spinner) spinner.style.display = "inline-block";
+    if (btnText) btnText.textContent = "Committing to GitHub...";
+
+    const tenantId = getTenantId();
+    const coreRepo = getCoreRepo();
+    const filePath = `data/${tenantId}/deadlines.json`;
+    const jsonContent = serializeDeadlinesToJson(data);
+
+    try {
+      // 1. Check if token decryption function from portal.js is present
+      let token = null;
+      if (typeof window.getCoreToken === "function") {
+        token = await window.getCoreToken();
+      } else if (typeof getCoreToken === "function") {
+        token = await getCoreToken();
+      }
+
+      if (!token) {
+        throw new Error("Authorization token not found in current session. Please verify you are logged in as Admin or Parent.");
+      }
+
+      // 2. Fetch target file's current SHA for idempotent update
+      const apiUrl = `https://api.github.com/repos/${coreRepo}/contents/${filePath}`;
+      let existingSha = null;
+      try {
+        const checkRes = await fetch(apiUrl, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Accept": "application/vnd.github+json"
+          }
+        });
+        if (checkRes.ok) {
+          const checkData = await checkRes.json();
+          existingSha = checkData.sha;
+        }
+      } catch (e) {
+        console.warn("[Kudoz Deadlines] SHA check note:", e);
+      }
+
+      // 3. PUT Commit to GitHub REST API
+      const commitMessage = `chore(${tenantId}): update academic deadlines [skip ci]`;
+      const targetBranch = (window.ENV_CONFIG && window.ENV_CONFIG.branch) || "main";
+      const putBody = {
+        message: commitMessage,
+        content: utf8ToBase64(jsonContent),
+        branch: targetBranch,
+        ...(existingSha ? { sha: existingSha } : {})
+      };
+
+      const putRes = await fetch(apiUrl, {
+        method: "PUT",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+          "Accept": "application/vnd.github+json"
+        },
+        body: JSON.stringify(putBody)
+      });
+
+      if (!putRes.ok) {
+        const errJson = await putRes.json().catch(() => ({}));
+        throw new Error(errJson.message || `GitHub API error (HTTP ${putRes.status})`);
+      }
+
+      // 4. Update UI displays
+      const sessionDisp = document.getElementById("deadlinesSessionDisplay");
+      const dateDisp = document.getElementById("deadlinesDateModifiedDisplay");
+      if (sessionDisp) sessionDisp.textContent = data.academic_session;
+      if (dateDisp) dateDisp.textContent = data.date_modified;
+
+      showDeadlinesAlert(`Successfully updated and committed deadlines to ${filePath}!`, "success");
+      if (syncStatus) {
+        syncStatus.innerHTML = `<span>✅ Last committed: ${new Date().toLocaleTimeString()}</span>`;
+      }
+    } catch (err) {
+      showDeadlinesAlert(`Failed to push deadlines: ${err.message}`, "error");
+    } finally {
+      if (btn) btn.disabled = false;
+      if (spinner) spinner.style.display = "none";
+      if (btnText) btnText.textContent = "💾 Save & Push Deadlines";
+    }
+  }
+
+  // ==========================================================================
+  // STUDENT EXTENSION REQUEST MODAL CONTROLLERS
+  // ==========================================================================
+
+  function openExtensionModal(subject, currentDeadline, milestoneType) {
+    const modal = document.getElementById("deadlinesExtensionModal");
+    const extSubj = document.getElementById("extSubject");
+    const extCur = document.getElementById("extCurrentDeadline");
+    const extType = document.getElementById("extDeadlineType");
+    const extDate = document.getElementById("extRequestedDate");
+    const extReason = document.getElementById("extReason");
+
+    if (extSubj) extSubj.value = subject || "";
+    if (extCur) extCur.value = currentDeadline || "TBD";
+    if (extType && milestoneType) extType.value = milestoneType;
+    if (extReason) extReason.value = "";
+
+    // Set default requested date to 3 days ahead
+    if (extDate) {
+      const d = new Date();
+      d.setDate(d.getDate() + 3);
+      extDate.value = d.toISOString().split("T")[0];
+    }
+
+    if (modal) {
+      modal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  function closeExtensionModal() {
+    const modal = document.getElementById("deadlinesExtensionModal");
+    if (modal) {
+      modal.style.display = "none";
+      document.body.style.overflow = "";
+    }
+  }
+
+  function handleExtensionModalBackdrop(event) {
+    if (event.target.id === "deadlinesExtensionModal") {
+      closeExtensionModal();
+    }
+  }
+
+  /**
+   * Submit Extension Request (Student View)
+   * Commits JSON payload to data/{tenant_id}/feedbacks/Extension_Request_{subject}_{date}.json
+   */
+  async function submitExtensionRequest() {
+    const subject = document.getElementById("extSubject") ? document.getElementById("extSubject").value.trim() : "";
+    const currentDeadline = document.getElementById("extCurrentDeadline") ? document.getElementById("extCurrentDeadline").value.trim() : "";
+    const milestoneType = document.getElementById("extDeadlineType") ? document.getElementById("extDeadlineType").value : "Notebook Submission";
+    const requestedDate = document.getElementById("extRequestedDate") ? document.getElementById("extRequestedDate").value : "";
+    const urgency = document.getElementById("extUrgency") ? document.getElementById("extUrgency").value : "Normal";
+    const reason = document.getElementById("extReason") ? document.getElementById("extReason").value.trim() : "";
+
+    if (!requestedDate) {
+      alert("Please specify your requested new deadline date.");
+      return;
+    }
+    if (!reason) {
+      alert("Please provide a short reason for requesting an extension.");
+      return;
+    }
+
+    const btn = document.getElementById("btnSubmitExtension");
+    const spinner = document.getElementById("extSubmitSpinner");
+    const btnText = document.getElementById("extSubmitBtnText");
+
+    if (btn) btn.disabled = true;
+    if (spinner) spinner.style.display = "inline-block";
+    if (btnText) btnText.textContent = "Submitting...";
+
+    const tenantId = getTenantId();
+    const coreRepo = getCoreRepo();
+    const dateStr = formatDateForStorage(requestedDate);
+    const cleanSubject = subject.replace(/[^a-zA-Z0-9]/g, "_");
+    const feedbackPath = `data/${tenantId}/feedbacks/Extension_Request_${cleanSubject}_${dateStr}.json`;
+
+    const payload = {
+      type: "extension_request",
+      tenant_id: tenantId,
+      student_role: "student",
+      subject: subject,
+      current_deadline: currentDeadline,
+      requested_deadline: requestedDate,
+      milestone_type: milestoneType,
+      urgency: urgency,
+      reason: reason,
+      submission_timestamp: new Date().toISOString(),
+      status: "pending_approval"
+    };
+
+    try {
+      // Check if window.submitTenantFeedback from portal.js is available
+      let success = false;
+      let errorMessage = null;
+
+      if (typeof window.submitTenantFeedback === "function") {
+        const prefix = `Extension_Request_${cleanSubject}`;
+        const res = await window.submitTenantFeedback(prefix, payload, "student", requestedDate);
+        success = res === true || (res && res.ok === true);
+        if (!success && res && res.error) errorMessage = res.error;
+      } else {
+        // Direct push via pushFileToCore if available
+        let token = null;
+        if (typeof window.getCoreToken === "function") {
+          token = await window.getCoreToken();
+        } else if (typeof getCoreToken === "function") {
+          token = await getCoreToken();
+        }
+
+        if (!token) {
+          throw new Error("Student authentication token not available in this session. Please re-login.");
+        }
+
+        const apiUrl = `https://api.github.com/repos/${coreRepo}/contents/${feedbackPath}`;
+        const res = await fetch(apiUrl, {
+          method: "PUT",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Accept": "application/vnd.github+json"
+          },
+          body: JSON.stringify({
+            message: `feat(${tenantId}): submit extension request for ${subject} [skip ci]`,
+            content: utf8ToBase64(JSON.stringify(payload, null, 2)),
+            branch: "main"
+          })
+        });
+
+        if (res.ok) {
+          success = true;
+        } else {
+          const errData = await res.json().catch(() => ({}));
+          errorMessage = errData.message || `HTTP ${res.status}`;
+        }
+      }
+
+      if (success) {
+        closeExtensionModal();
+        showDeadlinesAlert(`Extension request for "${subject}" submitted successfully! Your parent and coach have been notified.`, "success");
+      } else {
+        throw new Error(errorMessage || "Could not commit extension request.");
+      }
+    } catch (err) {
+      alert(`Submission failed: ${err.message}`);
+    } finally {
+      if (btn) btn.disabled = false;
+      if (spinner) spinner.style.display = "none";
+      if (btnText) btnText.textContent = "Submit Request";
+    }
+  }
+
+  // --- Attach Public APIs to Window ---
+  window.DEADLINES_STATE = activeDeadlines;
+  window.initDeadlinesManager = initDeadlinesManager;
+  window.addNewDeadlineRow = addNewDeadlineRow;
+  window.deleteDeadlineRow = deleteDeadlineRow;
+  window.saveAndPushDeadlines = saveAndPushDeadlines;
+  window.openExtensionModal = openExtensionModal;
+  window.closeExtensionModal = closeExtensionModal;
+  window.handleExtensionModalBackdrop = handleExtensionModalBackdrop;
+  window.submitExtensionRequest = submitExtensionRequest;
+  window.serializeDeadlinesToAscii = serializeDeadlinesToAscii;
+  window.serializeDeadlinesToJson = serializeDeadlinesToJson;
+})();
 
 </script>
 
