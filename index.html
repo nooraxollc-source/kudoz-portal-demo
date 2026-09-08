@@ -3326,7 +3326,7 @@ body.portal-authenticated .brand-sub {
   // Self-bootstraps if loaded in independent context
   if (typeof initDeadlinesManager === "function") {
     document.addEventListener("DOMContentLoaded", function() {
-      initDeadlinesManager();
+      initDeadlinesManager(window.MANIFEST && window.MANIFEST.deadlines_data);
     });
   }
 </script>
@@ -5015,8 +5015,8 @@ body.portal-authenticated .brand-sub {
 </div>
 
 <script>
-  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-08T16:56:56.929927+00:00", "chart_days": ["2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07", "2026-09-08"], "chart_hours": [8.33, 14.39, 25.3, 18.61, 11.94, 16.48, 7.46], "top_apps_labels": ["YouTube", "WhatsApp", "TikTok", "chrome.exe", "Quickstep"], "top_apps_values": [37.82, 22.06, 18.31, 17.11, 9.75], "compliance_grid": {"2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": true, "academic": true, "parent": true}, "2026-09-08": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-08", "file": "reports/Summary_For_Kids_2026-09-08.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-08", "file": "reports/Productivity_Report_2026-09-08.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}], "telemetry_metrics": {"exists": true, "last_synced_utc": "2026-09-08T16:56:56.929927+00:00", "total_hours": 102.52, "device_breakdown": {"Android": 78.34, "Windows": 24.18}, "daily_average": 14.65, "daily_average_active_days": 14.65, "active_days_count": 7, "delta_percentage": 96.7, "delta_direction": "up", "delta_badge_text": "+96.7% vs last week", "delta_comparison_type": "previous_period", "focus_score": 5, "productive_hours": 5.68, "non_productive_hours": 42.08, "neutral_hours": 42.5, "unclassified_hours": 12.27, "productive_percentage": 5.5, "non_productive_percentage": 41.0, "neutral_percentage": 41.5, "top_categories": [{"category": "Neutral / Utility", "hours": 42.5, "percentage": 41.5, "is_productive": false}, {"category": "Distraction / Gaming", "hours": 42.08, "percentage": 41.0, "is_productive": false}, {"category": "Unclassified", "hours": 12.27, "percentage": 12.0, "is_productive": false}, {"category": "Deep Work / Study", "hours": 5.68, "percentage": 5.5, "is_productive": true}], "top_apps": [{"app": "YouTube", "hours": 18.92, "category": "Distraction / Gaming", "is_productive": false}, {"app": "TikTok", "hours": 18.31, "category": "Distraction / Gaming", "is_productive": false}, {"app": "chrome.exe", "hours": 17.11, "category": "Neutral / Utility", "is_productive": false}, {"app": "WhatsApp", "hours": 12.04, "category": "Neutral / Utility", "is_productive": false}, {"app": "Quickstep", "hours": 5.87, "category": "Neutral / Utility", "is_productive": false}, {"app": "YT Kids", "hours": 4.74, "category": "Distraction / Gaming", "is_productive": false}, {"app": "Chrome", "hours": 4.63, "category": "Neutral / Utility", "is_productive": false}, {"app": "WhatsApp\u00a0Business", "hours": 4.34, "category": "Neutral / Utility", "is_productive": false}, {"app": "LockApp.exe", "hours": 3.39, "category": "Neutral / Utility", "is_productive": false}, {"app": "Antigravity.exe", "hours": 2.94, "category": "Unclassified", "is_productive": false}], "daily_hours_7d": {"2026-09-02": 8.33, "2026-09-03": 14.39, "2026-09-04": 25.3, "2026-09-05": 18.61, "2026-09-06": 11.94, "2026-09-07": 16.48, "2026-09-08": 7.46}, "previous_period_hours": 52.13, "period_start": "2026-09-02", "period_end": "2026-09-08", "feedback_metrics": {"tracker_count": 2, "academic_tests_count": 1, "parent_feedback_count": 1, "total_submissions": 4, "academic_average_percentage": 50.0, "feedback_bonus_score": 2.0, "compliance_by_date": {}}}, "deadlines_data": {"format": "json", "title": "STUDENT ACADEMIC DEADLINES TRACKER", "academic_session": "2026-2027", "date_modified": "September 05, 2026", "headers": ["S#", "Subject", "Syllabus", "Deadline (Notebook)", "Deadline (Tests)", "Current Status"], "deadlines": [{"s_no": "01", "subject": "English", "syllabus": "Ch 1-10 &Grammar", "deadline_notebook": "10 Sep, 2026", "deadline_tests": "15 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "02", "subject": "Physics", "syllabus": "Ch 1, 2, 3, 4 & 7", "deadline_notebook": "06 Sep, 2026", "deadline_tests": "15 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "03", "subject": "Chemistry", "syllabus": "Ch 1, 2, 3 & Ch 4", "deadline_notebook": "08 Sep, 2026", "deadline_tests": "11 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "04", "subject": "Computer", "syllabus": "Ch 1, 2, 4 & 5", "deadline_notebook": "31 Aug, 2026", "deadline_tests": "18 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "05", "subject": "Urdu", "syllabus": "2 Ghazals & 01 Ch", "deadline_notebook": "20 Sep, 2026", "deadline_tests": "25 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "06", "subject": "Islamiat", "syllabus": "Surah Infaal 06 Asbaaq", "deadline_notebook": "10 Sep, 2026", "deadline_tests": "17 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "07", "subject": "Math", "syllabus": "Ch 01 to Ch 07", "deadline_notebook": "09 Sep, 2026", "deadline_tests": "20 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "08", "subject": "T-Q", "syllabus": "Total 08 Asbaaq", "deadline_notebook": "11 Sep, 2026", "deadline_tests": "19 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "09", "subject": "Pak Study", "syllabus": "Ch 1 & Ch 2", "deadline_notebook": "14 Aug, 2026", "deadline_tests": "31 Aug, 2026", "status": "Completed", "current_status": "Completed"}, {"s_no": "10", "subject": "Public Speaking", "syllabus": "Discipline", "deadline_notebook": "15 Sep, 2026", "deadline_tests": "15 Sep, 2026", "status": "Pending", "current_status": "Pending"}], "notes": ["Physics: Ensure copy checking to teacher or parent before deadline as its near.", "Ensure all assignment notebooks are checked and signed by respective subject teachers prior to test dates.", "Update \"Current Status\" and \"Syllabus\" as chapters are completed or revised."], "notes_and_reminders": ["Physics: Ensure copy checking to teacher or parent before deadline as its near.", "Ensure all assignment notebooks are checked and signed by respective subject teachers prior to test dates.", "Update \"Current Status\" and \"Syllabus\" as chapters are completed or revised."], "file_path": "/home/runner/work/kudoz-ai-v3.1/kudoz-ai-v3.1/data/tenant_demo/deadlines.json", "file_name": "deadlines.json", "tenant_id": "tenant_demo", "pending_extensions": [{"type": "extension_request", "tenant_id": "tenant_demo", "student_role": "student", "subject": "Chemistry", "current_deadline": "08 Sep, 2026", "requested_deadline": "2026-09-11", "milestone_type": "Notebook Submission", "urgency": "Urgent", "reason": "Baba please", "submission_timestamp": "2026-09-08T14:10:37.052Z", "status": "pending_approval", "file_name": "Extension_Request_Chemistry_2026_09_11.json", "relative_path": "feedbacks/Extension_Request_Chemistry_2026_09_11.json"}]}};
-  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "Lb+4suzAHBG4LMa5Bz/dUWnqTnnd2wa1gBk3BVRTvi+58wkWomqroz/0oMHrFSDiBw6A1JCGTQdGJwkBbtWtiuy5hXOESGh5cSFndpTvSDZfxFvQgGyvNGKayWJ9baoE+9IGm3ErqrjUB1ez4YQZ4Q==", "token_parent": "Y6WUIS+ZjErC1Uw2ZqcT5RXpzmk1loWp+z96xVPxJ1UzB4nXuKnY0YQZJmp7eIwix++5wqtIudNKENhJ3WigIz29/LEcQ0EDhmb+k3NqfMTNnjylMVOutV1ZWNlxyOsaNlxuPXwujN5THNDbASHCdw==", "token_admin": "NI8BN7sO4o+IXW8F9Um1CZ/gIhbOMhgEZ65+bSFvFCt2lKNNUV1f8OUpo3z5SGOEOO7maNe++uCRWcK4QgsIZ0/YB67rFYjJQL0kuhumpdRYSbfjVB0USXyh65VkdIX9Nysp9+/EphXq8HZ+s0kaLQ=="};
+  window.MANIFEST = {"tenant_id": "tenant_demo", "display_name": "demoTenant", "aw_last_synced": "2026-09-08T17:16:55.275265+00:00", "chart_days": ["2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06", "2026-09-07", "2026-09-08"], "chart_hours": [8.33, 14.39, 25.3, 18.61, 11.94, 16.48, 7.46], "top_apps_labels": ["YouTube", "WhatsApp", "TikTok", "chrome.exe", "Quickstep"], "top_apps_values": [37.82, 22.06, 18.31, 17.11, 9.75], "compliance_grid": {"2026-09-02": {"tracker": false, "academic": false, "parent": false}, "2026-09-03": {"tracker": false, "academic": false, "parent": false}, "2026-09-04": {"tracker": false, "academic": false, "parent": false}, "2026-09-05": {"tracker": false, "academic": false, "parent": false}, "2026-09-06": {"tracker": false, "academic": false, "parent": false}, "2026-09-07": {"tracker": true, "academic": true, "parent": true}, "2026-09-08": {"tracker": false, "academic": false, "parent": false}}, "student_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.student.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-08", "file": "reports/Summary_For_Kids_2026-09-08.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-07", "file": "reports/Summary_For_Kids_2026-09-07.pdf.enc", "role": "student"}, {"name": "Summary_For_Kids_2026-09-06", "file": "reports/Summary_For_Kids_2026-09-06.pdf.enc", "role": "student"}], "parent_reports": [{"name": "Weekly_Reward_Report_V2_2026-09-06", "file": "reports/Weekly_Reward_Report_V2_2026-09-06.pdf.parent.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-08", "file": "reports/Productivity_Report_2026-09-08.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-07", "file": "reports/Productivity_Report_2026-09-07.pdf.enc", "role": "parent"}, {"name": "Productivity_Report_2026-09-06", "file": "reports/Productivity_Report_2026-09-06.pdf.enc", "role": "parent"}], "telemetry_metrics": {"exists": true, "last_synced_utc": "2026-09-08T17:16:55.275265+00:00", "total_hours": 102.52, "device_breakdown": {"Android": 78.34, "Windows": 24.18}, "daily_average": 14.65, "daily_average_active_days": 14.65, "active_days_count": 7, "delta_percentage": 96.7, "delta_direction": "up", "delta_badge_text": "+96.7% vs last week", "delta_comparison_type": "previous_period", "focus_score": 5, "productive_hours": 5.68, "non_productive_hours": 42.08, "neutral_hours": 42.5, "unclassified_hours": 12.27, "productive_percentage": 5.5, "non_productive_percentage": 41.0, "neutral_percentage": 41.5, "top_categories": [{"category": "Neutral / Utility", "hours": 42.5, "percentage": 41.5, "is_productive": false}, {"category": "Distraction / Gaming", "hours": 42.08, "percentage": 41.0, "is_productive": false}, {"category": "Unclassified", "hours": 12.27, "percentage": 12.0, "is_productive": false}, {"category": "Deep Work / Study", "hours": 5.68, "percentage": 5.5, "is_productive": true}], "top_apps": [{"app": "YouTube", "hours": 18.92, "category": "Distraction / Gaming", "is_productive": false}, {"app": "TikTok", "hours": 18.31, "category": "Distraction / Gaming", "is_productive": false}, {"app": "chrome.exe", "hours": 17.11, "category": "Neutral / Utility", "is_productive": false}, {"app": "WhatsApp", "hours": 12.04, "category": "Neutral / Utility", "is_productive": false}, {"app": "Quickstep", "hours": 5.87, "category": "Neutral / Utility", "is_productive": false}, {"app": "YT Kids", "hours": 4.74, "category": "Distraction / Gaming", "is_productive": false}, {"app": "Chrome", "hours": 4.63, "category": "Neutral / Utility", "is_productive": false}, {"app": "WhatsApp\u00a0Business", "hours": 4.34, "category": "Neutral / Utility", "is_productive": false}, {"app": "LockApp.exe", "hours": 3.39, "category": "Neutral / Utility", "is_productive": false}, {"app": "Antigravity.exe", "hours": 2.94, "category": "Unclassified", "is_productive": false}], "daily_hours_7d": {"2026-09-02": 8.33, "2026-09-03": 14.39, "2026-09-04": 25.3, "2026-09-05": 18.61, "2026-09-06": 11.94, "2026-09-07": 16.48, "2026-09-08": 7.46}, "previous_period_hours": 52.13, "period_start": "2026-09-02", "period_end": "2026-09-08", "feedback_metrics": {"tracker_count": 2, "academic_tests_count": 1, "parent_feedback_count": 1, "total_submissions": 4, "academic_average_percentage": 50.0, "feedback_bonus_score": 2.0, "compliance_by_date": {}}}, "deadlines_data": {"format": "json", "title": "STUDENT ACADEMIC DEADLINES TRACKER", "academic_session": "2026-2027", "date_modified": "September 05, 2026", "headers": ["S#", "Subject", "Syllabus", "Deadline (Notebook)", "Deadline (Tests)", "Current Status"], "deadlines": [{"s_no": "01", "subject": "English", "syllabus": "Ch 1-10 &Grammar", "deadline_notebook": "10 Sep, 2026", "deadline_tests": "15 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "02", "subject": "Physics", "syllabus": "Ch 1, 2, 3, 4 & 7", "deadline_notebook": "06 Sep, 2026", "deadline_tests": "15 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "03", "subject": "Chemistry", "syllabus": "Ch 1, 2, 3 & Ch 4", "deadline_notebook": "08 Sep, 2026", "deadline_tests": "11 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "04", "subject": "Computer", "syllabus": "Ch 1, 2, 4 & 5", "deadline_notebook": "31 Aug, 2026", "deadline_tests": "18 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "05", "subject": "Urdu", "syllabus": "2 Ghazals & 01 Ch", "deadline_notebook": "20 Sep, 2026", "deadline_tests": "25 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "06", "subject": "Islamiat", "syllabus": "Surah Infaal 06 Asbaaq", "deadline_notebook": "10 Sep, 2026", "deadline_tests": "17 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "07", "subject": "Math", "syllabus": "Ch 01 to Ch 07", "deadline_notebook": "09 Sep, 2026", "deadline_tests": "20 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "08", "subject": "T-Q", "syllabus": "Total 08 Asbaaq", "deadline_notebook": "11 Sep, 2026", "deadline_tests": "19 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "09", "subject": "Pak Study", "syllabus": "Ch 1 & Ch 2", "deadline_notebook": "14 Aug, 2026", "deadline_tests": "31 Aug, 2026", "status": "Completed", "current_status": "Completed"}, {"s_no": "10", "subject": "PS", "syllabus": "Speach", "deadline_notebook": "13 Sep, 2026", "deadline_tests": "13 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}, {"s_no": "11", "subject": "Kidnovator", "syllabus": "Project 4", "deadline_notebook": "24 Sep, 2026", "deadline_tests": "25 Sep, 2026", "status": "In Progress", "current_status": "In Progress"}], "notes": ["Physics: Ensure copy checking to teacher or parent before deadline as its near.", "Ensure all assignment notebooks are checked and signed by respective subject teachers prior to test dates.", "Update \"Current Status\" and \"Syllabus\" as chapters are completed or revised."], "notes_and_reminders": ["Physics: Ensure copy checking to teacher or parent before deadline as its near.", "Ensure all assignment notebooks are checked and signed by respective subject teachers prior to test dates.", "Update \"Current Status\" and \"Syllabus\" as chapters are completed or revised."], "pending_extensions": [{"type": "extension_request", "tenant_id": "tenant_demo", "student_role": "student", "subject": "T-Q", "current_deadline": "11 Sep, 2026", "requested_deadline": "2026-09-17", "milestone_type": "Notebook Submission", "urgency": "Normal", "reason": "Urgent", "submission_timestamp": "2026-09-08T16:44:46.555Z", "status": "pending_approval", "file_name": "Extension_Request_T_Q_2026_09_17.json", "relative_path": "feedbacks/Extension_Request_T_Q_2026_09_17.json"}, {"type": "extension_request", "tenant_id": "tenant_demo", "student_role": "student", "subject": "Chemistry", "current_deadline": "08 Sep, 2026", "requested_deadline": "2026-09-11", "milestone_type": "Notebook Submission", "urgency": "Urgent", "reason": "Baba please", "submission_timestamp": "2026-09-08T14:10:37.052Z", "status": "pending_approval", "file_name": "Extension_Request_Chemistry_2026_09_11.json", "relative_path": "feedbacks/Extension_Request_Chemistry_2026_09_11.json"}, {"type": "extension_request", "tenant_id": "tenant_demo", "student_role": "student", "subject": "Physics", "current_deadline": "06 Sep, 2026", "requested_deadline": "2026-09-11", "milestone_type": "Notebook Submission", "urgency": "Normal", "reason": "Work is not complte till the deadline", "submission_timestamp": "2026-09-08T17:00:28.696Z", "status": "pending_approval", "file_name": "Extension_Request_Physics_2026_09_11.json", "relative_path": "feedbacks/Extension_Request_Physics_2026_09_11.json"}], "file_path": "/home/runner/work/kudoz-ai-v3.1/kudoz-ai-v3.1/data/tenant_demo/deadlines.json", "file_name": "deadlines.json", "tenant_id": "tenant_demo"}};
+  const ENV_CONFIG = {"tenant_id": "tenant_demo", "core_repo": "nooraxollc-source/kudoz-ai-v3.1", "student_hash": "f05b1d22c0a3bd63435185290a10bbfcc038939befd4b41481970f159e2e8569", "parent_hash": "b139c483c369f4fe3b68360ab24177d05e47e4ea77afabbcaddfccee3dfc3789", "admin_pass": "Kudozaiadmin2026", "token_student": "1eToLhQALoU1sdB1VkPqfiEAk5GvjpLS8PdhQTOEOi+fIe0EcN3ILzqFQfSksmwdH/nk0Ou2MC6DrsmlzNBTTlTZhmCb5cxX9wSb1uyYCkcZ2vGdMuxxqL/5Pdn8xRs19MBvYaGFfp4n0VssuOwGWw==", "token_parent": "lXjGuqfibf+3wGepWqn3BsnNXW3lPfmM7cj7PmwuWsLJMWrCTqGJI9AxhJ0IzE8k4PownjpbgUTPPNMmkoBh3uP0JmqSij/TjnUZfUFZGyTYjwo4dFDJkBa8icBax5SEcO2hF9faXU/pm2c9wbOlYA==", "token_admin": "0A9Xm+lPgI6mANJ1lAhrwKuPJMHEk61gC0LHYpxvJoCWX9z6hKFI2zQhSCvkFYOq8m6nFSZKgcmXsLMS/L9O3JjC1xECwMVg1qy6s389YhkvDJM+MplcsPdPso7Jr3KE+eeKduqrfHOzc6IuZKD45w=="};
   window.ENV_CONFIG = ENV_CONFIG;
 </script>
 <script>
@@ -5241,7 +5241,7 @@ function renderPortalView() {
     window.KudozTelemetry.init(window.MANIFEST);
   }
   if (typeof window.initDeadlinesManager === "function") {
-    window.initDeadlinesManager();
+    window.initDeadlinesManager(window.MANIFEST && window.MANIFEST.deadlines_data);
   }
   initCharts();
   if (typeof updateAWStatusBadge === "function") updateAWStatusBadge();
@@ -5505,7 +5505,7 @@ function switchTab(tab) {
   if (paneForms) paneForms.classList.toggle("active", tab === "forms");
 
   if (tab === "deadlines" && typeof window.initDeadlinesManager === "function") {
-    window.initDeadlinesManager();
+    window.initDeadlinesManager(window.MANIFEST && window.MANIFEST.deadlines_data);
   }
 }
 
@@ -6704,6 +6704,15 @@ window.handleStatusModalBackdropClick = function(event) {
       activeDeadlines = JSON.parse(JSON.stringify(customData));
     } else if (window.DEADLINES_DATA) {
       activeDeadlines = JSON.parse(JSON.stringify(window.DEADLINES_DATA));
+    } else if (window.MANIFEST && window.MANIFEST.deadlines_data) {
+      activeDeadlines = JSON.parse(JSON.stringify(window.MANIFEST.deadlines_data));
+    }
+
+    if (!activeDeadlines.deadlines || !Array.isArray(activeDeadlines.deadlines)) {
+      activeDeadlines.deadlines = [];
+    }
+    if (!activeDeadlines.pending_extensions || !Array.isArray(activeDeadlines.pending_extensions)) {
+      activeDeadlines.pending_extensions = [];
     }
 
     const role = getEffectiveRole();
@@ -6738,6 +6747,14 @@ window.handleStatusModalBackdropClick = function(event) {
 
       renderStudentReadOnlyView();
     }
+
+    // Always evaluate and update pending extensions badge
+    const list = activeDeadlines.pending_extensions || [];
+    const pendingList = list.filter(r => (r.status === "pending_approval" || r.status === "pending" || !r.status));
+    updateDeadlinesTabBadge(pendingList.length);
+
+    // Live sync latest updates from GitHub in background
+    syncDeadlinesFromGitHub();
   }
 
   /**
@@ -7014,7 +7031,20 @@ window.handleStatusModalBackdropClick = function(event) {
         throw new Error(errJson.message || `GitHub API error (HTTP ${putRes.status})`);
       }
 
-      // 4. Update UI displays
+      // 4. Update UI displays and internal cache
+      activeDeadlines.deadlines = JSON.parse(JSON.stringify(data.deadlines));
+      activeDeadlines.academic_session = data.academic_session;
+      activeDeadlines.date_modified = data.date_modified;
+      activeDeadlines.notes = data.notes || data.notes_and_reminders || [];
+      if (window.MANIFEST) {
+        if (!window.MANIFEST.deadlines_data) window.MANIFEST.deadlines_data = {};
+        window.MANIFEST.deadlines_data.deadlines = activeDeadlines.deadlines;
+        window.MANIFEST.deadlines_data.academic_session = activeDeadlines.academic_session;
+        window.MANIFEST.deadlines_data.date_modified = activeDeadlines.date_modified;
+        window.MANIFEST.deadlines_data.notes = activeDeadlines.notes;
+      }
+      window.DEADLINES_STATE = activeDeadlines;
+
       const sessionDisp = document.getElementById("deadlinesSessionDisplay");
       const dateDisp = document.getElementById("deadlinesDateModifiedDisplay");
       if (sessionDisp) sessionDisp.textContent = data.academic_session;
@@ -7082,7 +7112,17 @@ window.handleStatusModalBackdropClick = function(event) {
   // ==========================================================================
 
   function updateDeadlinesTabBadge(count) {
+    const role = getEffectiveRole();
     const tabBtns = document.querySelectorAll('.nav-tab, .tab-btn, button[onclick*="deadlines"]');
+
+    if (role === "student") {
+      tabBtns.forEach(btn => {
+        const badge = btn.querySelector('.deadlines-tab-indicator-badge');
+        if (badge) badge.remove();
+      });
+      return;
+    }
+
     tabBtns.forEach(btn => {
       let badge = btn.querySelector('.deadlines-tab-indicator-badge');
       if (count > 0) {
@@ -7401,6 +7441,12 @@ window.handleStatusModalBackdropClick = function(event) {
       if (success) {
         if (!activeDeadlines.pending_extensions) activeDeadlines.pending_extensions = [];
         activeDeadlines.pending_extensions.unshift(payload);
+        if (window.MANIFEST) {
+          if (!window.MANIFEST.deadlines_data) window.MANIFEST.deadlines_data = {};
+          if (!window.MANIFEST.deadlines_data.pending_extensions) window.MANIFEST.deadlines_data.pending_extensions = [];
+          window.MANIFEST.deadlines_data.pending_extensions.unshift(payload);
+        }
+        window.DEADLINES_STATE = activeDeadlines;
         closeExtensionModal();
         showDeadlinesAlert(`🎉 Extension request for "${subject}" submitted successfully! A priority action notification has been dispatched to your Parent & Admin dashboard.`, "success");
       } else {
@@ -7415,9 +7461,143 @@ window.handleStatusModalBackdropClick = function(event) {
     }
   }
 
+  /**
+   * Real-time GitHub sync: fetches latest deadlines.json and extension requests
+   * directly from GitHub REST API so refreshes show new entries without waiting for pipeline.
+   */
+  async function syncDeadlinesFromGitHub() {
+    try {
+      let token = null;
+      if (typeof window.getCoreToken === "function") {
+        token = await window.getCoreToken();
+      } else if (typeof getCoreToken === "function") {
+        token = await getCoreToken();
+      }
+
+      const tenantId = getTenantId();
+      const coreRepo = getCoreRepo();
+      const targetBranch = (window.ENV_CONFIG && window.ENV_CONFIG.branch) || "main";
+
+      const headers = {
+        "Accept": "application/vnd.github+json"
+      };
+      if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+      }
+
+      let updated = false;
+
+      // 1. Fetch latest data/{tenantId}/deadlines.json
+      try {
+        const dlUrl = `https://api.github.com/repos/${coreRepo}/contents/data/${tenantId}/deadlines.json?ref=${encodeURIComponent(targetBranch)}&_t=${Date.now()}`;
+        const dlRes = await fetch(dlUrl, { headers, cache: "no-store" });
+        if (dlRes.ok) {
+          const dlData = await dlRes.json();
+          if (dlData && dlData.content) {
+            const rawContent = decodeURIComponent(escape(window.atob(dlData.content.replace(/\s/g, ""))));
+            const parsed = JSON.parse(rawContent);
+            const items = parsed.deadlines || parsed.items || [];
+            if (Array.isArray(items) && items.length > 0) {
+              activeDeadlines.deadlines = items.map((it, idx) => ({
+                s_no: String(it.serial_number || it.s_no || idx + 1).padStart(2, "0"),
+                subject: it.subject || "",
+                syllabus: it.syllabus || "",
+                deadline_notebook: it.deadline_notebook || it.deadline_nb || "",
+                deadline_tests: it.deadline_tests || it.deadline_test || "",
+                status: it.current_status || it.status || "Pending",
+                current_status: it.current_status || it.status || "Pending"
+              }));
+              if (parsed.academic_session) activeDeadlines.academic_session = parsed.academic_session;
+              if (parsed.date_modified) activeDeadlines.date_modified = parsed.date_modified;
+              if (parsed.notes_and_reminders || parsed.notes) {
+                activeDeadlines.notes = parsed.notes_and_reminders || parsed.notes;
+              }
+              updated = true;
+            }
+          }
+        }
+      } catch (errDl) {
+        console.warn("[Kudoz Deadlines] Notice fetching remote deadlines.json:", errDl);
+      }
+
+      // 2. Fetch latest student extension requests from data/{tenantId}/feedbacks
+      try {
+        const fbUrl = `https://api.github.com/repos/${coreRepo}/contents/data/${tenantId}/feedbacks?ref=${encodeURIComponent(targetBranch)}&_t=${Date.now()}`;
+        const fbRes = await fetch(fbUrl, { headers, cache: "no-store" });
+        if (fbRes.ok) {
+          const files = await fbRes.json();
+          if (Array.isArray(files)) {
+            const extFiles = files.filter(f => f.name && f.name.toLowerCase().startsWith("extension_request_") && f.name.toLowerCase().endsWith(".json"));
+            const liveExtensions = [];
+            for (const ef of extFiles) {
+              try {
+                let extData = null;
+                if (ef.content) {
+                  const rawExt = decodeURIComponent(escape(window.atob(ef.content.replace(/\s/g, ""))));
+                  extData = JSON.parse(rawExt);
+                } else if (ef.url || ef.download_url) {
+                  const targetFetchUrl = ef.url || ef.download_url;
+                  const extRes = await fetch(targetFetchUrl, { headers, cache: "no-store" });
+                  if (extRes.ok) {
+                    const rawJson = await extRes.json();
+                    if (rawJson.content) {
+                      extData = JSON.parse(decodeURIComponent(escape(window.atob(rawJson.content.replace(/\s/g, "")))));
+                    } else {
+                      extData = rawJson;
+                    }
+                  }
+                }
+
+                if (extData && typeof extData === "object") {
+                  extData.file_name = ef.name;
+                  extData.relative_path = `feedbacks/${ef.name}`;
+                  if (!extData.status) extData.status = "pending_approval";
+                  liveExtensions.push(extData);
+                }
+              } catch (singleErr) {
+                console.warn("[Kudoz Deadlines] Could not parse extension request:", ef.name, singleErr);
+              }
+            }
+
+            activeDeadlines.pending_extensions = liveExtensions;
+            updated = true;
+          }
+        }
+      } catch (errFb) {
+        console.warn("[Kudoz Deadlines] Notice fetching remote feedbacks:", errFb);
+      }
+
+      if (updated) {
+        if (window.MANIFEST) {
+          window.MANIFEST.deadlines_data = JSON.parse(JSON.stringify(activeDeadlines));
+        }
+        window.DEADLINES_STATE = activeDeadlines;
+
+        // Update displays
+        const sessionDisp = document.getElementById("deadlinesSessionDisplay");
+        const dateDisp = document.getElementById("deadlinesDateModifiedDisplay");
+        if (sessionDisp) sessionDisp.textContent = activeDeadlines.academic_session || "2026-2027";
+        if (dateDisp) dateDisp.textContent = activeDeadlines.date_modified || "September 05, 2026";
+
+        const role = getEffectiveRole();
+        if (role === "admin" || role === "parent") {
+          renderAdminParentEditor();
+        } else {
+          renderStudentReadOnlyView();
+        }
+
+        const pendingList = (activeDeadlines.pending_extensions || []).filter(r => (r.status === "pending_approval" || r.status === "pending" || !r.status));
+        updateDeadlinesTabBadge(pendingList.length);
+      }
+    } catch (e) {
+      console.warn("[Kudoz Deadlines] Live sync completed with note:", e);
+    }
+  }
+
   // --- Attach Public APIs to Window ---
   window.DEADLINES_STATE = activeDeadlines;
   window.initDeadlinesManager = initDeadlinesManager;
+  window.syncDeadlinesFromGitHub = syncDeadlinesFromGitHub;
   window.renderPendingExtensionRequests = renderPendingExtensionRequests;
   window.approveExtensionRequest = approveExtensionRequest;
   window.declineExtensionRequest = declineExtensionRequest;
